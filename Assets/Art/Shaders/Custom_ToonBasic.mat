@@ -20,14 +20,13 @@ Material:
   - _USECENTEROFFSET_ON
   - _USECORNERBOOST_ON
   - _USENORMALOFFSET_ON
-  - _USEOUTLINE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _Outline
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -63,10 +62,11 @@ Material:
     m_Floats:
     - _AmbientStrength: 1
     - _CornerBoost: 28.3
+    - _GlassAlpha: 0.5
     - _Levels: 5
     - _MatcapStrength: 1
     - _Outline: 7.4
-    - _Outline2: 14.8
+    - _Outline2: 3.7
     - _Outline2Screen: 0
     - _Outline2Silhouette: 0
     - _Outline2Vertex: 0
@@ -87,11 +87,12 @@ Material:
     - _UseCenterOffset: 1
     - _UseCornerBoost: 1
     - _UseEmission: 0
+    - _UseGlass: 0
     - _UseMatcap: 0
     - _UseNormal: 0
     - _UseNormalOffset: 1
     - _UseNormalOutline: 0
-    - _UseOutline: 1
+    - _UseOutline: 0
     - _UseOutline2: 0
     - _UseRamp: 0
     - _UseRim: 0
