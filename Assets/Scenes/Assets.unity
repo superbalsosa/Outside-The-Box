@@ -1175,7 +1175,7 @@ Transform:
   m_GameObject: {fileID: 1291563265}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.1, y: 0, z: 2.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1230,7 +1230,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 36
   m_CollisionDetection: 0
 --- !u!114 &1291563269
 MonoBehaviour:
@@ -1244,7 +1244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58cdcccb44b96ac4f8f049229f52111e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragAndDrop
-  speed: 10
+  minX: -18
+  maxX: 18
+  minZ: -18
+  maxZ: 20
 --- !u!1 &1800549436
 GameObject:
   m_ObjectHideFlags: 0

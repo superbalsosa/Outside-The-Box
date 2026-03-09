@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
-    [Header("Movement settings")]
-    public float speed = 10f;
+    [Header("Boundary Settings")]
+    public float minX = -10f;
+    public float maxX = 10f;
+    public float minZ = -10f;
+    public float maxZ = 10f;
 
     private Rigidbody rb;
     private Camera mainCamera;
-    private float zDistance;
     private Vector3 offset;
+    private float lockedY;
 
     private void Start()
     {
@@ -29,36 +32,68 @@ public class DragAndDrop : MonoBehaviour
         rb.interpolation = RigidbodyInterpolation.Interpolate;
     }
     /// <summary>
-    /// Calculates the Z-depth relative to the camera and the offset 
-    /// between the click point and the object center.
+    /// Initialize the drag by capturing the locked Y height and
+    /// calculating the offset using a raycast intersection.
     /// </summary>
     private void PrepareDrag()
     {
-        zDistance = mainCamera.WorldToScreenPoint(transform.position).z;
         offset = transform.position - GetMouseWorldPos();
+
+        lockedY = transform.position.y;
 
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
     /// <summary>
-    /// Calculates the target position by combining the mouse world position 
-    /// and the then moves the rigidbody using MovePosition to collision detection.
+    /// Updates the object position based on the mouse intersection with
+    /// the horizontal plane.
     /// </summary>
     private void PerformDrag()
     {
         Vector3 targetPos = GetMouseWorldPos() + offset;
 
-        rb.MovePosition(targetPos);
+        if (IsInsideBoundaries(targetPos))
+        {
+            targetPos.y = lockedY;
+            rb.MovePosition(targetPos);
+        }
     }
     /// <summary>
-    /// Converts 2D mouse screen coordinates into a 3D world point using the
-    /// Z-depth calculates at the start of the drag.
-    /// </summary>
+    /// Projects a ray from the camera through the mouse position to find
+    /// the intersection point with a visual horizontal plane at the 
+    /// locked Y height.
+    /// </summary> 
+    /// <returns> the 3D position where the mouse points at the specific Y height.</returns>
     private Vector3 GetMouseWorldPos()
     {
-        Vector3 mousePoint = Input.mousePosition;
-        mousePoint.z = zDistance;
+        Plane horizontalPlane = new Plane(Vector3.up, new Vector3(0, lockedY, 0));
 
-        return mainCamera.ScreenToWorldPoint(mousePoint);
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+        if (horizontalPlane.Raycast(ray, out float entry))
+        {
+            return ray.GetPoint(entry);
+        }
+
+        return transform.position;
     }
+    /// <summary>
+    /// Verifies if a given position is within the defined X and Z limits.
+    /// </summary>
+    /// <param name="pos">The position to check.</param>
+    /// <returns>True if the position is within the square boundaries.</returns>
+    private bool IsInsideBoundaries(Vector3 pos)
+    {
+        return pos.x >= minX && pos.x <= maxX && pos.z >= minZ && pos.z <= maxZ;
+    }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Vector3 center = new Vector3((minX + maxX) / 2, transform.position.y, (minZ + maxZ) / 2);
+        Vector3 size = new Vector3(maxX - minX, 0.1f, maxZ - minZ);
+        Gizmos.DrawWireCube(center, size);
+    }
+#endif
 }
