@@ -52,11 +52,11 @@ public class DragAndDrop : MonoBehaviour
     {
         Vector3 targetPos = GetMouseWorldPos() + offset;
 
-        if (IsInsideBoundaries(targetPos))
-        {
-            targetPos.y = lockedY;
-            rb.MovePosition(targetPos);
-        }
+        targetPos.x = Mathf.Clamp(targetPos.x, minX, maxX);
+        targetPos.z = Mathf.Clamp(targetPos.z, minZ, maxZ);
+        targetPos.y = lockedY;
+
+        rb.MovePosition(targetPos);
     }
     /// <summary>
     /// Projects a ray from the camera through the mouse position to find
