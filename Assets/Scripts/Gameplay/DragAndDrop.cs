@@ -86,14 +86,4 @@ public class DragAndDrop : MonoBehaviour
     {
         return pos.x >= minX && pos.x <= maxX && pos.z >= minZ && pos.z <= maxZ;
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.cyan;
-        Vector3 center = new Vector3((minX + maxX) / 2, transform.position.y, (minZ + maxZ) / 2);
-        Vector3 size = new Vector3(maxX - minX, 0.1f, maxZ - minZ);
-        Gizmos.DrawWireCube(center, size);
-    }
-#endif
 }

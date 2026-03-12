@@ -23,7 +23,7 @@ public class SpaceObject : MonoBehaviour
     private void FixedUpdate()
     {
         HandleReturnToAnchor();
-        LimitVelocity();
+        //LimitVelocity();
         MaintainInertia();
     }
     /// <summary>
