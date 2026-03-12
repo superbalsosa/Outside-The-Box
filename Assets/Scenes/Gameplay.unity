@@ -248,6 +248,8 @@ MonoBehaviour:
   forceAmount: 2.25
   torqueAmount: 0.5
   returnForce: 0.8
+  minSpeed: 0.25
+  maxSpeed: 1
   maxDistance: 5
 --- !u!54 &73335358
 Rigidbody:
@@ -344,6 +346,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spaceship
       objectReference: {fileID: 0}
+    - target: {fileID: 3682451522804229586, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3682451522804229586, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6c5581a1b2d723047a23736e7a43089c, type: 2}
     - target: {fileID: 3853762846818883982, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -492,6 +502,8 @@ MonoBehaviour:
   forceAmount: 2.25
   torqueAmount: 0.5
   returnForce: 0.8
+  minSpeed: 0.25
+  maxSpeed: 1
   maxDistance: 5
 --- !u!54 &311870414
 Rigidbody:
@@ -1245,6 +1257,8 @@ MonoBehaviour:
   forceAmount: 2.25
   torqueAmount: 0.5
   returnForce: 0.8
+  minSpeed: 0.25
+  maxSpeed: 1
   maxDistance: 5
 --- !u!54 &1232468712
 Rigidbody:
@@ -1503,6 +1517,8 @@ MonoBehaviour:
   forceAmount: 2.25
   torqueAmount: 0.5
   returnForce: 0.8
+  minSpeed: 0.25
+  maxSpeed: 1
   maxDistance: 5
 --- !u!54 &1800549442
 Rigidbody:
@@ -1660,6 +1676,8 @@ MonoBehaviour:
   forceAmount: 2.25
   torqueAmount: 0.5
   returnForce: 0.8
+  minSpeed: 0.25
+  maxSpeed: 1
   maxDistance: 5
 --- !u!54 &1834613768
 Rigidbody:
@@ -1817,6 +1835,8 @@ MonoBehaviour:
   forceAmount: 2.25
   torqueAmount: 0.5
   returnForce: 0.8
+  minSpeed: 0.25
+  maxSpeed: 1
   maxDistance: 5
 --- !u!54 &1842615928
 Rigidbody:
@@ -1974,6 +1994,8 @@ MonoBehaviour:
   forceAmount: 2.25
   torqueAmount: 0.5
   returnForce: 0.8
+  minSpeed: 0.25
+  maxSpeed: 1
   maxDistance: 5
 --- !u!54 &1867331602
 Rigidbody:
@@ -2299,6 +2321,8 @@ MonoBehaviour:
   forceAmount: 2.25
   torqueAmount: 0.5
   returnForce: 0.8
+  minSpeed: 0.25
+  maxSpeed: 1
   maxDistance: 5
 --- !u!54 &2127967585
 Rigidbody:
