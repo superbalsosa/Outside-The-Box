@@ -3,11 +3,13 @@ using UnityEngine;
 public class SpaceObject : MonoBehaviour
 {
     [Header("Impulse configuration")]
-    public float forceAmount = 2f;
+    public float forceAmount = 2.25f;
     public float torqueAmount = 0.5f;
     public float returnForce = 0.8f;
 
     [Header("Limits")]
+    public float minSpeed = 0.25f;
+    public float maxSpeed = 1f;
     public float maxDistance = 5f;
 
     private Vector3 startPosition;
@@ -21,6 +23,7 @@ public class SpaceObject : MonoBehaviour
     private void FixedUpdate()
     {
         HandleReturnToAnchor();
+        LimitVelocity();
         MaintainInertia();
     }
     /// <summary>
@@ -40,8 +43,8 @@ public class SpaceObject : MonoBehaviour
         startPosition = transform.position;
 
         rb.useGravity = false;
-        rb.linearDamping = 0.1f;
-        rb.angularDamping = 0.1f;
+        rb.linearDamping = 0.01f;
+        rb.angularDamping = 0.05f;
     }
     /// <summary>
     /// Calculate and apply forces so tha the object orbits close to its initial point.
@@ -53,18 +56,28 @@ public class SpaceObject : MonoBehaviour
         if (distance > maxDistance)
         {
             Vector3 directionToAnchor = (startPosition - transform.position).normalized;
-            Vector3 orbitDirection = Vector3.Cross(directionToAnchor, transform.up);
-            rb.AddForce((directionToAnchor + orbitDirection * 0.5f) * returnForce);
+
+            rb.AddForce(directionToAnchor * returnForce, ForceMode.Acceleration);
         }
     }
     /// <summary>
-    /// It prevents the object from coming to a complete stop.
+    /// If the object moves too slowly, receive a tiny impulse to keep the vacuum illusion.
     /// </summary>
     private void MaintainInertia()
     {
-        if (rb.linearVelocity.magnitude < 0.2f)
+        if (rb.linearVelocity.magnitude < minSpeed)
         {
             rb.AddForce(Random.insideUnitSphere * 0.1f, ForceMode.Acceleration);
+        }
+    }
+    /// <summary>
+    /// Clamps the velocity to ensure the object never moves faster tha the maxSpeed.
+    /// </summary>
+    private void LimitVelocity()
+    {
+        if (rb.linearVelocity.magnitude > maxSpeed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
     }
 }
