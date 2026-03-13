@@ -41,8 +41,8 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BlinkSpeed: 0.0001
-    - _StarsDensity: 1000
-    - _StarsPower: 60
+    - _StarsDensity: 700
+    - _StarsPower: 100
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
