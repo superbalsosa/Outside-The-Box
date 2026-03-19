@@ -17,24 +17,37 @@ public class EventSystem : Singleton<EventSystem>
     }
 
     [SerializeField] private List<GameEvent> events = new List<GameEvent>();
+    
+    private GameEventSO currentEvent;
     protected override void Awake()
     {
         base.Awake();
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+
+#if UNITY_EDITOR
+    float delay = 10;
     void Update()
     {
-        
-    }
+        if (GetCurrentGameEvent() == null)
+        {
+            delay -= Time.deltaTime;
 
+            if (delay <= 0)
+            {
+                delay = 10;
+                if (events.Count > 0)
+                {
+                    int randomIndex = Random.Range(0, events.Count);
+                    StartCoroutine(TriggerEvent(events[randomIndex]));
+                }
+            }
+        }
+    }
+#endif
     private IEnumerator TriggerEvent(GameEvent e)
     {
+        SetCurrentGameEvent(e.gameEvent);
         yield return new WaitForSeconds(e.delay);
         e.onEventTriggered.Invoke();
     }
@@ -48,6 +61,7 @@ public class EventSystem : Singleton<EventSystem>
             {
                 int randomIndex = Random.Range(0, events.Count);
                 StartCoroutine(TriggerEvent(events[randomIndex]));
+                SetCurrentGameEvent(events[randomIndex].gameEvent);
             }
         }
     }
@@ -72,10 +86,21 @@ public class EventSystem : Singleton<EventSystem>
                     if (randomWeight < currentWeight)
                     {
                         StartCoroutine(TriggerEvent(e));
+                        SetCurrentGameEvent(e.gameEvent);
                         break;
                     }
                 }
             }
         }
+    }
+
+    public GameEventSO GetCurrentGameEvent()
+    {
+        return currentEvent;
+    }
+
+    public void SetCurrentGameEvent(GameEventSO gameEvent)
+    {
+        currentEvent = gameEvent;
     }
 }
