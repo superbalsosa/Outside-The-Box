@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DragAndDrop : MonoBehaviour
+public class DragAndDrop : MonoBehaviour, IDragAndDrop
 {
     [Header("Boundary Settings")]
     public float minX = -10f;
@@ -13,17 +13,44 @@ public class DragAndDrop : MonoBehaviour
     private Vector3 offset;
     private float lockedY;
 
+    [SerializeField] private LayerMask draggableLayer;
+    [SerializeField] private float raycastDistance = 150f;
+    private bool isDragging = false;
+
+    public bool IsDragging { get => isDragging; }
+
     private void Start()
     {
         SetupReferences();
     }
-    private void OnMouseDown()
+    //private void OnMouseDown()
+    //{
+    //    PrepareDrag();
+    //}
+    //private void OnMouseDrag()
+    //{
+    //    PerformDrag();
+    //}
+
+    private void Update()
     {
-        PrepareDrag();
+        if (Input.GetMouseButtonDown(0))
+        {
+            TryStartDrag();
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            isDragging = false;
+        }
     }
-    private void OnMouseDrag()
+
+    private void FixedUpdate()
     {
-        PerformDrag();
+        if (Input.GetMouseButton(0) && isDragging)
+        {
+            PerformDrag();
+        }
     }
     private void SetupReferences()
     {
@@ -77,6 +104,21 @@ public class DragAndDrop : MonoBehaviour
 
         return transform.position;
     }
+
+    private void TryStartDrag()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, raycastDistance, draggableLayer))
+        {
+            Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red, 2f);
+            if (hit.collider.gameObject == gameObject)
+            {
+                isDragging = true;
+                PrepareDrag();
+            }
+        }
+    }
     /// <summary>
     /// Verifies if a given position is within the defined X and Z limits.
     /// </summary>
@@ -86,4 +128,9 @@ public class DragAndDrop : MonoBehaviour
     {
         return pos.x >= minX && pos.x <= maxX && pos.z >= minZ && pos.z <= maxZ;
     }
+}
+
+public interface IDragAndDrop
+{
+    bool IsDragging { get; }
 }
