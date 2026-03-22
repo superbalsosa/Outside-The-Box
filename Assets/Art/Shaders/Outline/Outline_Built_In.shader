@@ -10,7 +10,7 @@ Shader "StandardOutline_Built_In"
         _BumpScale ("Normal Scale", Range(0,1)) = 1
         _EmissionColor ("Emission Color", Color) = (0,0,0,0)
         _OutlineColor ("Outline Color", Color) = (0,0,0,1)
-        _OutlineWidth ("Outline Width", Range(0,2)) = 0.02
+        _OutlineWidth ("Outline Width", Range(0,2)) = 0.1
     }
 
     SubShader
