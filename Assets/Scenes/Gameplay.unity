@@ -492,6 +492,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: dcafd35ed242c204fa32486657e14405, type: 2}
+    - target: {fileID: -1045607382830601967, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 83f6f74016dcbe140998b69ff3f264af, type: 2}
     - target: {fileID: -887095748192548169, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -556,6 +560,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: ce66a05d25b3545458e978400ffdc50a, type: 2}
+    - target: {fileID: 5424369010624704959, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 83f6f74016dcbe140998b69ff3f264af, type: 2}
     - target: {fileID: 6996872513342677642, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -6020,7 +6028,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 35
+  field of view: 25
   orthographic: 0
   orthographic size: 43.4
   m_Depth: -1
@@ -6047,7 +6055,7 @@ Transform:
   m_GameObject: {fileID: 887076126}
   serializedVersion: 2
   m_LocalRotation: {x: 0.064346276, y: -0.934702, z: 0.22440208, w: 0.26802155}
-  m_LocalPosition: {x: 65, y: 74, z: 107}
+  m_LocalPosition: {x: 86, y: 94, z: 138}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6130,11 +6138,11 @@ MonoBehaviour:
   noiseSpeed: 0.5
   breathingAmplitude: 0.1
   breathingSpeed: 0.5
-  baseFOV: 35
+  baseFOV: 25
   fovAmplitude: 0.5
   fovSpeed: 0.5
   warpActive: 0
-  warpFOV: 40
+  warpFOV: 30
   warpTransitionSpeed: 2
 --- !u!1 &994567537
 GameObject:
@@ -6164,7 +6172,7 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 0.627451, g: 0.8862745, b: 1, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 1.7
   m_Range: 80
   m_SpotAngle: 170
   m_InnerSpotAngle: 17
