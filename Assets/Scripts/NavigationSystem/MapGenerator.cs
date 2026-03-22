@@ -11,7 +11,7 @@ public class MapGenerator : MonoBehaviour
 
     private List<MapLayer> _mapLayers = new List<MapLayer>();
 
-    public void GenerateMap()
+    public List<MapLayer> GenerateMap()
     {
         _mapLayers.Clear();
 
@@ -23,7 +23,8 @@ public class MapGenerator : MonoBehaviour
             for (int j = 0; j < count; j++)
             {
                 MapNode node = new MapNode();
-                node.position = new Vector2(j * xSpacing, i * ySpacing);
+                float xPos = (j - (count - 1) / 2f) * xSpacing;
+                node.position = new Vector2(xPos, i * ySpacing);
                 layer.nodes.Add(node);
             }
             _mapLayers.Add(layer);
@@ -37,5 +38,18 @@ public class MapGenerator : MonoBehaviour
                 node.children.Add(_mapLayers[i + 1].nodes[randomIndex]);
             }
         }
+
+        return _mapLayers;
+    }
+    public int GetLayerIndex(MapNode node)
+    {
+        for (int i = 0; i < _mapLayers.Count; i++)
+        {
+            if (_mapLayers[i].nodes.Contains(node))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }
