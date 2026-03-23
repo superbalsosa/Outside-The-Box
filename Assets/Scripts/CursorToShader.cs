@@ -11,32 +11,66 @@ public class CursorToShader : MonoBehaviour
 
     Vector2 current;
 
+    Renderer rend;
+    MaterialPropertyBlock mpb;
+
+    void Awake()
+    {
+        rend = GetComponent<Renderer>();
+        mpb = new MaterialPropertyBlock();
+    }
+
     void Update()
     {
-        if (mat == null) return;
+        if (rend == null) return;
 
         Vector2 target = GetNormalizedCursor();
-
         current = Vector2.Lerp(current, target, Time.deltaTime * smooth);
 
-        mat.SetVector("_Cursor", new Vector4(current.x, current.y, 0, 0));
+        ApplyCursor(current);
     }
 
     Vector2 GetNormalizedCursor()
     {
         Vector2 mouse = Input.mousePosition;
 
-        // normalize 0-1
         mouse.x /= Screen.width;
         mouse.y /= Screen.height;
 
-        // to -1 to 1
         mouse = mouse * 2f - Vector2.one;
 
-        // invert
         if (invertY)
             mouse.y *= -1f;
 
         return mouse * sensitivity;
+    }
+
+    void ApplyCursor(Vector2 value)
+    {
+        rend.GetPropertyBlock(mpb);
+        mpb.SetVector("_Cursor", new Vector4(value.x, value.y, 0, 0));
+        rend.SetPropertyBlock(mpb);
+    }
+
+    void OnDisable()
+    {
+        ResetCursor();
+    }
+
+#if UNITY_EDITOR
+    void OnValidate()
+    {
+        if (!Application.isPlaying)
+            ResetCursor();
+    }
+#endif
+
+    void ResetCursor()
+    {
+        if (rend == null) return;
+
+        rend.GetPropertyBlock(mpb);
+        mpb.SetVector("_Cursor", Vector4.zero);
+        rend.SetPropertyBlock(mpb);
     }
 }
