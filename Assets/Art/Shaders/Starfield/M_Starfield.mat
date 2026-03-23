@@ -41,8 +41,12 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BlinkSpeed: 0.0001
-    - _StarsDensity: 700
+    - _NebulaScale: 12.3
+    - _NebulaSpeed: 0.02
+    - _StarsDensity: 900
+    - _StarsMask: 200
     - _StarsPower: 100
-    m_Colors: []
+    m_Colors:
+    - _NebulaColor: {r: 0, g: 0, b: 0.41509432, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
