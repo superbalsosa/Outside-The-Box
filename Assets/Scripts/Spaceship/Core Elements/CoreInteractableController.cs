@@ -1,53 +1,87 @@
-using System;
+using System.Collections.Generic;
+using DependencyInjection;
 using UnityEngine;
-using Utilities.Error;
+using System;
 
 namespace CoreInteractables
 {
     public class CoreInteractableController : MonoBehaviour, ICoreInteractable
     {
+        #region VARIABLES
         [SerializeField] private CoreInteractableSO interactableData;
-        private Material material;
+        private List<Renderer> renderers = new List<Renderer>();
+        private IErrorManager errorManager;
+        #endregion
 
+        #region UNITY_METHODS
         private void Start()
         {
-            
+            errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
+            InitOutlines();
         }
-        //Start should be here but is not showing it
+        #endregion
+
+        #region PRIVATE_METHODS
+        private void InitOutlines()
+        {
+            var childrenRenderers = GetComponentsInChildren<Renderer>();
+
+            foreach (var childRender in childrenRenderers)
+            {
+                if (childRender.material.shader.name.Equals("StandardOutline_Built_In"))
+                {
+                    renderers.Add(childRender);
+                }
+            }
+            ResetState();
+        }
+        private void ResetState() => HideInteraction();
+        private void Interact()
+        {
+            //Interact code by interactableData.InteractableCoreType
+        }
+        private void ShowInteraction()
+        {
+            foreach (var render in renderers)
+            {
+                render.material.SetFloat("_OutlineWidth", interactableData.OutlineHover);
+            }
+        }
+        private void HideInteraction()
+        {
+            foreach (var render in renderers)
+            {
+                render.material.SetFloat("_OutlineWidth", interactableData.OutlineBase);
+            }
+        }
+        #endregion
+
         #region INTERFACE_METHODS
-        ErrorUtility ICoreInteractable.Interact()
+        void ICoreInteractable.Interact()
         {
             try
             {
-                return ErrorUtility.Success(ErrorType.CoreInteractableInteract);
+                Interact();
             }
-            catch (Exception ex)
-            {
-                return ErrorUtility.Error(ErrorType.CoreInteractableInteract, ex.Message);
-            }
+            catch (Exception ex) { errorManager.WriteError(ErrorType.CoreInteractable_Interact, ex.Message, ex.StackTrace); }
         }
-        ErrorUtility ICoreInteractable.ShowInteraction()
+        void ICoreInteractable.ShowInteraction()
         {
             try
             {
-                return ErrorUtility.Success(ErrorType.CoreInteractableInteract);
+                ShowInteraction();
             }
-            catch (Exception ex)
-            {
-                return ErrorUtility.Error(ErrorType.CoreInteractableInteract, ex.Message);
-            }
+            catch (Exception ex) { errorManager.WriteError(ErrorType.CoreInteractable_ShowInteraction, ex.Message, ex.StackTrace); }
         }
-        ErrorUtility ICoreInteractable.HideInteraction()
+        void ICoreInteractable.HideInteraction()
         {
             try
             {
-                return ErrorUtility.Success(ErrorType.CoreInteractableInteract);
+                HideInteraction();
             }
-            catch (Exception ex)
-            {
-                return ErrorUtility.Error(ErrorType.CoreInteractableInteract, ex.Message);
-            }
+            catch (Exception ex) { errorManager.WriteError(ErrorType.CoreInteractable_HideInteraction, ex.Message, ex.StackTrace); }
         }
+        GameObject ICoreInteractable.GetGameObject() => this.gameObject;
         #endregion
     }
 }

@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8835573170500359922
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
+  m_Name: DepthOfField
+  m_EditorClassIdentifier: Unity.Postprocessing.Runtime::UnityEngine.Rendering.PostProcessing.DepthOfField
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  focusDistance:
+    overrideState: 1
+    value: 30
+  aperture:
+    overrideState: 1
+    value: 32
+  focalLength:
+    overrideState: 1
+    value: 300
+  kernelSize:
+    overrideState: 1
+    value: 3
 --- !u!114 &-8478406293255983953
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1395,13 +1423,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: Post-process Volume Profile
+  m_Name: Post Process
   m_EditorClassIdentifier: Unity.Postprocessing.Runtime::UnityEngine.Rendering.PostProcessing.PostProcessProfile
   settings:
   - {fileID: 4727028191997910225}
   - {fileID: -61759856331636852}
   - {fileID: -8478406293255983953}
   - {fileID: -3174372313606457512}
+  - {fileID: -8835573170500359922}
 --- !u!114 &4727028191997910225
 MonoBehaviour:
   m_ObjectHideFlags: 3

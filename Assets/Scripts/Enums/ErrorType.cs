@@ -1,8 +1,10 @@
-﻿namespace Utilities.Error
+﻿public enum ErrorType
 {
-    public enum ErrorType
-    {
-        None,
-        CoreInteractableInteract
-    }
+    None,
+    CoreInteractable_Interact,
+    CoreInteractable_ShowInteraction,
+    CoreInteractable_HideInteraction,
+    PlayerInteractableController_TriggerEnter,
+    PlayerInteractableController_TriggerExit
+
 }

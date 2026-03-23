@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Starfield
+  m_Name: M_Starfield 1
   m_Shader: {fileID: -6465566751694194690, guid: d766ebba6c0513440a3275f5a2c67470, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -41,22 +41,22 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BlinkSpeed: 0.0023
-    - _NebulaScale: 10
-    - _NebulaSpeed: 0.05
+    - _NebulaScale: 23.9
+    - _NebulaSpeed: 0.03
     - _StarsBlinkSpeed: 0.002
     - _StarsDensity: 545
     - _StarsMask: 50
     - _StarsMaskBlinkSpeed: 0.001
-    - _StarsMaskScale: 15
+    - _StarsMaskScale: 100
     - _StarsMaskSpeed: 0.005
     - _StarsParallaxBlinkSpeed: 0.001
-    - _StarsParallaxPower: 393
+    - _StarsParallaxPower: 1200
     - _StarsParallaxScale: 1000
     - _StarsParallaxSpeed: 0.00023
     - _StarsPower: 100
-    - _StarsScale: 352
+    - _StarsScale: 600
     m_Colors:
-    - _NebulaColor: {r: 0, g: 0, b: 0.7830189, a: 1}
-    - _NebulaNegativeColor: {r: 0.12133286, g: 0, b: 0.07402735, a: 1}
+    - _NebulaColor: {r: 0, g: 0.16764748, b: 0.33194193, a: 1}
+    - _NebulaNegativeColor: {r: 0.031067641, g: 0.067417145, b: 0.15611881, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
