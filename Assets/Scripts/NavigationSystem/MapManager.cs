@@ -1,64 +1,62 @@
-using System;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+﻿using System.Linq;
 using UnityEngine;
+using Newtonsoft.Json;
 
-public class MapManager : MonoBehaviour
+namespace Map
 {
-    public MapGenerator generator;
-    public MapDisplay display;
-
-    private MapNode currentNode;
-    private int currentLayerIndex = -1;
-    private List<MapLayer> mapLayers;
-
-    private void Start()
+    public class MapManager : MonoBehaviour
     {
-        List<MapLayer> layers = generator.GenerateMap();
+        public MapConfig config;
+        public MapView view;
 
-        display.DrawMap(layers, this);
+        public Map CurrentMap { get; private set; }
 
-        UpdateNodeStates();
-    }
-    public void SelectNode(MapNode node, MapNodeView view)
-    {
-        int nodeLayer = generator.GetLayerIndex(node);
-
-        bool isFirstLayer = currentLayerIndex == -1 && nodeLayer == 0;
-        bool isChild = currentNode != null && currentNode.children.Contains(node);
-
-        if (isFirstLayer || isChild)
+        private void Start()
         {
-            currentNode = node;
-            currentLayerIndex = nodeLayer;
-
-            Debug.Log("Enter to node: " + node.position);
-
-            UpdateNodeStates();
-        }
-    }
-    private void UpdateNodeStates()
-    {
-        MapNodeView[] allViews = FindObjectsOfType<MapNodeView>();
-
-        foreach (var view in allViews)
-        {
-            MapNode node = view.GetNodeData();
-            int nodeLayer = generator.GetLayerIndex(node);
-
-            bool reachable = false;
-
-            if (currentLayerIndex == -1)
+            if (PlayerPrefs.HasKey("Map"))
             {
-                reachable = nodeLayer == 0;
-            } 
+                string mapJson = PlayerPrefs.GetString("Map");
+                Map map = JsonConvert.DeserializeObject<Map>(mapJson);
+                // using this instead of .Contains()
+                if (map.path.Any(p => p.Equals(map.GetBossNode().point)))
+                {
+                    // payer has already reached the boss, generate a new map
+                    GenerateNewMap();
+                }
+                else
+                {
+                    CurrentMap = map;
+                    // player has not reached the boss yet, load the current map
+                    view.ShowMap(map);
+                }
+            }
             else
             {
-                reachable = currentNode.children.Contains(node);
+                GenerateNewMap();
             }
+        }
 
-            bool visited = node == currentNode;
-            view.SetState(reachable, visited);
+        public void GenerateNewMap()
+        {
+            Map map = MapGenerator.GetMap(config);
+            CurrentMap = map;
+            Debug.Log(map.ToJson());
+            view.ShowMap(map);
+        }
+
+        public void SaveMap()
+        {
+            if (CurrentMap == null) return;
+
+            string json = JsonConvert.SerializeObject(CurrentMap, Formatting.Indented,
+                new JsonSerializerSettings {ReferenceLoopHandling = ReferenceLoopHandling.Ignore});
+            PlayerPrefs.SetString("Map", json);
+            PlayerPrefs.Save();
+        }
+
+        private void OnApplicationQuit()
+        {
+            SaveMap();
         }
     }
 }
