@@ -1,8 +1,10 @@
-﻿using Utilities.Error;
+﻿using UnityEngine;
+using Utilities.Error;
 public interface ICoreInteractable
 
 {
-    public ErrorUtility Interact();
-    public ErrorUtility ShowInteraction();
-    public ErrorUtility HideInteraction();
+    public void Interact();
+    public void ShowInteraction();
+    public void HideInteraction();
+    public GameObject GetGameObject();
 }

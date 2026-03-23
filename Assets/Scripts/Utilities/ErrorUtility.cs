@@ -1,4 +1,6 @@
-﻿namespace Utilities.Error
+﻿using UnityEngine;
+
+namespace Utilities.Error
 {
     public class ErrorUtility
     {
