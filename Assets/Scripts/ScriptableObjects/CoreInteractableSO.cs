@@ -10,8 +10,9 @@ namespace CoreInteractables
     [CreateAssetMenu(fileName = "001 - NewCoreInteractable", menuName = "Spaceship/CoreInteractable Data")]
     public class CoreInteractableSO : ScriptableObject 
     { 
-        public InteractableCoreType interactableCoreType;
-        public string interactableName;
-
+        public InteractableCoreType InteractableCoreType;
+        public string InteractableName;
+        public float OutlineHover;
+        public float OutlineBase;
     }
 }

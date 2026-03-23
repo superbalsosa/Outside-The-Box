@@ -440,6 +440,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5300336170557601552, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e1829474879e6d4c9d9aa4c685fd0aa, type: 2}
     - target: {fileID: -5286262514028560868, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -520,6 +524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Control_Table
       objectReference: {fileID: 0}
+    - target: {fileID: 2183173766705338140, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e1829474879e6d4c9d9aa4c685fd0aa, type: 2}
     - target: {fileID: 2263871253403316205, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -564,6 +572,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5272726550109063865, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e1829474879e6d4c9d9aa4c685fd0aa, type: 2}
+    - target: {fileID: 5345953089445903056, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e1829474879e6d4c9d9aa4c685fd0aa, type: 2}
     - target: {fileID: 5345953089445903056, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -572,6 +588,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 83f6f74016dcbe140998b69ff3f264af, type: 2}
+    - target: {fileID: 6427201550886469306, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e1829474879e6d4c9d9aa4c685fd0aa, type: 2}
+    - target: {fileID: 6681738125885372737, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e1829474879e6d4c9d9aa4c685fd0aa, type: 2}
     - target: {fileID: 6996872513342677642, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -584,6 +608,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 63785afab54b345428322937af701753, type: 2}
+    - target: {fileID: 8034868108650145675, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e1829474879e6d4c9d9aa4c685fd0aa, type: 2}
     - target: {fileID: 8182561589466922012, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -592,6 +620,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
       objectReference: {fileID: 2100000, guid: 83f6f74016dcbe140998b69ff3f264af, type: 2}
+    - target: {fileID: 8989208418089072714, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1e1829474879e6d4c9d9aa4c685fd0aa, type: 2}
     - target: {fileID: 9199868817469596635, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -887,8 +919,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bb25d3564c597b41a1b94d5fff8d367, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  interactableData: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::CoreInteractables.CoreInteractableController
+  interactableData: {fileID: 11400000, guid: 7ec205c934bad184794fee5a13b384e0, type: 2}
 --- !u!4 &556202989 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0fa70c50793978d458cae4798a4ec7d1, type: 3}

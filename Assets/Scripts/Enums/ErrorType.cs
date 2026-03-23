@@ -3,6 +3,8 @@
     public enum ErrorType
     {
         None,
-        CoreInteractableInteract
+        CoreInteractableInteract,
+        CoreInteractableShowInteraction,
+        CoreInteractableHideInteraction
     }
 }
