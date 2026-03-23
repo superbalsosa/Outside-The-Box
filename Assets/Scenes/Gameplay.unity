@@ -524,6 +524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Control_Table
       objectReference: {fileID: 0}
+    - target: {fileID: 1845899278479281354, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2183173766705338140, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -906,8 +910,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.000008, y: 5.9999814, z: 11.999993}
-  m_Center: {x: 0, y: -0.50000894, z: 5.500141}
+  m_Size: {x: 12, y: 8, z: 11.999993}
+  m_Center: {x: 0, y: -2.25, z: 6.08}
 --- !u!114 &550841063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11471,7 +11475,8 @@ GameObject:
   - component: {fileID: 1291563267}
   - component: {fileID: 1291563268}
   - component: {fileID: 1291563269}
-  m_Layer: 0
+  - component: {fileID: 1291563270}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11560,6 +11565,21 @@ MonoBehaviour:
   maxX: 18
   minZ: -18
   maxZ: 18
+--- !u!114 &1291563270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291563265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c1eea56f45b0e4282d08488ed0471e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1319295597
 GameObject:
   m_ObjectHideFlags: 0

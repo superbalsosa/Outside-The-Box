@@ -5,6 +5,9 @@
         None,
         CoreInteractableInteract,
         CoreInteractableShowInteraction,
-        CoreInteractableHideInteraction
+        CoreInteractableHideInteraction,
+        PlayerInteractableControllerTriggerEnter,
+        PlayerInteractableControllerTriggerExit
+
     }
 }

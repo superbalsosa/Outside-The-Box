@@ -10,6 +10,7 @@ namespace CoreInteractables
         #region VARIABLES
         [SerializeField] private CoreInteractableSO interactableData;
         private List<Renderer> renderers = new List<Renderer>();
+        private ErrorUtility errorUtility;
         #endregion
 
         #region UNITY_METHODS
@@ -55,33 +56,34 @@ namespace CoreInteractables
         #endregion
 
         #region INTERFACE_METHODS
-        ErrorUtility ICoreInteractable.Interact()
+        void ICoreInteractable.Interact()
         {
             try
             {
                 Interact();
-                return ErrorUtility.Success(ErrorType.CoreInteractableInteract);
+                errorUtility = ErrorUtility.Success(ErrorType.CoreInteractableInteract);
             }
-            catch (Exception ex) { return ErrorUtility.Error(ErrorType.CoreInteractableInteract, ex.Message, ex.StackTrace); }
+            catch (Exception ex) { errorUtility = ErrorUtility.Error(ErrorType.CoreInteractableInteract, ex.Message, ex.StackTrace); throw ex; }
         }
-        ErrorUtility ICoreInteractable.ShowInteraction()
+        void ICoreInteractable.ShowInteraction()
         {
             try
             {
                 ShowInteraction();
-                return ErrorUtility.Success(ErrorType.CoreInteractableShowInteraction);
+                errorUtility = ErrorUtility.Success(ErrorType.CoreInteractableShowInteraction);
             }
-            catch (Exception ex) { return ErrorUtility.Error(ErrorType.CoreInteractableShowInteraction, ex.Message, ex.StackTrace); }
+            catch (Exception ex) { errorUtility = ErrorUtility.Error(ErrorType.CoreInteractableShowInteraction, ex.Message, ex.StackTrace); throw ex; }
         }
-        ErrorUtility ICoreInteractable.HideInteraction()
+        void ICoreInteractable.HideInteraction()
         {
             try
             {
                 HideInteraction();
-                return ErrorUtility.Success(ErrorType.CoreInteractableHideInteraction);
+                errorUtility = ErrorUtility.Success(ErrorType.CoreInteractableHideInteraction);
             }
-            catch (Exception ex) { return ErrorUtility.Error(ErrorType.CoreInteractableHideInteraction, ex.Message, ex.StackTrace); }
+            catch (Exception ex) { errorUtility = ErrorUtility.Error(ErrorType.CoreInteractableHideInteraction, ex.Message, ex.StackTrace); throw ex; }
         }
+        GameObject ICoreInteractable.GetGameObject() => this.gameObject;
         #endregion
     }
 }
