@@ -58,7 +58,7 @@ Material:
     - _ScanlineStrength: 0.3
     - _Shutdown: 1
     m_Colors:
-    - _Cursor: {r: 0.10759924, g: 1.1806139, b: 0, a: 0}
+    - _Cursor: {r: 0.035690676, g: 1.1497726, b: 0, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
