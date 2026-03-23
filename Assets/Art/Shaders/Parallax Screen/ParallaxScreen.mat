@@ -42,11 +42,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _CursorBoost: 0
-    - _CursorRadius: 0.25
+    - _CursorRadius: 0.008
     - _Depth1: 0.02
     - _Depth2: 0.05
     - _Depth3: 0.1
-    - _Distortion: 0.02
+    - _Distortion: 0
     - _DotSize: 0
     - _Glow: 2
     - _GlowBoost: 0
@@ -58,7 +58,7 @@ Material:
     - _ScanlineStrength: 0.3
     - _Shutdown: 1
     m_Colors:
-    - _Cursor: {r: 0.035690676, g: 1.1497726, b: 0, a: 0}
+    - _Cursor: {r: 0.023427436, g: 1.1912444, b: 0, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
