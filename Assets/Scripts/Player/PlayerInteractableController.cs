@@ -1,14 +1,21 @@
 using System;
 using UnityEngine;
-using Utilities.Error;
+using DependencyInjection;
 
 public class PlayerInteractableController : MonoBehaviour
 {
+    #region VARIABLES
+
     [SerializeField] private LayerMask interactableLayer;
     private ICoreInteractable currentInteractable;
+    private IErrorManager errorManager;
 
+    #endregion
+
+    #region UNITY_METHODS
     void Start()
     {
+        errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
         CleanData();
     }
     private void OnTriggerEnter(Collider other)
@@ -25,8 +32,8 @@ public class PlayerInteractableController : MonoBehaviour
             }
         }
         catch (Exception ex) 
-        { 
-            ErrorUtility.Error(ErrorType.PlayerInteractableControllerTriggerEnter, ex.Message, ex.StackTrace);
+        {
+            errorManager.WriteError(ErrorType.PlayerInteractableController_TriggerEnter, ex.Message, ex.StackTrace);
             throw ex;
         }
     }
@@ -45,12 +52,16 @@ public class PlayerInteractableController : MonoBehaviour
         }
         catch (Exception ex)
         {
-            ErrorUtility.Error(ErrorType.PlayerInteractableControllerTriggerExit, ex.Message, ex.StackTrace);
+            errorManager.WriteError(ErrorType.PlayerInteractableController_TriggerExit, ex.Message, ex.StackTrace);
             throw ex;
         }
     }
+    #endregion
+
+    #region PRIVATE_METHODS
     private void CleanData()
     {
         currentInteractable = null;
     }
+    #endregion
 }

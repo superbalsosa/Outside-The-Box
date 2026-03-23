@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
+using DependencyInjection;
 using UnityEngine;
-using Utilities.Error;
+using System;
 
 namespace CoreInteractables
 {
@@ -10,12 +10,13 @@ namespace CoreInteractables
         #region VARIABLES
         [SerializeField] private CoreInteractableSO interactableData;
         private List<Renderer> renderers = new List<Renderer>();
-        private ErrorUtility errorUtility;
+        private IErrorManager errorManager;
         #endregion
 
         #region UNITY_METHODS
         private void Start()
         {
+            errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
             InitOutlines();
         }
         #endregion
@@ -61,27 +62,24 @@ namespace CoreInteractables
             try
             {
                 Interact();
-                errorUtility = ErrorUtility.Success(ErrorType.CoreInteractableInteract);
             }
-            catch (Exception ex) { errorUtility = ErrorUtility.Error(ErrorType.CoreInteractableInteract, ex.Message, ex.StackTrace); throw ex; }
+            catch (Exception ex) { errorManager.WriteError(ErrorType.CoreInteractable_Interact, ex.Message, ex.StackTrace); }
         }
         void ICoreInteractable.ShowInteraction()
         {
             try
             {
                 ShowInteraction();
-                errorUtility = ErrorUtility.Success(ErrorType.CoreInteractableShowInteraction);
             }
-            catch (Exception ex) { errorUtility = ErrorUtility.Error(ErrorType.CoreInteractableShowInteraction, ex.Message, ex.StackTrace); throw ex; }
+            catch (Exception ex) { errorManager.WriteError(ErrorType.CoreInteractable_ShowInteraction, ex.Message, ex.StackTrace); }
         }
         void ICoreInteractable.HideInteraction()
         {
             try
             {
                 HideInteraction();
-                errorUtility = ErrorUtility.Success(ErrorType.CoreInteractableHideInteraction);
             }
-            catch (Exception ex) { errorUtility = ErrorUtility.Error(ErrorType.CoreInteractableHideInteraction, ex.Message, ex.StackTrace); throw ex; }
+            catch (Exception ex) { errorManager.WriteError(ErrorType.CoreInteractable_HideInteraction, ex.Message, ex.StackTrace); }
         }
         GameObject ICoreInteractable.GetGameObject() => this.gameObject;
         #endregion
