@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7214758325326987124
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.ShaderGraph.Editor::UnityEditor.Rendering.BuiltIn.AssetVersion
+  version: 0
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Starfield 1
+  m_Shader: {fileID: -6465566751694194690, guid: d766ebba6c0513440a3275f5a2c67470, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueOffset: 0
+    - _BlinkSpeed: 0.0023
+    - _NebulaScale: 23.9
+    - _NebulaSpeed: 0.03
+    - _StarsBlinkSpeed: 0.002
+    - _StarsDensity: 545
+    - _StarsMask: 50
+    - _StarsMaskBlinkSpeed: 0.001
+    - _StarsMaskScale: 100
+    - _StarsMaskSpeed: 0.005
+    - _StarsParallaxBlinkSpeed: 0.001
+    - _StarsParallaxPower: 1200
+    - _StarsParallaxScale: 1000
+    - _StarsParallaxSpeed: 0.00023
+    - _StarsPower: 100
+    - _StarsScale: 600
+    m_Colors:
+    - _NebulaColor: {r: 0, g: 0.16764748, b: 0.33194193, a: 1}
+    - _NebulaNegativeColor: {r: 0.031067641, g: 0.067417145, b: 0.15611881, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
