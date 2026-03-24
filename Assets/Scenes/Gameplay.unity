@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e8f895dbf9ed34ebb3ab98cddd256f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Map.MapViewUI
-  mapManager: {fileID: 676947988}
+  mapManager: {fileID: 0}
   orientation: 0
   allMapConfigs: []
   nodePrefab: {fileID: 0}
@@ -1148,45 +1148,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 676947989}
-  - component: {fileID: 676947988}
-  - component: {fileID: 676947987}
   m_Layer: 0
-  m_Name: MapSystem
+  m_Name: MapObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &676947987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 676947986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99500891fa7a0374387e375144d0bd5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Map.MapPlayerTracker
-  lockAfterSelecting: 0
-  enterNodeDelay: 1
-  mapManager: {fileID: 676947988}
-  view: {fileID: 158383872}
---- !u!114 &676947988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 676947986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 319326c3a3f2fa84a85ebfd3d30cfe2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Map.MapManager
-  config: {fileID: 11400000, guid: 165088f62d74bd643b9e220e80080eec, type: 2}
-  view: {fileID: 158383872}
 --- !u!4 &676947989
 Transform:
   m_ObjectHideFlags: 0
@@ -1196,10 +1164,13 @@ Transform:
   m_GameObject: {fileID: 676947986}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.64111, y: 0, z: -1674.0626}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1251487029}
+  - {fileID: 1621439445}
+  - {fileID: 1424789048}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &710789268
@@ -6792,7 +6763,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &1260541658
+--- !u!1 &1251487027
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6800,28 +6771,68 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1260541659}
+  - component: {fileID: 1251487029}
+  - component: {fileID: 1251487028}
   m_Layer: 0
-  m_Name: MapConfig
+  m_Name: MapView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1260541659
+--- !u!114 &1251487028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251487027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e6506a734d03f42b5c0dcbefc29f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Map.MapView
+  mapManager: {fileID: 1621439444}
+  orientation: 0
+  allMapConfigs:
+  - {fileID: 11400000, guid: 165088f62d74bd643b9e220e80080eec, type: 2}
+  nodePrefab: {fileID: 0}
+  orientationOffset: -4
+  background: {fileID: 0}
+  backgroundColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  xSize: 11.5
+  yOffset: 2
+  linePrefab: {fileID: 0}
+  linePointsCount: 10
+  offsetFromNodes: 0.5
+  visitedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  lockedColor:
+    serializedVersion: 2
+    rgba: 4286611584
+  lineVisitedColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  lineLockedColor:
+    serializedVersion: 2
+    rgba: 4286611584
+--- !u!4 &1251487029
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260541658}
+  m_GameObject: {fileID: 1251487027}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.64111, y: 0, z: -1674.0626}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 676947989}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1291563265
 GameObject:
@@ -7191,6 +7202,54 @@ Transform:
   - {fileID: 1635455852}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 27, y: -148, z: 0}
+--- !u!1 &1424789047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424789048}
+  - component: {fileID: 1424789049}
+  m_Layer: 0
+  m_Name: MapPlayerTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1424789048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424789047}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 676947989}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1424789049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424789047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99500891fa7a0374387e375144d0bd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Map.MapPlayerTracker
+  lockAfterSelecting: 0
+  enterNodeDelay: 1
+  mapManager: {fileID: 1621439444}
+  view: {fileID: 1251487028}
 --- !u!4 &1597319363 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8461037237137222273, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
@@ -7244,6 +7303,52 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1621439443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1621439445}
+  - component: {fileID: 1621439444}
+  m_Layer: 0
+  m_Name: MapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1621439444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621439443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319326c3a3f2fa84a85ebfd3d30cfe2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Map.MapManager
+  config: {fileID: 11400000, guid: 165088f62d74bd643b9e220e80080eec, type: 2}
+  view: {fileID: 1251487028}
+--- !u!4 &1621439445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621439443}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 676947989}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1627998950 stripped
 GameObject:
@@ -8419,8 +8524,7 @@ SceneRoots:
   - {fileID: 2011718472}
   - {fileID: 1605717727}
   - {fileID: 1721814964}
-  - {fileID: 40561048}
   - {fileID: 587366885}
   - {fileID: 326563426}
-  - {fileID: 1260541659}
+  - {fileID: 40561048}
   - {fileID: 676947989}

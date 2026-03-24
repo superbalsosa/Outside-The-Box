@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Map.MapConfig
   nodeBlueprints:
   - {fileID: 11400000, guid: 920ad0ccb8b190e40a687445f389f11d, type: 2}
+  - {fileID: 11400000, guid: 00ab25321247cdd4e81f7e6d85d48cc7, type: 2}
   randomNodes: 0600000004000000030000000000000002000000
   numOfPreBossNodes:
     min: 0
