@@ -6,9 +6,11 @@ using Utilities;
 
 public class BasicEvent : Singleton<BasicEvent>
 { 
-    [SerializeField] private List<Transform> SpawnPoints = new List<Transform>();
+    [SerializeField] private List<Transform> SpawnPointsFloor = new List<Transform>();
+    [SerializeField] private List<Transform> SpawnPointsWall = new List<Transform>();
 
-    [SerializeField] private BasicEventObject BrokenShipPrefab;
+    [SerializeField] private BasicEventObject AlienPrefab;
+    [SerializeField] private BasicEventObject BrokenWallPrefab;
 
     [SerializeField] public int ObjectsToSpawn = 1;
 
@@ -24,13 +26,23 @@ public class BasicEvent : Singleton<BasicEvent>
         OnEventCompleted.RemoveListener(CheckEventCompletion);
     }
 
-    public void StartEvent (int AmountToSpawn)
+    public void StartEventAlien (int AmountToSpawn)
     {
         ObjectsToSpawn = AmountToSpawn;
         for (int i = 0; i < ObjectsToSpawn; i++)
         {
-            Transform spawnPoint = SpawnPoints[Random.Range(0, SpawnPoints.Count)];
-            Instantiate(BrokenShipPrefab, spawnPoint.position, spawnPoint.rotation);
+            Transform spawnPoint = SpawnPointsFloor[Random.Range(0, SpawnPointsFloor.Count)];
+            Instantiate(AlienPrefab, spawnPoint.position, spawnPoint.rotation);
+        }
+    }
+
+    public void StartEventBrokenWall(int AmountToSpawn)
+    {
+        ObjectsToSpawn = AmountToSpawn;
+        for (int i = 0; i < ObjectsToSpawn; i++)
+        {
+            Transform spawnPoint = SpawnPointsWall[Random.Range(0, SpawnPointsWall.Count)];
+            Instantiate(BrokenWallPrefab, spawnPoint.position, spawnPoint.rotation);
         }
     }
 

@@ -9,13 +9,15 @@ public class PlayerInteractableController : MonoBehaviour
     [SerializeField] private LayerMask interactableLayer;
     private ICoreInteractable currentInteractable;
     private IErrorManager errorManager;
-
+    private IDragAndDrop dragAndDrop;
+    private bool hasInteracted = false;
     #endregion
 
     #region UNITY_METHODS
     void Start()
     {
         errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
+        dragAndDrop = InterfaceDependencyInjector.Instance.Resolve<IDragAndDrop>();
         CleanData();
     }
     private void OnTriggerEnter(Collider other)
@@ -37,6 +39,28 @@ public class PlayerInteractableController : MonoBehaviour
             throw ex;
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        try
+        {
+            if (currentInteractable != null && (1 << other.gameObject.layer) == interactableLayer)
+            {
+                if (other.gameObject.Equals(currentInteractable.GetGameObject()))
+                {
+                    if (!hasInteracted && dragAndDrop.IsDragging == false)
+                    {
+                        currentInteractable.Interact();
+                        hasInteracted = true; 
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            errorManager.WriteError(ErrorType.PlayerInteractableController_TriggerStay, ex.Message, ex.StackTrace);
+            throw;
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         try
@@ -46,6 +70,7 @@ public class PlayerInteractableController : MonoBehaviour
                 if (other.gameObject.Equals(currentInteractable.GetGameObject()))
                 {
                     currentInteractable.HideInteraction();
+                    hasInteracted = false;
                     CleanData();
                 }
             }
