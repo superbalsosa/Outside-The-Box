@@ -31,26 +31,46 @@ Material:
     m_Floats:
     - _DetachStrength: 0.2
     - _DetachThreshold: 0
-    - _DripLength: 0.08
+    - _DripLength: 1
     - _DripStrength: 0.1
     - _EdgeSoftness: 0
     - _EdgeWidth: 0.1
+    - _EyeAspect: 0
+    - _EyeBlob: 0
+    - _EyeRadius: -1
     - _EyeSize: 0
     - _EyeSoftness: 0
-    - _Glow: 2.5
-    - _GradientStrength: 4
-    - _Gravity: 1.45
+    - _FlowAmount: 0.5
+    - _FlowStrength: 1
+    - _Glow: 0
+    - _GradientSharpness: 1
+    - _GradientSpeed: 0.2
+    - _GradientStrength: 0.1
+    - _Gravity: 1.04
     - _NoiseScale: 1
     - _NoiseSpeed: 1
     - _OutlineWidth: 0.1
+    - _PupilSize: 0
+    - _StarPulse: 0.1
+    - _StarPulseSpeed: 2
+    - _StarRotation: 0
+    - _StarRound: 0
+    - _StarSharpness: 6
+    - _StarSize: 0
+    - _StarSpeed: 0
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorA: {r: 0.19999996, g: 0.8, b: 1, a: 1}
-    - _ColorB: {r: 0.29803923, g: 1, b: 0.8, a: 1}
-    - _ColorC: {r: 1, g: 0.2, b: 0.93333334, a: 1}
+    - _ColorA: {r: 0.64125866, g: 0.5127686, b: 0.7607843, a: 1}
+    - _ColorB: {r: 0.5512245, g: 0.44266668, b: 0.6509804, a: 1}
+    - _ColorC: {r: 0.4326845, g: 0.3466667, b: 0.50980395, a: 1}
+    - _ColorD: {r: 0.3799088, g: 0.30400002, b: 0.44705883, a: 1}
+    - _EyeBlack: {r: 0, g: 0, b: 0, a: 1}
     - _EyeColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EyePos1: {r: 0.85, g: 0.62, b: 0, a: 0}
-    - _EyePos2: {r: 0.65, g: 0.62, b: 0, a: 0}
+    - _EyePos1: {r: 0.63, g: 0.63, b: 0, a: 0}
+    - _EyePos2: {r: 0.79, g: 0.63, b: 0, a: 0}
+    - _EyePupil: {r: 0.049999982, g: 0.049999982, b: 0.079999976, a: 1}
+    - _EyeRing: {r: 0.049999982, g: 0.049999982, b: 0.079999976, a: 1}
+    - _EyeWhite: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
