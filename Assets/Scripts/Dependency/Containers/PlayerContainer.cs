@@ -6,6 +6,7 @@ namespace DependencyInjection
         public void RegisterServices(InterfaceDependencyInjector injector)
         {
             //injector.Register<IPlayerInteractMarkerPrompt>(() => FindAndValidate<PlayerInteractMarkerPrompt>());
+            injector.Register<IDragAndDrop>(() => FindAndValidate<DragAndDrop>());
         }
     }
 }

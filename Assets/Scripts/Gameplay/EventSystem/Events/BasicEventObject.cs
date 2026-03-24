@@ -4,27 +4,34 @@ using UnityEngine.Events;
 public class BasicEventObject : MonoBehaviour
 {
 
+    [SerializeField] private float resolutionTime = 3f;
+    [SerializeField] private UnityEvent onResolved;
+
     private bool playerInside;
 
-    [SerializeField] private float resolutionTime = 3f;
-
     public bool isEventResolved = false;
+    
 
-    //IBasicEvent basicEvent;
+    IDragAndDrop dragAndDrop;
 
-    //private void Awake()
-    //{
-    //    basicEvent = DependencyInjection.InterfaceDependencyInjector.Instance.Resolve<IBasicEvent>();
-    //}
+    protected virtual void Awake()
+    {
+    }
+
+    private void Start()
+    {
+        dragAndDrop = DependencyInjection.InterfaceDependencyInjector.Instance.Resolve<IDragAndDrop>();
+        
+    }
 
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
             playerInside = true;
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
             playerInside = false;
@@ -32,19 +39,23 @@ public class BasicEventObject : MonoBehaviour
 
     private void Update()
     {
-        if (playerInside)
+        if (playerInside && !dragAndDrop.IsDragging)
         {
             resolutionTime -= Time.deltaTime;
             if (resolutionTime <= 0)
             {
-                isEventResolved = true;
-                BasicEvent.Instance.RemoveObjectFromEvent();
-                BasicEvent.Instance.OnEventCompleted.Invoke();
-                ResolveEvent();
+                onResolved.Invoke();
             }
         }
     }
 
+    public void ResolveBasicObject()
+    {
+        isEventResolved = true;
+        BasicEvent.Instance.RemoveObjectFromEvent();
+        BasicEvent.Instance.OnEventCompleted.Invoke();
+        ResolveEvent();
+    }
     private void ResolveEvent()
     {
         Destroy(gameObject);
