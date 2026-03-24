@@ -19,7 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _Softness
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -31,7 +31,7 @@ Material:
     m_Floats:
     - _BlinkSpeed: 1
     - _FresnelPower: 4
-    - _IconSize: 0
+    - _IconSize: 0.05
     - _Progress: 0
     - _PulseSpeed: 0
     - _PulseStrength: 1
@@ -41,7 +41,7 @@ Material:
     - _Segments: 3
     - _Softness: 0.001
     - _Speed: 2
-    - _Thickness: 0.07
+    - _Thickness: 0.1
     - _UIScale: 1.5
     - _Width: 0.1
     - _WorldScale: 5
