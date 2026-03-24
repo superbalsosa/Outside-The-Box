@@ -16,7 +16,12 @@ public class BasicEventObject : MonoBehaviour
 
     protected virtual void Awake()
     {
+    }
+
+    private void Start()
+    {
         dragAndDrop = DependencyInjection.InterfaceDependencyInjector.Instance.Resolve<IDragAndDrop>();
+        
     }
 
 
