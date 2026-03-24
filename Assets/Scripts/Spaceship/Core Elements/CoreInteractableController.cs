@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DependencyInjection;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 
 namespace CoreInteractables
@@ -9,8 +10,9 @@ namespace CoreInteractables
     {
         #region VARIABLES
         [SerializeField] private CoreInteractableSO interactableData;
+        [SerializeField] private UnityEvent onInteract;
         private List<Renderer> renderers = new List<Renderer>();
-        private IErrorManager errorManager;
+        private IErrorManager errorManager;     
         #endregion
 
         #region UNITY_METHODS
@@ -39,6 +41,8 @@ namespace CoreInteractables
         private void Interact()
         {
             //Interact code by interactableData.InteractableCoreType
+            Debug.Log($"Interacted with {gameObject.name} of type {interactableData.InteractableCoreType}");
+            onInteract.Invoke();
         }
         private void ShowInteraction()
         {

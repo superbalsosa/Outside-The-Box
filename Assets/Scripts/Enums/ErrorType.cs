@@ -5,6 +5,7 @@
     CoreInteractable_ShowInteraction,
     CoreInteractable_HideInteraction,
     PlayerInteractableController_TriggerEnter,
-    PlayerInteractableController_TriggerExit
+    PlayerInteractableController_TriggerExit,
+    PlayerInteractableController_TriggerStay
 
 }
