@@ -4,13 +4,13 @@ namespace Map
 {
     public enum NodeType
     {
-        MinorEnemy,
-        EliteEnemy,
-        RestSite,
-        Treasure,
-        Store,
-        Boss,
-        Mystery
+        RestEvent,
+        FightEvent,
+        StoreEvent,
+        GatherEvent,
+        MysteryEvent,
+        TreasureEvent,
+        FinalEvent
     }
 }
 

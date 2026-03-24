@@ -110,7 +110,7 @@ namespace Map
 
             GameObject backgroundObject = new GameObject("Background");
             backgroundObject.transform.SetParent(mapParent.transform);
-            MapNode bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == NodeType.Boss);
+            MapNode bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == NodeType.FinalEvent);
             float span = m.DistanceBetweenFirstAndLastLayers();
             backgroundObject.transform.localPosition = new Vector3(bossNode.transform.localPosition.x, span / 2f, 0f);
             backgroundObject.transform.localRotation = Quaternion.identity;
@@ -225,7 +225,7 @@ namespace Map
         {
             ScrollNonUI scrollNonUi = mapParent.GetComponent<ScrollNonUI>();
             float span = mapManager.CurrentMap.DistanceBetweenFirstAndLastLayers();
-            MapNode bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == NodeType.Boss);
+            MapNode bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == NodeType.FinalEvent);
             Debug.Log("Map span in set orientation: " + span + " camera aspect: " + cam.aspect);
 
             // setting first parent to be right in front of the camera first:

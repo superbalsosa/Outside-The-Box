@@ -68,19 +68,19 @@ namespace Map
             // if you choose to show GUI in some of these cases, do not forget to set "Locked" in MapPlayerTracker back to false
             switch (mapNode.Node.nodeType)
             {
-                case NodeType.MinorEnemy:
+                case NodeType.FightEvent:
                     break;
-                case NodeType.EliteEnemy:
+                case NodeType.GatherEvent:
                     break;
-                case NodeType.RestSite:
+                case NodeType.RestEvent:
                     break;
-                case NodeType.Treasure:
+                case NodeType.TreasureEvent:
                     break;
-                case NodeType.Store:
+                case NodeType.StoreEvent:
                     break;
-                case NodeType.Boss:
+                case NodeType.FinalEvent:
                     break;
-                case NodeType.Mystery:
+                case NodeType.MysteryEvent:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

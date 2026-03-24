@@ -22,7 +22,7 @@ namespace Map
 
         public Node GetBossNode()
         {
-            return nodes.FirstOrDefault(n => n.nodeType == NodeType.Boss);
+            return nodes.FirstOrDefault(n => n.nodeType == NodeType.FinalEvent);
         }
 
         public float DistanceBetweenFirstAndLastLayers()
