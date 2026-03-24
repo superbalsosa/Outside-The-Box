@@ -1431,6 +1431,7 @@ MonoBehaviour:
   - {fileID: -8478406293255983953}
   - {fileID: -3174372313606457512}
   - {fileID: -8835573170500359922}
+  - {fileID: 8196254130522033859}
 --- !u!114 &4727028191997910225
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1478,3 +1479,47 @@ MonoBehaviour:
   dirtIntensity:
     overrideState: 0
     value: 0
+--- !u!114 &8196254130522033859
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: Unity.Postprocessing.Runtime::UnityEngine.Rendering.PostProcessing.Vignette
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  mode:
+    overrideState: 1
+    value: 1
+  color:
+    overrideState: 1
+    value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    overrideState: 0
+    value: {x: 0.5, y: 0.5}
+  intensity:
+    overrideState: 1
+    value: 0.685
+  smoothness:
+    overrideState: 1
+    value: 0.01
+  roundness:
+    overrideState: 1
+    value: 0
+  rounded:
+    overrideState: 0
+    value: 0
+  mask:
+    overrideState: 1
+    value: {fileID: 2800000, guid: c941f17bad8a2d149bae00d171181a56, type: 3}
+    defaultState: 1
+  opacity:
+    overrideState: 1
+    value: 1
