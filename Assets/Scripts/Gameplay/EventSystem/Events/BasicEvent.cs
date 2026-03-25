@@ -28,7 +28,8 @@ public class BasicEvent : Singleton<BasicEvent>
 
     public void StartEventAlien (int AmountToSpawn)
     {
-        ObjectsToSpawn = AmountToSpawn;
+        ObjectsToSpawn = Random.Range(0, AmountToSpawn);
+        if (ObjectsToSpawn <= 0) ObjectsToSpawn = 1;
         for (int i = 0; i < ObjectsToSpawn; i++)
         {
             Transform spawnPoint = SpawnPointsFloor[Random.Range(0, SpawnPointsFloor.Count)];

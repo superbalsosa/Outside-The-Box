@@ -179,7 +179,7 @@ MonoBehaviour:
   - {fileID: 871520126}
   - {fileID: 98319322}
   AlienPrefab: {fileID: 1181751887379790457, guid: 7b967e61e01ee5e479b31d985de7f449, type: 3}
-  BrokenWallPrefab: {fileID: 1181751887379790457, guid: 7b967e61e01ee5e479b31d985de7f449, type: 3}
+  BrokenWallPrefab: {fileID: 1181751887379790457, guid: 319dc57ee1f60a3499497aadc1bb5b65, type: 3}
   ObjectsToSpawn: 0
 --- !u!1 &73335352
 GameObject:
@@ -451,6 +451,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
       objectReference: {fileID: 2100000, guid: 5bff281d94e0c6e40bdef284496f1f36, type: 2}
+    - target: {fileID: -4953848728879405565, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -4722668142949580050, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -511,6 +515,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 1c0b9e3f48504844db12cef2d3671b09, type: 2}
+    - target: {fileID: 617273685037825119, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 617273685037825119, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       propertyPath: m_Name
       value: Spaceship
@@ -636,6 +648,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1845899278479281354, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       insertIndex: -1
       addedObject: {fileID: 550841063}
+    - targetCorrespondingSourceObject: {fileID: -4953848728879405565, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1694378566}
+    - targetCorrespondingSourceObject: {fileID: -4953848728879405565, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1694378565}
+    - targetCorrespondingSourceObject: {fileID: -4953848728879405565, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1694378567}
     - targetCorrespondingSourceObject: {fileID: -7954085677397275875, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1627998952}
@@ -1096,9 +1117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoreInteractables.CoreInteractableController
   interactableData: {fileID: 11400000, guid: 7ec205c934bad184794fee5a13b384e0, type: 2}
-  onInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &556202989 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0fa70c50793978d458cae4798a4ec7d1, type: 3}
@@ -7278,7 +7296,7 @@ Transform:
   m_GameObject: {fileID: 1291563265}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.4, y: 0, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7924,6 +7942,67 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 40, y: 7.5869627, z: 6.999946}
   m_Center: {x: 0, y: 0.7065023, z: 3.000091}
+--- !u!1 &1694378561 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4953848728879405565, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+  m_PrefabInstance: {fileID: 110900020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1694378565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694378561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb25d3564c597b41a1b94d5fff8d367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoreInteractables.CoreInteractableController
+  interactableData: {fileID: 11400000, guid: fbea886b7c2a3eb49bbe9001a2f549b3, type: 2}
+--- !u!65 &1694378566
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694378561}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.371503, y: 6.000056, z: 7.845133}
+  m_Center: {x: 2.5115836, y: 2.8421713e-14, z: 3.9225667}
+--- !u!95 &1694378567
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694378561}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 84c9c96f08848df47a4b728bf714fef4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1721814962
 GameObject:
   m_ObjectHideFlags: 0
@@ -7954,7 +8033,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventSystem
   dontDestroyOnLoad: 1
-  gameEvents: []
+  gameEvents:
+  - gameEvent: {fileID: 11400000, guid: a6787dedebcb20149ab83b0d127d8799, type: 2}
+    delay: 0
+    weight: 20
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11778013}
+          m_TargetAssemblyTypeName: BasicEvent, Assembly-CSharp
+          m_MethodName: StartEventAlien
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 68715133215149940b4615358a67b627, type: 2}
+    delay: 0
+    weight: 20
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11778013}
+          m_TargetAssemblyTypeName: BasicEvent, Assembly-CSharp
+          m_MethodName: StartEventBrokenWall
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   interactEvents:
   - eventType: 0
   - eventType: 1
