@@ -11,7 +11,7 @@ public class PlayerInteractableController : MonoBehaviour
     private IErrorManager errorManager;
     private IDragAndDrop dragAndDrop;
     private IEventSystem eventManager;
-    private bool hasInteracted = false;
+    //private bool hasInteracted = false;
     #endregion
 
     #region UNITY_METHODS
@@ -47,6 +47,7 @@ public class PlayerInteractableController : MonoBehaviour
             throw ex;
         }
     }
+    /* Deprecated: Used to trigger if the player has been dragged into the corresponding trigger
     private void OnTriggerStay(Collider other)
     {
         try
@@ -69,6 +70,7 @@ public class PlayerInteractableController : MonoBehaviour
             throw;
         }
     }
+    */
     private void OnTriggerExit(Collider other)
     {
         try
@@ -78,7 +80,7 @@ public class PlayerInteractableController : MonoBehaviour
                 if (other.gameObject.Equals(currentInteractable.GetGameObject()))
                 {
                     currentInteractable.HideInteraction();
-                    hasInteracted = false;
+                    //hasInteracted = false;
                     CleanData();
                 }
             }
