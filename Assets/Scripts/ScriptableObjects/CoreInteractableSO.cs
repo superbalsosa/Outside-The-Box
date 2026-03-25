@@ -11,6 +11,7 @@ namespace CoreInteractables
     public class CoreInteractableSO : ScriptableObject 
     { 
         public InteractableCoreType InteractableCoreType;
+        public EventType eventToTrigger;
         public string InteractableName;
         public float OutlineHover;
         public float OutlineBase;

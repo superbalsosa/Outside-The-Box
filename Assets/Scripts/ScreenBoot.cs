@@ -1,8 +1,12 @@
+using DependencyInjection;
+using NUnit.Framework;
+using System;
+using System.Collections;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
-using System.Collections;
 
-public class ScreenBoot : MonoBehaviour
+public class ScreenBoot : MonoBehaviour, IListener
 {
     [Header("Shader")]
     public Material mat;
@@ -45,12 +49,18 @@ public class ScreenBoot : MonoBehaviour
     bool lastState;
     Coroutine lensRoutine;
 
+    [Header("Events")]
+    [SerializeField] private EventType eventToOpenClose;
+    private IEventSystem eventManager;
+
     void Start()
     {
         SetupPostProcessing();
         SetupMaterialInstance();
         ApplyOffState();
+        InitEvents();
     }
+
 
     void Update()
     {
@@ -64,7 +74,9 @@ public class ScreenBoot : MonoBehaviour
     void OnDisable()
     {
         ApplyOffState();
+        UnsuscribeToEvents();
     }
+
 
 #if UNITY_EDITOR
     void OnValidate()
@@ -73,6 +85,16 @@ public class ScreenBoot : MonoBehaviour
             ApplyOffState();
     }
 #endif
+
+    private void InitEvents()
+    {
+        eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
+        eventManager.SuscribeToEvent(eventToOpenClose, this);
+    }
+    private void UnsuscribeToEvents()
+    {
+        eventManager.UnSuscribeToEvent(eventToOpenClose, this);
+    }
 
     // Initialization
 
@@ -234,5 +256,12 @@ public class ScreenBoot : MonoBehaviour
         }
 
         lens.intensity.value = to;
+    }
+    void IListener.ExecuteListenerAction(bool isOn)
+    {
+        if (eventManager.GetCurrentEvent().Equals(eventToOpenClose))
+        {
+            screenOn = isOn;
+        }
     }
 }
