@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8644e412356f6c4c897b00ae6086fc6, type: 3}
   m_Name: 003 - DoorSideRight Interactable
   m_EditorClassIdentifier: Assembly-CSharp::CoreInteractables.CoreInteractableSO
-  InteractableCoreType: 1
-  eventToTrigger: 2
-  InteractableName: Exit
+  InteractableCoreType: 2
+  eventToTrigger: 3
+  InteractableName: 'Door '
+  ButtonActionName: Open/Close
   OutlineHover: 0.35
   OutlineBase: 0.1

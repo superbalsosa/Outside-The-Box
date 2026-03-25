@@ -1,14 +1,13 @@
 using DependencyInjection;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Device;
 
 public class DoorControler : MonoBehaviour, IListener
 {
     [Header("Door Settings")]
-    [SerializeField] private bool isLeftDoor;
-    [SerializeField] private Transform tpPositionOutside;
-    [SerializeField] private Transform tpPositionInside;
-    [SerializeField] private Animator doorAnimator;
+    [SerializeField] private Vector3 OpenDoorPosition;
+    [SerializeField] private Vector3 ClosedDoorPosition;
     [SerializeField] private bool wasDoorOpen;
 
     [Header("Events")]
@@ -19,7 +18,7 @@ public class DoorControler : MonoBehaviour, IListener
     void Start()
     {
         InitEvents();
-        doorAnimator = GetComponent<Animator>();
+        //ClosedDoorPosition = gameObject.transform.position;
     }
 
     private void OnDisable()
@@ -42,37 +41,33 @@ public class DoorControler : MonoBehaviour, IListener
     {
         if (eventManager.GetCurrentEvent().Equals(eventToOpenClose))
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-            if (isLeftDoor && !wasDoorOpen)
+            if (!wasDoorOpen)
             {
-                doorAnimator.SetTrigger("OpenDoor");
-                player.transform.position = tpPositionOutside.position;
-                dragAndDrop.ChangeBoundriesLeft();
-                wasDoorOpen = isOn;
+                StartCoroutine(MoveDoor(OpenDoorPosition, 1f));
+                wasDoorOpen = true;
+                eventManager.ClearEvent();
             }
-            else if (isLeftDoor && wasDoorOpen)
+            else
             {
-                doorAnimator.SetTrigger("CloseDoor");
-                player.transform.position = tpPositionInside.position;
-                dragAndDrop.ResetBoundries();
-                wasDoorOpen = isOn;
+                StartCoroutine(MoveDoor(ClosedDoorPosition, 1f));
+                wasDoorOpen = false;
+                eventManager.ClearEvent();
             }
-            if (!isLeftDoor)
-            {
-                doorAnimator.SetTrigger("OpenDoor");
-                player.transform.position = tpPositionOutside.position;
-                dragAndDrop.ChangeBoundriesRight();
-                wasDoorOpen = isOn;
-            }
-            else if (!isLeftDoor && wasDoorOpen)
-            {
-                doorAnimator.SetTrigger("OpenDoor");
-                player.transform.position = tpPositionOutside.position;
-                dragAndDrop.ResetBoundries();
-                wasDoorOpen = isOn;
-            }
-
         }
+    }
+
+    private IEnumerator MoveDoor(Vector3 targetPosition, float duration)
+    {
+        Vector3 startPos = transform.position;
+        float time = 0;
+
+        while (time < duration)
+        {
+            transform.position = Vector3.Lerp(startPos, targetPosition, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPosition;
     }
 }

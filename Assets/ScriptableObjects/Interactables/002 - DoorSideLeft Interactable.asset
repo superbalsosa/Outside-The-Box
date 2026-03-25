@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoreInteractables.CoreInteractableSO
   InteractableCoreType: 1
   eventToTrigger: 2
-  InteractableName: Exit
+  InteractableName: Door
+  ButtonActionName: Open/Close
   OutlineHover: 0.35
   OutlineBase: 0.1
