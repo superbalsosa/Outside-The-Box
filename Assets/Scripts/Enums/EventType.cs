@@ -6,6 +6,8 @@ public enum EventType
     #region INTERACTABLES_EVENTS
 
     InteractableControlTable,
+    ExitDoorLeft,
+    ExitDoorRight,
 
     #endregion
 

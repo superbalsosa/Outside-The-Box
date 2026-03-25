@@ -26,6 +26,7 @@ public class PlayerInteractableController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && eventManager.GetCurrentEvent().Equals(EventType.InteractableControlTable)) {
             eventManager.SetEvent(EventType.InteractableControlTable, false);
+            eventManager.ClearEvent();
         }
     }
     private void OnTriggerEnter(Collider other)
