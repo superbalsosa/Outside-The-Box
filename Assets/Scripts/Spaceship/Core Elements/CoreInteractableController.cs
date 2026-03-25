@@ -10,15 +10,16 @@ namespace CoreInteractables
     {
         #region VARIABLES
         [SerializeField] private CoreInteractableSO interactableData;
-        [SerializeField] private UnityEvent onInteract;
         private List<Renderer> renderers = new List<Renderer>();
-        private IErrorManager errorManager;     
+        private IErrorManager errorManager;
+        private IEventSystem eventManager;
         #endregion
 
         #region UNITY_METHODS
         private void Start()
         {
             errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
+            eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
             InitOutlines();
         }
         #endregion
@@ -40,9 +41,7 @@ namespace CoreInteractables
         private void ResetState() => HideInteraction();
         private void Interact()
         {
-            //Interact code by interactableData.InteractableCoreType
-            Debug.Log($"Interacted with {gameObject.name} of type {interactableData.InteractableCoreType}");
-            onInteract.Invoke();
+            eventManager.SetEvent(interactableData.eventToTrigger, true);
         }
         private void ShowInteraction()
         {
@@ -86,6 +85,7 @@ namespace CoreInteractables
             catch (Exception ex) { errorManager.WriteError(ErrorType.CoreInteractable_HideInteraction, ex.Message, ex.StackTrace); }
         }
         GameObject ICoreInteractable.GetGameObject() => this.gameObject;
+
         #endregion
     }
 }

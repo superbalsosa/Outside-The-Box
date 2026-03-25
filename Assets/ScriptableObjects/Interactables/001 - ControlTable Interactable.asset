@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 001 - ControlTable Interactable
   m_EditorClassIdentifier: Assembly-CSharp::CoreInteractables.CoreInteractableSO
   InteractableCoreType: 0
+  eventToTrigger: 1
   InteractableName: Navigation
   OutlineHover: 0.35
   OutlineBase: 0.1

@@ -10,6 +10,7 @@ public class PlayerInteractableController : MonoBehaviour
     private ICoreInteractable currentInteractable;
     private IErrorManager errorManager;
     private IDragAndDrop dragAndDrop;
+    private IEventSystem eventManager;
     private bool hasInteracted = false;
     #endregion
 
@@ -18,7 +19,14 @@ public class PlayerInteractableController : MonoBehaviour
     {
         errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
         dragAndDrop = InterfaceDependencyInjector.Instance.Resolve<IDragAndDrop>();
+        eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
         CleanData();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && eventManager.GetCurrentEvent().Equals(EventType.InteractableControlTable)) {
+            eventManager.SetEvent(EventType.InteractableControlTable, false);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

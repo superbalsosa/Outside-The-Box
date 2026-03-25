@@ -1,3 +1,5 @@
+using DependencyInjection;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +7,7 @@ using UnityEngine.Events;
 using Utilities;
 
 
-public class EventSystem : Singleton<EventSystem>
+public class EventSystem : Singleton<EventSystem>, IEventSystem
 {
     [System.Serializable]
     public class GameEvent
@@ -15,13 +17,22 @@ public class EventSystem : Singleton<EventSystem>
         public int weight;
         public UnityEvent onEventTriggered;
     }
+    [System.Serializable]
+    public class InteractableEvent
+    {
+        public EventType eventType;
+        public Action<bool> eventAction;
+    }
 
-    [SerializeField] private List<GameEvent> events = new List<GameEvent>();
-    
+    [SerializeField] private List<GameEvent> gameEvents = new List<GameEvent>();
+    [SerializeField] private List<InteractableEvent> interactEvents = new List<InteractableEvent>();
+
     private GameEventSO currentEvent;
+    private EventType currentInteractableEvent;
     protected override void Awake()
     {
         base.Awake();
+        InterfaceDependencyInjector.Instance.Register<IEventSystem>(() => this);
     }
 
 
@@ -36,10 +47,10 @@ public class EventSystem : Singleton<EventSystem>
             if (delay <= 0)
             {
                 delay = 10;
-                if (events.Count > 0)
+                if (gameEvents.Count > 0)
                 {
-                    int randomIndex = Random.Range(0, events.Count);
-                    StartCoroutine(TriggerEvent(events[randomIndex]));
+                    int randomIndex = UnityEngine.Random.Range(0, gameEvents.Count);
+                    StartCoroutine(TriggerEvent(gameEvents[randomIndex]));
                 }
             }
         }
@@ -56,12 +67,12 @@ public class EventSystem : Singleton<EventSystem>
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(5f, 15f));
-            if (events.Count > 0)
+            yield return new WaitForSeconds(UnityEngine.Random.Range(5f, 15f));
+            if (gameEvents.Count > 0)
             {
-                int randomIndex = Random.Range(0, events.Count);
-                StartCoroutine(TriggerEvent(events[randomIndex]));
-                SetCurrentGameEvent(events[randomIndex].gameEvent);
+                int randomIndex = UnityEngine.Random.Range(0, gameEvents.Count);
+                StartCoroutine(TriggerEvent(gameEvents[randomIndex]));
+                SetCurrentGameEvent(gameEvents[randomIndex].gameEvent);
             }
         }
     }
@@ -70,17 +81,17 @@ public class EventSystem : Singleton<EventSystem>
     {         
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(5f, 15f));
-            if (events.Count > 0)
+            yield return new WaitForSeconds(UnityEngine.Random.Range(5f, 15f));
+            if (gameEvents.Count > 0)
             {
                 int totalWeight = 0;
-                foreach (var e in events)
+                foreach (var e in gameEvents)
                 {
                     totalWeight += e.weight;
                 }
-                int randomWeight = Random.Range(0, totalWeight);
+                int randomWeight = UnityEngine.Random.Range(0, totalWeight);
                 int currentWeight = 0;
-                foreach (var e in events)
+                foreach (var e in gameEvents)
                 {
                     currentWeight += e.weight;
                     if (randomWeight < currentWeight)
@@ -103,4 +114,29 @@ public class EventSystem : Singleton<EventSystem>
     {
         currentEvent = gameEvent;
     }
+
+    #region INTERFACE_METHODS
+    EventType IEventSystem.GetCurrentEvent()
+    {
+        return currentInteractableEvent;
+    }
+    void IEventSystem.ClearEvent()
+    {
+        currentInteractableEvent = EventType.None;
+        interactEvents.Find(e => e.eventType == EventType.None)?.eventAction(true);
+    }
+    void IEventSystem.SetEvent(EventType eventType, bool isOn)
+    {
+        currentInteractableEvent = eventType;
+        interactEvents.Find(e => e.eventType == eventType)?.eventAction.Invoke(isOn);
+    }
+    void IEventSystem.SuscribeToEvent(EventType eventType, IListener listener)
+    {
+        interactEvents.Find(e => e.eventType == eventType).eventAction += listener.ExecuteListenerAction;
+    }
+    void IEventSystem.UnSuscribeToEvent(EventType eventType, IListener listener)
+    {
+        interactEvents.Find(e => e.eventType == eventType).eventAction -= (listener.ExecuteListenerAction);
+    }
+    #endregion 
 }
