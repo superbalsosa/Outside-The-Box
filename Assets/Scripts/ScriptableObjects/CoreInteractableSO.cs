@@ -13,6 +13,7 @@ namespace CoreInteractables
         public InteractableCoreType InteractableCoreType;
         public EventType eventToTrigger;
         public string InteractableName;
+        public string ButtonActionName;
         public float OutlineHover;
         public float OutlineBase;
     }

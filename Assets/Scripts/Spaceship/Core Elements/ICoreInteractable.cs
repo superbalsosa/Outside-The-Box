@@ -6,4 +6,6 @@ public interface ICoreInteractable
     public void ShowInteraction();
     public void HideInteraction();
     public GameObject GetGameObject();
+    public string GetButtonActionName();
+    public string GetInteractableName();
 }

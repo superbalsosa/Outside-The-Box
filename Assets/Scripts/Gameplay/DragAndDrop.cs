@@ -10,14 +10,18 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
     public float minZ = -10f;
     public float maxZ = 10f;
 
+
+
     private Rigidbody rb;
     private Camera mainCamera;
     private Vector3 offset;
+    private Vector4 savedBoundries;
     private float lockedY;
 
     [SerializeField] private LayerMask draggableLayer;
     [SerializeField] private float raycastDistance = 150f;
     private bool isDragging = false;
+    private IEventSystem eventManager;
 
     public bool IsDragging { get => isDragging; }
 
@@ -29,6 +33,7 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
     private void Start()
     {
         SetupReferences();
+        savedBoundries = SaveBoundries();
     }
     //private void OnMouseDown()
     //{
@@ -41,7 +46,7 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && eventManager.GetCurrentEvent() == EventType.None)
         {
             TryStartDrag();
         }
@@ -64,6 +69,7 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
+        eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
     }
     /// <summary>
     /// Initialize the drag by capturing the locked Y height and
@@ -147,6 +153,33 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
     {
         return pos.x >= minX && pos.x <= maxX && pos.z >= minZ && pos.z <= maxZ;
     }
+    private Vector4 SaveBoundries()
+    {
+        return new Vector4(minX, maxX, minZ, maxZ);
+    }
+    public void ChangeBoundriesLeft()
+    {
+        minX = 26f;
+        maxX = 50f;
+        minZ = -34f;
+        maxZ = 12f;
+    }
+
+    public void ChangeBoundriesRight()
+    {
+        minX = -50f;
+        maxX = -26f;
+        minZ = -34f;
+        maxZ = 12f;
+    }
+
+    public void ResetBoundries()
+    {
+        minX = savedBoundries.x;
+        maxX = savedBoundries.y;
+        minZ = savedBoundries.z;
+        maxZ = savedBoundries.w;
+    }
 
     #region Debug
     void DrawDebugSphere(Vector3 position, float radius, Color color)
@@ -183,4 +216,7 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
 public interface IDragAndDrop
 {
     bool IsDragging { get; }
+    void ChangeBoundriesLeft();
+    void ChangeBoundriesRight();
+    void ResetBoundries();
 }

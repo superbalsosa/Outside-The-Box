@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4522174757642512877}
   - component: {fileID: 1181751887379790457}
   m_Layer: 0
-  m_Name: BasicEventGameObject
+  m_Name: BrokenWallEventGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 5.01, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1181751887379790457
 MonoBehaviour:
