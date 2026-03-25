@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoreInteractables.CoreInteractableSO
   InteractableCoreType: 0
   eventToTrigger: 1
-  InteractableName: Navigation
+  InteractableName: Traveling...
+  ButtonActionName: Open Map
   OutlineHover: 0.35
   OutlineBase: 0.1

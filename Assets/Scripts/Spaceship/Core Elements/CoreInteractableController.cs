@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DependencyInjection;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using System;
 
@@ -10,6 +11,7 @@ namespace CoreInteractables
     {
         #region VARIABLES
         [SerializeField] private CoreInteractableSO interactableData;
+        private Canvas canvasButtonInteractive;
         private List<Renderer> renderers = new List<Renderer>();
         private IErrorManager errorManager;
         private IEventSystem eventManager;
@@ -18,6 +20,7 @@ namespace CoreInteractables
         #region UNITY_METHODS
         private void Start()
         {
+            canvasButtonInteractive = GetComponentInChildren<Canvas>(true);
             errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
             eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
             InitOutlines();
@@ -45,6 +48,8 @@ namespace CoreInteractables
         }
         private void ShowInteraction()
         {
+            canvasButtonInteractive.gameObject.SetActive(true);
+
             foreach (var render in renderers)
             {
                 render.material.SetFloat("_OutlineWidth", interactableData.OutlineHover);
@@ -52,6 +57,8 @@ namespace CoreInteractables
         }
         private void HideInteraction()
         {
+            canvasButtonInteractive.gameObject.SetActive(false);
+
             foreach (var render in renderers)
             {
                 render.material.SetFloat("_OutlineWidth", interactableData.OutlineBase);
@@ -85,6 +92,9 @@ namespace CoreInteractables
             catch (Exception ex) { errorManager.WriteError(ErrorType.CoreInteractable_HideInteraction, ex.Message, ex.StackTrace); }
         }
         GameObject ICoreInteractable.GetGameObject() => this.gameObject;
+        string ICoreInteractable.GetButtonActionName() => interactableData.ButtonActionName;
+        //In case of ControlTable, the interactable name should change in base of the StateMachine that's not implemented yet.
+        string ICoreInteractable.GetInteractableName() => interactableData.InteractableName;
 
         #endregion
     }
