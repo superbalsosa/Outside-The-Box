@@ -638,6 +638,12 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 617273685037825119, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1159262031}
+    - targetCorrespondingSourceObject: {fileID: 617273685037825119, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 137718721}
     - targetCorrespondingSourceObject: {fileID: 7473957241355378157, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1319295598}
@@ -654,6 +660,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -4953848728879405565, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1694378565}
+    - targetCorrespondingSourceObject: {fileID: -4953848728879405565, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1694378568}
     - targetCorrespondingSourceObject: {fileID: -4953848728879405565, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1694378567}
@@ -673,6 +682,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1652713215}
   m_SourcePrefab: {fileID: 100100000, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+--- !u!1 &137718720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 137718721}
+  m_Layer: 6
+  m_Name: TP_Outside
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &137718721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137718720}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.9, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1694378562}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &171332682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6859,6 +6899,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7473957241355378157, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
   m_PrefabInstance: {fileID: 110900020}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1159262030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1159262031}
+  m_Layer: 6
+  m_Name: TP_Inside
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1159262031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159262030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.9, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1694378562}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1191209228
 GameObject:
   m_ObjectHideFlags: 0
@@ -7947,6 +8018,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -4953848728879405565, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
   m_PrefabInstance: {fileID: 110900020}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1694378562 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 617273685037825119, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+  m_PrefabInstance: {fileID: 110900020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1694378565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8003,6 +8079,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1694378568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694378561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710426ef01a694e459acf896561d0c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorControler
+  isLeftDoor: 1
+  tpPositionOutside: {fileID: 1159262031}
+  tpPositionInside: {fileID: 137718721}
+  doorAnimator: {fileID: 1694378567}
+  wasDoorOpen: 0
+  eventToOpenClose: 2
 --- !u!1 &1721814962
 GameObject:
   m_ObjectHideFlags: 0
@@ -8073,6 +8167,7 @@ MonoBehaviour:
   interactEvents:
   - eventType: 0
   - eventType: 1
+  - eventType: 2
 --- !u!4 &1721814964
 Transform:
   m_ObjectHideFlags: 0
