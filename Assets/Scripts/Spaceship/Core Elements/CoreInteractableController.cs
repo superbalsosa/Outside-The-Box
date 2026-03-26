@@ -34,7 +34,7 @@ namespace CoreInteractables
 
             foreach (var childRender in childrenRenderers)
             {
-                if (childRender.material.shader.name.Equals("StandardOutline_Built_In"))
+                if (childRender.material.shader.name.Equals("Outline_Built_In"))
                 {
                     renderers.Add(childRender);
                 }
