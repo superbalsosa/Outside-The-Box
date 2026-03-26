@@ -46,11 +46,6 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && eventManager.GetCurrentEvent() == EventType.None)
-        {
-            TryStartDrag();
-        }
-
         if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;
@@ -63,6 +58,14 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
         {
             PerformDrag();
         }
+    }
+
+    public void StartDrag()
+    {
+        if (eventManager.GetCurrentEvent() != EventType.None) return;
+
+        isDragging = true;
+        PrepareDrag();
     }
     private void SetupReferences()
     {
@@ -118,32 +121,32 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
         return transform.position;
     }
 
-    private void TryStartDrag()
-    {
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+//    private void TryStartDrag()
+//    {
+//        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, raycastDistance, draggableLayer))
-        {
-#if UNITY_EDITOR
-            Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red, 2f);
-            DrawDebugSphere(hit.point, 0.3f, Color.green);
-#endif
-            if (hit.collider.gameObject == gameObject)
-            {
-                isDragging = true;
-                PrepareDrag();
-            }
-        }
-        else
-        {
-            Debug.Log("No hit detected on draggable layer.");
-#if UNITY_EDITOR
-            Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.blue, 2f);
-            Vector3 endPoint = ray.origin + ray.direction * raycastDistance;
-            DrawDebugSphere(endPoint, 0.3f, Color.red);
-#endif
-        }
-    }
+//        if (Physics.Raycast(ray, out RaycastHit hit, raycastDistance, draggableLayer))
+//        {
+//#if UNITY_EDITOR
+//            Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red, 2f);
+//            DrawDebugSphere(hit.point, 0.3f, Color.green);
+//#endif
+//            if (hit.collider.gameObject == gameObject)
+//            {
+//                isDragging = true;
+//                PrepareDrag();
+//            }
+//        }
+//        else
+//        {
+//            Debug.Log("No hit detected on draggable layer.");
+//#if UNITY_EDITOR
+//            Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.blue, 2f);
+//            Vector3 endPoint = ray.origin + ray.direction * raycastDistance;
+//            DrawDebugSphere(endPoint, 0.3f, Color.red);
+//#endif
+//        }
+//    }
     /// <summary>
     /// Verifies if a given position is within the defined X and Z limits.
     /// </summary>
@@ -216,6 +219,7 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
 public interface IDragAndDrop
 {
     bool IsDragging { get; }
+    void StartDrag();
     void ChangeBoundriesLeft();
     void ChangeBoundriesRight();
     void ResetBoundries();

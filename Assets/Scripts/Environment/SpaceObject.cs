@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SpaceObject : MonoBehaviour
+public class SpaceObject : MonoBehaviour, IInteract
 {
     [Header("Impulse configuration")]
     public float forceAmount = 2.25f;
@@ -99,6 +99,12 @@ public class SpaceObject : MonoBehaviour
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
+    }
+
+    public void Interact()
+    {
+        float duration = Random.Range(0.5f, 2f);
+        StartCoroutine(CollectObject(duration));
     }
 
     private IEnumerator CollectObject(float duration)

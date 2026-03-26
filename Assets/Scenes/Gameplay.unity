@@ -1587,6 +1587,7 @@ GameObject:
   - component: {fileID: 887076127}
   - component: {fileID: 887076130}
   - component: {fileID: 887076131}
+  - component: {fileID: 887076132}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -1751,6 +1752,22 @@ MonoBehaviour:
   warpActive: 0
   warpFOV: 30
   warpTransitionSpeed: 2
+--- !u!114 &887076132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887076126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b491b37b58cf74c9ecabfc68713d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraRaycastController
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  raycastDistance: 250
 --- !u!1 &968458799
 GameObject:
   m_ObjectHideFlags: 0
