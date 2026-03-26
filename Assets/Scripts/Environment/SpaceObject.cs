@@ -13,6 +13,7 @@ public class SpaceObject : MonoBehaviour, IInteract
     public float maxSpeed = 1f;
     public float maxDistance = 5f;
 
+    [SerializeField] private Vector3 startScale;
     private Vector3 startPosition;
     private Rigidbody rb;
 
@@ -21,7 +22,10 @@ public class SpaceObject : MonoBehaviour, IInteract
     [SerializeField] private bool isLeftSide;
     [SerializeField] private int Value = 1;
 
-
+    private void OnEnable()
+    {
+        transform.localScale = startScale;
+    }
     public void Start()
     {
         InitializePhysics();
@@ -103,7 +107,7 @@ public class SpaceObject : MonoBehaviour, IInteract
 
     public void Interact()
     {
-        float duration = Random.Range(0.5f, 2f);
+        float duration = Random.Range(1f, 2f);
         StartCoroutine(CollectObject(duration));
     }
 

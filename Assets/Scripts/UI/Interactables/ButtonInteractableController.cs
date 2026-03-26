@@ -1,4 +1,5 @@
 using CoreInteractables;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,5 +14,17 @@ public class ButtonInteractableController : MonoBehaviour
         _button = GetComponent<Button>();
         _button.GetComponentInChildren<TextMeshProUGUI>().text = _coreInteractableController.GetButtonActionName();
         _button.onClick.AddListener(_coreInteractableController.Interact);
+
     }
+    void OnButtonClick()
+    {
+        StartCoroutine(DelayedActionRoutine());
+    }
+
+    IEnumerator DelayedActionRoutine()
+    {
+        yield return new WaitForSeconds(1f);
+       
+    }
+
 }

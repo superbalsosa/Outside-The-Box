@@ -34,6 +34,10 @@ public class CameraRaycastController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, raycastDistance, interactableLayer))
         {
+#if UNITY_EDITOR
+            Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red, 2f);
+            DrawDebugSphere(hit.point, 0.3f, Color.green);
+#endif         
             if (hit.collider.TryGetComponent<IInteract>(out var interactable))
             {
                 interactable.Interact(); 
@@ -44,10 +48,6 @@ public class CameraRaycastController : MonoBehaviour
                 draggable.StartDrag();
                 return;
             }
-#if UNITY_EDITOR
-            Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red, 2f);
-            DrawDebugSphere(hit.point, 0.3f, Color.green);
-#endif         
         }
         else
         {

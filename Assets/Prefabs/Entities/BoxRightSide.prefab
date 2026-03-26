@@ -159,6 +159,7 @@ MonoBehaviour:
   minSpeed: 0.25
   maxSpeed: 1
   maxDistance: 5
+  startScale: {x: 5, y: 5, z: 5}
   _doorControler: {fileID: 0}
   isLeftSide: 0
   Value: 1
