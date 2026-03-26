@@ -1,4 +1,4 @@
-Shader "StandardOutline_Built_In"
+Shader "Outline_Built_In"
 {
     Properties
     {
