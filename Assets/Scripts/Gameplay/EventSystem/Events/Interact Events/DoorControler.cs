@@ -9,6 +9,7 @@ public class DoorControler : MonoBehaviour, IListener
     [SerializeField] private Vector3 OpenDoorPosition;
     [SerializeField] private Vector3 ClosedDoorPosition;
     [SerializeField] private bool wasDoorOpen;
+    private bool isMooving;
 
     [Header("Events")]
     [SerializeField] private EventType eventToOpenClose;
@@ -41,14 +42,16 @@ public class DoorControler : MonoBehaviour, IListener
     {
         if (eventManager.GetCurrentEvent().Equals(eventToOpenClose))
         {
-            if (!wasDoorOpen)
+            if (!wasDoorOpen && !isMooving)
             {
+                isMooving = true;
                 StartCoroutine(MoveDoor(OpenDoorPosition, 1f));
                 wasDoorOpen = true;
                 eventManager.ClearEvent();
             }
-            else
+            else if (wasDoorOpen && !isMooving)
             {
+                isMooving = true;
                 StartCoroutine(MoveDoor(ClosedDoorPosition, 1f));
                 wasDoorOpen = false;
                 eventManager.ClearEvent();
@@ -69,5 +72,7 @@ public class DoorControler : MonoBehaviour, IListener
         }
 
         transform.position = targetPosition;
+        
+        isMooving = false;
     }
 }
