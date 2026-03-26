@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SpaceObject : MonoBehaviour
@@ -14,17 +15,36 @@ public class SpaceObject : MonoBehaviour
 
     private Vector3 startPosition;
     private Rigidbody rb;
-    
+
+    [Header("Interact Settings")]
+    [SerializeField] private DoorControler _doorControler;
+    [SerializeField] private bool isLeftSide;
+    [SerializeField] private int Value = 1;
+
+
     public void Start()
     {
         InitializePhysics();
         ApplyInitialImpulse();
+        SetDoorReference();
     }
     private void FixedUpdate()
     {
         HandleReturnToAnchor();
         //LimitVelocity();
         MaintainInertia();
+    }
+
+    private void SetDoorReference()
+    {
+        if (isLeftSide)
+        {
+            _doorControler = GameObject.FindGameObjectWithTag("LeftDoor").GetComponent<DoorControler>();
+        }
+        else
+        {
+            _doorControler = GameObject.FindGameObjectWithTag("RightDoor").GetComponent<DoorControler>();
+        }
     }
     /// <summary>
     /// Configure the inital Rigidbody parameters.
@@ -78,6 +98,22 @@ public class SpaceObject : MonoBehaviour
         if (rb.linearVelocity.magnitude > maxSpeed)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+        }
+    }
+
+    private IEnumerator CollectObject(float duration)
+    {
+        if (_doorControler.wasDoorOpen)
+        {
+            float time = 0;
+
+            while (time < duration)
+            {
+                transform.position = Vector3.Lerp(transform.position, _doorControler.transform.position, time / duration);
+                transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, time / duration);
+                time += Time.deltaTime;
+                yield return null;
+            }
         }
     }
 }

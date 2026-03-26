@@ -8,8 +8,9 @@ public class DoorControler : MonoBehaviour, IListener
     [Header("Door Settings")]
     [SerializeField] private Vector3 OpenDoorPosition;
     [SerializeField] private Vector3 ClosedDoorPosition;
-    [SerializeField] private bool wasDoorOpen;
     private bool isMooving;
+
+    public bool wasDoorOpen;
 
     [Header("Events")]
     [SerializeField] private EventType eventToOpenClose;
