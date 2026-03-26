@@ -123,7 +123,7 @@ public class EventSystem : Singleton<EventSystem>, IEventSystem
     void IEventSystem.ClearEvent()
     {
         currentInteractableEvent = EventType.None;
-        interactEvents.Find(e => e.eventType == EventType.None)?.eventAction(true);
+        interactEvents.Find(e => e.eventType == EventType.None)?.eventAction?.Invoke(true);
     }
     void IEventSystem.SetEvent(EventType eventType, bool isOn)
     {
