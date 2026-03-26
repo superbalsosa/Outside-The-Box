@@ -10,7 +10,7 @@ Shader "Custom/XRayCharacter_BuiltIn_DepthSafe"
         _OutlineAlpha ("X-Ray Edge Alpha", Range(-1,1)) = 0
 
         _DepthBias ("Depth Bias", Range(-1, 1)) = 0
-        _DepthThreshold ("Depth Threshold", Range(-1, 5)) = 2
+        _DepthThreshold ("Depth Threshold", Range(-15, 15)) = 5
         _RimPower ("Edge Power", Range(-1, 8.0)) = 0
     }
 

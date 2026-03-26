@@ -50,7 +50,7 @@ Material:
     - _NoiseScale: 1
     - _NoiseSpeed: 1
     - _OutlineWidth: 0.05
-    - _PupilSize: 0
+    - _PupilSize: -0.1
     - _StarPulse: 0.1
     - _StarPulseSpeed: 2
     - _StarRotation: 2.91
