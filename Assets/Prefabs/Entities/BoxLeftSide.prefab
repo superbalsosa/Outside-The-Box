@@ -153,13 +153,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85a3fe3e6cd596948aaf728f7855dacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceObject
-  forceAmount: 2.25
-  torqueAmount: 0.5
-  returnForce: 0.8
+  forceAmount: 3.5
+  torqueAmount: 1.23
+  returnForce: 0
+  forceDirection: {x: 0, y: 0, z: 6}
   minSpeed: 0.25
   maxSpeed: 1
   maxDistance: 5
   startScale: {x: 5, y: 5, z: 5}
   _doorControler: {fileID: 0}
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1727179864508366031}
+        m_TargetAssemblyTypeName: SpaceObject, Assembly-CSharp
+        m_MethodName: BoxInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   isLeftSide: 1
   Value: 1

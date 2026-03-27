@@ -3,5 +3,6 @@
     ExitDoorL,
     ExitDoorR,
     FuelContainer,
-    StarContainer
+    StarContainer,
+    BoxOpener,
 }

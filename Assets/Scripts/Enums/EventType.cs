@@ -8,6 +8,7 @@ public enum EventType
     InteractableControlTable,
     ExitDoorLeft,
     ExitDoorRight,
+    OpenBox,
 
     #endregion
 

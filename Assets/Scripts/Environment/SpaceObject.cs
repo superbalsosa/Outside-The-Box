@@ -1,5 +1,7 @@
+using DependencyInjection;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SpaceObject : MonoBehaviour, IInteract
 {
@@ -7,6 +9,7 @@ public class SpaceObject : MonoBehaviour, IInteract
     public float forceAmount = 2.25f;
     public float torqueAmount = 0.5f;
     public float returnForce = 0.8f;
+    public Vector3 forceDirection;
 
     [Header("Limits")]
     public float minSpeed = 0.25f;
@@ -19,9 +22,11 @@ public class SpaceObject : MonoBehaviour, IInteract
 
     [Header("Interact Settings")]
     [SerializeField] private DoorControler _doorControler;
+    [SerializeField] private UnityEvent onInteract;
     [SerializeField] private bool isLeftSide;
     [SerializeField] private int Value = 1;
 
+    IBoxOpenerSpawner boxOpenerSpawner;
     private void OnEnable()
     {
         transform.localScale = startScale;
@@ -31,6 +36,7 @@ public class SpaceObject : MonoBehaviour, IInteract
         InitializePhysics();
         ApplyInitialImpulse();
         SetDoorReference();
+        boxOpenerSpawner = InterfaceDependencyInjector.Instance.Resolve<IBoxOpenerSpawner>();
     }
     private void FixedUpdate()
     {
@@ -55,7 +61,7 @@ public class SpaceObject : MonoBehaviour, IInteract
     /// </summary>
     private void ApplyInitialImpulse()
     {
-        rb.AddForce(Random.insideUnitSphere * forceAmount, ForceMode.Impulse);
+        rb.AddForce(forceDirection * forceAmount, ForceMode.Impulse);
         rb.AddTorque(Random.insideUnitSphere * torqueAmount, ForceMode.Impulse);
     }
     /// <summary>
@@ -107,8 +113,14 @@ public class SpaceObject : MonoBehaviour, IInteract
 
     public void Interact()
     {
+        onInteract.Invoke();
+    }
+
+    public void BoxInteract()
+    {
         float duration = Random.Range(1f, 2f);
         StartCoroutine(CollectObject(duration));
+
     }
 
     private IEnumerator CollectObject(float duration)
@@ -124,6 +136,8 @@ public class SpaceObject : MonoBehaviour, IInteract
                 time += Time.deltaTime;
                 yield return null;
             }
+
+            boxOpenerSpawner.SpawnBox();
         }
     }
 }
