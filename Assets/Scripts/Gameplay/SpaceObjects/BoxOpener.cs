@@ -1,6 +1,7 @@
 using DependencyInjection;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BoxOpener : MonoBehaviour, IListener
 {
@@ -15,7 +16,17 @@ public class BoxOpener : MonoBehaviour, IListener
     {
         InitEvents();
         spawner = InterfaceDependencyInjector.Instance.Resolve<IBoxOpenerSpawner>();
+    }
+
+    private void OnEnable()
+    {
         eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
+        InitEvents();
+    }
+
+    private void OnDisable()
+    {
+        UnsuscribeToEvents();
     }
 
     private void InitEvents()
@@ -52,13 +63,14 @@ public class BoxOpener : MonoBehaviour, IListener
         switch (reward)
         {
             case 0:
-                Debug.Log(1);
+                int randomAmount = Random.Range(10, 75);
+                SpaceShipManager.Instance.ChangeStarDust(randomAmount);
                 break;
             case 1:
-                Debug.Log(2);
+                SpaceShipManager.Instance.GrabBatterys(1);
                 break;
             case 2:
-                Debug.Log(3);
+                Debug.Log("Box was empty");
                 break;
         }
     }
