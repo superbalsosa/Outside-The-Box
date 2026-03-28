@@ -803,6 +803,7 @@ MonoBehaviour:
   spaceObjectsToSpawn:
   - {fileID: 6566466468394765158, guid: 3d30e60c32bfb51419286d80f3bf759a, type: 3}
   spawnInterval: 10
+  maxSpawnInterval: 10
   disableTime: 50
   randomSpawnQuantity: 6
   maxObjects: 15
@@ -845,7 +846,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326563424}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 057843af6193fb8469e13013980737c5, type: 3}
   m_Name: 
@@ -7691,6 +7692,7 @@ MonoBehaviour:
   spaceObjectsToSpawn:
   - {fileID: 327115106708811054, guid: 6bafbc9588b70ad408b45f834184476c, type: 3}
   spawnInterval: 10
+  maxSpawnInterval: 10
   disableTime: 50
   randomSpawnQuantity: 6
   maxObjects: 15

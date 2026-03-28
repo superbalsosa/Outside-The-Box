@@ -1,14 +1,16 @@
-using System;
-using UnityEngine;
 using DependencyInjection;
+using System;
+using Unity.VisualScripting;
+using UnityEngine;
+using static UnityEditor.Searcher.Searcher.AnalyticsEvent;
 
-public class PlayerInteractableController : MonoBehaviour
+public class PlayerInteractableController : MonoBehaviour, IListener
 {
     #region VARIABLES
 
     [SerializeField] private LayerMask interactableLayer;
     private ICoreInteractable currentInteractable;
-    private IErrorManager errorManager;
+    //private IErrorManager errorManager;
     private IDragAndDrop dragAndDrop;
     private IEventSystem eventManager;
     //private bool hasInteracted = false;
@@ -17,9 +19,10 @@ public class PlayerInteractableController : MonoBehaviour
     #region UNITY_METHODS
     void Start()
     {
-        errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
+        //errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
         dragAndDrop = InterfaceDependencyInjector.Instance.Resolve<IDragAndDrop>();
         eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
+        InitEvents();
         CleanData();
     }
     private void Update()
@@ -33,7 +36,7 @@ public class PlayerInteractableController : MonoBehaviour
     {
         try
         {
-            if (currentInteractable == null && 1 << other.gameObject.layer == interactableLayer)
+            if (currentInteractable.IsUnityNull() && 1 << other.gameObject.layer == interactableLayer)
             {
                 if (other.TryGetComponent<ICoreInteractable>(out var interactable))
                 {
@@ -44,7 +47,8 @@ public class PlayerInteractableController : MonoBehaviour
         }
         catch (Exception ex) 
         {
-            errorManager.WriteError(ErrorType.PlayerInteractableController_TriggerEnter, ex.Message, ex.StackTrace);
+            Debug.LogException(ex);
+            //errorManager.WriteError(ErrorType.PlayerInteractableController_TriggerEnter, ex.Message, ex.StackTrace);
             throw ex;
         }
     }
@@ -76,7 +80,7 @@ public class PlayerInteractableController : MonoBehaviour
     {
         try
         {
-            if (currentInteractable != null && 1 << other.gameObject.layer == interactableLayer)
+            if (!currentInteractable.IsUnityNull() && 1 << other.gameObject.layer == interactableLayer)
             {
                 if (other.gameObject.Equals(currentInteractable.GetGameObject()))
                 {
@@ -88,16 +92,28 @@ public class PlayerInteractableController : MonoBehaviour
         }
         catch (Exception ex)
         {
-            errorManager.WriteError(ErrorType.PlayerInteractableController_TriggerExit, ex.Message, ex.StackTrace);
+            //errorManager.WriteError(ErrorType.PlayerInteractableController_TriggerExit, ex.Message, ex.StackTrace);
             throw ex;
         }
     }
     #endregion
 
     #region PRIVATE_METHODS
+    private void InitEvents()
+    {
+        eventManager.SuscribeToEvent(EventType.OpenBox, this);
+    }
     private void CleanData()
     {
         currentInteractable = null;
+    }
+
+    void IListener.ExecuteListenerAction(bool isOn)
+    {
+        if (eventManager.GetCurrentEvent().Equals(EventType.OpenBox) && !isOn && !currentInteractable.IsUnityNull())
+        { 
+            CleanData();
+        }
     }
     #endregion
 }

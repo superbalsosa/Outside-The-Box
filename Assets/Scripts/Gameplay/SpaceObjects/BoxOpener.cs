@@ -49,12 +49,13 @@ public class BoxOpener : MonoBehaviour, IListener
 
     public void ExecuteListenerAction(bool isOn)
     {
-        if (eventManager.GetCurrentEvent().Equals(eventType))
+        if (isOn && eventManager.GetCurrentEvent().Equals(eventType))
         {
             GiveReward();
             spawner.FreeSpawnPoint(mySpawnPoint);
+            eventManager.SetEvent(eventType, false);
             eventManager.ClearEvent();
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
