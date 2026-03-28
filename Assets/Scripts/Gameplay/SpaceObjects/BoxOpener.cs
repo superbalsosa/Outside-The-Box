@@ -36,13 +36,15 @@ public class BoxOpener : MonoBehaviour, IListener
 
     private void UnsuscribeToEvents()
     {
+        spawner.OnSpawnPointFreed -= UpdateEvent;
         eventManager.UnSuscribeToEvent(eventType, this);
     }
 
     public void Init(IBoxOpenerSpawner spawner, Transform point)
     {
         this.spawner = spawner;
-        this.mySpawnPoint = point;
+        this.mySpawnPoint = point;      
+        spawner.OnSpawnPointFreed += UpdateEvent;
     }
 
     public void ExecuteListenerAction(bool isOn)
@@ -58,7 +60,7 @@ public class BoxOpener : MonoBehaviour, IListener
 
     private void GiveReward()
     {
-        int reward = Random.Range(0, 3);
+        int reward = Random.Range(0, 2);
 
         switch (reward)
         {
@@ -73,5 +75,10 @@ public class BoxOpener : MonoBehaviour, IListener
                 Debug.Log("Box was empty");
                 break;
         }
+    }
+
+    public void UpdateEvent()
+    {
+        InitEvents();
     }
 }

@@ -165,7 +165,7 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1727179864508366031, guid: 3d30e60c32bfb51419286d80f3bf759a, type: 3}
+      - m_Target: {fileID: 72241787244650381}
         m_TargetAssemblyTypeName: SpaceObject, Assembly-CSharp
         m_MethodName: BoxInteract
         m_Mode: 1

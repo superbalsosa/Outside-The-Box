@@ -61,7 +61,8 @@ public class SpaceObject : MonoBehaviour, IInteract
     /// </summary>
     private void ApplyInitialImpulse()
     {
-        rb.AddForce(forceDirection * forceAmount, ForceMode.Impulse);
+        Vector3 randomForce = new Vector3(Random.Range(0, forceDirection.x), Random.Range(0, forceDirection.y), Random.Range(3, forceDirection.z));
+        rb.AddForce(randomForce * forceAmount, ForceMode.Impulse);
         rb.AddTorque(Random.insideUnitSphere * torqueAmount, ForceMode.Impulse);
     }
     /// <summary>
@@ -125,7 +126,7 @@ public class SpaceObject : MonoBehaviour, IInteract
 
     private IEnumerator CollectObject(float duration)
     {
-        if (_doorControler.wasDoorOpen)
+        if (_doorControler.wasDoorOpen && boxOpenerSpawner.IsThereFreeSpawnPoints())
         {
             float time = 0;
 

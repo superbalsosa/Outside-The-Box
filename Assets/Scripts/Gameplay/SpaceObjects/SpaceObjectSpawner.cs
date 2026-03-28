@@ -12,6 +12,7 @@ public class SpaceObjectSpawner : MonoBehaviour
 
     [SerializeField] private List<GameObject> spaceObjectsToSpawn = new List<GameObject>();
     [SerializeField] private float spawnInterval = 2f;
+    [SerializeField] private float maxSpawnInterval = 10f;
     [SerializeField] private float disableTime = 10f;
     [SerializeField] private int randomSpawnQuantity = 4;
     [SerializeField] private int maxObjects = 10;
@@ -25,8 +26,9 @@ public class SpaceObjectSpawner : MonoBehaviour
     {
         timer += Time.deltaTime;
         if (timer >= spawnInterval)
-        {
+        {            
             timer = 0f;
+            spawnInterval = Random.Range(maxSpawnInterval/2, maxSpawnInterval);
             SpawnSpaceObject();
         }
     }

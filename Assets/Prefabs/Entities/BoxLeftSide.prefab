@@ -156,7 +156,7 @@ MonoBehaviour:
   forceAmount: 3.5
   torqueAmount: 1.23
   returnForce: 0
-  forceDirection: {x: 0, y: 0, z: 6}
+  forceDirection: {x: 0, y: 0, z: 8}
   minSpeed: 0.25
   maxSpeed: 1
   maxDistance: 5
