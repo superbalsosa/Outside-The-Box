@@ -101,7 +101,7 @@ public class PlayerInteractableController : MonoBehaviour, IListener
     #region PRIVATE_METHODS
     private void InitEvents()
     {
-        eventManager.SuscribeToEvent(EventType.OpenBox, this);
+    //    eventManager.SuscribeToEvent(EventType.OpenBox, this);
     }
     private void CleanData()
     {
@@ -110,10 +110,10 @@ public class PlayerInteractableController : MonoBehaviour, IListener
 
     void IListener.ExecuteListenerAction(bool isOn)
     {
-        if (eventManager.GetCurrentEvent().Equals(EventType.OpenBox) && !isOn && !currentInteractable.IsUnityNull())
-        { 
-            CleanData();
-        }
+        //if (eventManager.GetCurrentEvent().Equals(EventType.OpenBox) && !isOn && !currentInteractable.IsUnityNull())
+        //{
+        //    CleanData();
+        //}
     }
     #endregion
 }

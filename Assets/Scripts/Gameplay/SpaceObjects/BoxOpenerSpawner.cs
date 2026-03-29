@@ -7,7 +7,7 @@ using System;
 public class BoxOpenerSpawner : MonoBehaviour, IBoxOpenerSpawner
 {
     [SerializeField] private GameObject boxOpenerPrefab;
-    [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
+    [SerializeField] private List<BoxOpener> spawnPoints = new List<BoxOpener>();
     private Dictionary<Transform, GameObject> occupiedPoints = new Dictionary<Transform, GameObject>();
 
     public Action OnSpawnPointFreed { get; set; }
@@ -18,7 +18,7 @@ public class BoxOpenerSpawner : MonoBehaviour, IBoxOpenerSpawner
 
         foreach (var point in spawnPoints)
         {
-            occupiedPoints.Add(point, null);
+            occupiedPoints.Add(point.transform, null);
         }
     }
 
@@ -26,13 +26,17 @@ public class BoxOpenerSpawner : MonoBehaviour, IBoxOpenerSpawner
     {
         foreach (var point in spawnPoints)
         {
-            if (occupiedPoints[point] == null) 
+            if (occupiedPoints[point.transform] == null)
             {
-                GameObject box = Instantiate(boxOpenerPrefab, point.position, Quaternion.identity);
+                //    GameObject box = ObjectPoolManager.SpawnSpaceObject(boxOpenerPrefab, point.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.BoxeOpener);
 
-                box.GetComponent<BoxOpener>().Init(this, point);
+                point.GetComponent<BoxOpener>().Init(this);
 
-                occupiedPoints[point] = box;
+                point.gameObject.layer = LayerMask.NameToLayer("Interactable");
+
+                point.BoxGameObject.gameObject.SetActive(true);
+
+                occupiedPoints[point.transform] = point.BoxGameObject;
 
                 return; 
             }
@@ -41,11 +45,28 @@ public class BoxOpenerSpawner : MonoBehaviour, IBoxOpenerSpawner
         Debug.Log("No hay spawn points libres");
     }
 
-    public void FreeSpawnPoint(Transform point)
+    public void UnSpawnBox(BoxOpener box)
     {
-        if (occupiedPoints.ContainsKey(point))
+        foreach (var point in spawnPoints)
         {
-            occupiedPoints[point] = null;
+            if (occupiedPoints[point.transform] != null &&
+                occupiedPoints[point.transform] == box.gameObject)
+            {
+
+                point.BoxGameObject.SetActive(false);
+
+                occupiedPoints[point.transform] = null;
+
+                return;
+            }
+        }
+    }
+
+    public void FreeSpawnPoint(BoxOpener point)
+    {
+        if (occupiedPoints.ContainsKey(point.transform))
+        {
+            occupiedPoints[point.transform] = null;
             OnSpawnPointFreed?.Invoke();
         }
     }
@@ -55,7 +76,7 @@ public class BoxOpenerSpawner : MonoBehaviour, IBoxOpenerSpawner
         bool hasFreePoints = false;
         foreach (var point in spawnPoints)
         {
-            if (occupiedPoints[point] == null) 
+            if (occupiedPoints[point.transform] == null) 
             {
                 hasFreePoints = true;
             }
@@ -72,8 +93,8 @@ public interface IBoxOpenerSpawner
 {
     Action OnSpawnPointFreed { get; set; }
     public void SpawnBox();
-
-    void FreeSpawnPoint(Transform point);
+    void UnSpawnBox(BoxOpener box);
+    void FreeSpawnPoint(BoxOpener point);
 
     bool IsThereFreeSpawnPoints();
 }

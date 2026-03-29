@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class SpaceShipManager : Singleton<SpaceShipManager>
 {
+    [Header("Space Ship Status")]
     public int CurrentHealth { get; private set; } = 100;
-    public int CurrentBatterys { get; private set; } = 6;
+    public int CurrentBatterysInUse { get; private set; } = 6;
 
-    [Header("Space Ship Settings")]
+    [Header("Player Inventory Settings")]
     [SerializeField] private int starDust = 0;
     [SerializeField] private int batterysAmount = 0;
 
@@ -32,7 +33,7 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
     public void ChangeBatterys(int amount)
     {
         batterysAmount -= amount;
-        CurrentBatterys += amount;
+        CurrentBatterysInUse += amount;
         CheckDefeatSettings();
     }
 
@@ -45,11 +46,11 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
     public void GrabBatterys(int amount)
     {
         batterysAmount += amount;
-        batterysText.text = $"Batterys: {CurrentBatterys}";
+        batterysText.text = $"Batterys: {batterysAmount}";
     }
     public void CheckDefeatSettings()
     {
-        if (CurrentHealth <= 0 || CurrentBatterys <= 0)
+        if (CurrentHealth <= 0 || CurrentBatterysInUse <= 0)
         {
             // Trigger defeat condition
             Debug.Log("Defeat! Space ship is destroyed or out of batterys.");
@@ -60,6 +61,6 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
     {
         starShipText.text = $"Starship Health: {CurrentHealth}";
         starDustText.text= $"Star Dust: {starDust}";
-        batterysText.text = $"Batterys: {CurrentBatterys}";
+        batterysText.text = $"Batterys: {batterysAmount}";
     }
 }

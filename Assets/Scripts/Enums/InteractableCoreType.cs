@@ -4,5 +4,9 @@
     ExitDoorR,
     FuelContainer,
     StarContainer,
-    BoxOpener,
+    BoxOpener_1,
+    BoxOpener_2,
+    BoxOpener_3,
+    BoxOpener_4,
+    BoxOpener_5
 }
