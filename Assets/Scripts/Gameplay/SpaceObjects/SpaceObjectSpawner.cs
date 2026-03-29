@@ -93,7 +93,8 @@ public class SpaceObjectSpawner : MonoBehaviour
             GameObject objectToSpawn = spaceObjectsToSpawn[Random.Range(0, spaceObjectsToSpawn.Count)];
 
             Vector3 spawnPos = SpawnPosition();
-            GameObject spawnedObject = ObjectPoolManager.SpawnSpaceObject(objectToSpawn, spawnPos, spawnRotation, poolType);
+            Quaternion spawnRot = Quaternion.Euler(0, 85, 0);
+            GameObject spawnedObject = ObjectPoolManager.SpawnSpaceObject(objectToSpawn, spawnPos, spawnRot, poolType);
 
             recentSpaceObjects.Enqueue(spawnedObject);
             StartCoroutine(DisableAfterTime(spawnedObject));
