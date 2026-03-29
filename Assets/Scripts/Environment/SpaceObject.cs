@@ -136,9 +136,9 @@ public class SpaceObject : MonoBehaviour, IInteract
                 transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, time / duration);
                 time += Time.deltaTime;
                 yield return null;
-                ObjectPoolManager.ReturnToPool(this.gameObject);
             }
 
+            ObjectPoolManager.ReturnToPool(this.gameObject);
             boxOpenerSpawner.SpawnBox();
         }
     }

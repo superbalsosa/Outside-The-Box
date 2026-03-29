@@ -4857,6 +4857,7 @@ GameObject:
   - component: {fileID: 1089962374594228851}
   - component: {fileID: 8188434886087849703}
   - component: {fileID: 476067405430884098}
+  - component: {fileID: 6642551661959732061}
   - component: {fileID: 415310413893533007}
   m_Layer: 7
   m_Name: EnemyLeft
@@ -4965,6 +4966,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6642551661959732061
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6983358569473466767}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000001, y: 1, z: 1.0000001}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &415310413893533007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4991,12 +5013,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 415310413893533007}
         m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
-        m_MethodName: DefetEnemy
-        m_Mode: 1
+        m_MethodName: TakeDamage
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 35
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5006,6 +5028,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1547665882150886122, guid: 48f75b3632c5d25448545885634d12b7, type: 3}
   spaceShip: {fileID: 0}
   maxBulletsCount: 5
-  shootingInterval: 2
-  bulletSpeed: 15
-  enemyLifetime: 90
+  shootingInterval: 15
+  bulletSpeed: 12
+  enemyLife: 0

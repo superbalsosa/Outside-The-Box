@@ -10,7 +10,7 @@ public class Enemy : SpaceObject
     [SerializeField] private int maxBulletsCount = 6;
     [SerializeField] private float shootingInterval = 2f;
     [SerializeField] private float bulletSpeed = 10f;
-    [SerializeField] private float enemyLifetime = 90f;
+    [SerializeField] private int enemyLife = 100;
 
     private int bulletCount;
     private float shootingTimer;
@@ -23,31 +23,30 @@ public class Enemy : SpaceObject
 
     private void OnEnable()
     {
+        enemyLife = 100;
         spaceShip = GameObject.FindGameObjectWithTag("SpaceShip").transform;
     }
 
     // Update is called once per frame
     void Update()
     { 
-        if (bulletCount > 0)
-        {
-            shootingTimer += Time.deltaTime;
 
-            if (shootingTimer >= shootingInterval)
-            {
-                ShootPlayer();
-                shootingTimer = 0f;
-            }
-        }
-        else
+        shootingTimer += Time.deltaTime;
+
+        if (shootingTimer >= shootingInterval)
         {
-            StartCoroutine(Retretenemy(enemyLifetime));
+            ShootPlayer();
+            shootingTimer = 0f;
         }
+
+        DefetEnemy();
+
     }
 
     void ShootPlayer()
     {
         Vector3 direction = (spaceShip.position - transform.position).normalized;
+        Quaternion rotation = Quaternion.LookRotation(direction);
         GameObject bullet = ObjectPoolManager.SpawnSpaceObject(bulletPrefab, transform.position, Quaternion.identity, ObjectPoolManager.PoolType.EnemyBullets);
         SetBulletDamage(bullet.GetComponent<EnemyBullet>());
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
@@ -59,10 +58,19 @@ public class Enemy : SpaceObject
 
     public void DefetEnemy()
     {
-        if (SpaceShipManager.Instance.BattleModeActive)
+        if (enemyLife <= 0)
         {
-            StartCoroutine(Retretenemy(enemyLifetime));
+            enemyLife = 0;
+            int randomAmount = Random.Range(10, 35);
+            SpaceShipManager.Instance.ChangeStarDust(randomAmount);
+            StartCoroutine(Retretenemy(3f));
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        enemyLife -= damage;
+        DefetEnemy();
     }
 
     private void SetBulletDamage(EnemyBullet enemyBullet)
