@@ -105,6 +105,16 @@ public class EventSystem : Singleton<EventSystem>, IEventSystem
         }
     }
 
+    private void ClearEvent()
+    {
+        currentInteractableEvent = EventType.None;
+        interactEvents.Find(e => e.eventType == EventType.None)?.eventAction?.Invoke(true);
+    }
+    private void SetEvent(EventType eventType, bool isOn)
+    {
+        currentInteractableEvent = eventType;
+        interactEvents.Find(e => e.eventType == eventType)?.eventAction.Invoke(isOn);
+    }
     public GameEventSO GetCurrentGameEvent()
     {
         return currentEvent;
@@ -122,13 +132,16 @@ public class EventSystem : Singleton<EventSystem>, IEventSystem
     }
     void IEventSystem.ClearEvent()
     {
-        currentInteractableEvent = EventType.None;
-        interactEvents.Find(e => e.eventType == EventType.None)?.eventAction?.Invoke(true);
+        ClearEvent();
     }
     void IEventSystem.SetEvent(EventType eventType, bool isOn)
     {
-        currentInteractableEvent = eventType;
-        interactEvents.Find(e => e.eventType == eventType)?.eventAction.Invoke(isOn);
+        SetEvent(eventType, isOn);
+    }
+    void IEventSystem.SetAndClearEvent(EventType eventType, bool isOn)
+    {
+        SetEvent(eventType, isOn);
+        ClearEvent();
     }
     void IEventSystem.SuscribeToEvent(EventType eventType, IListener listener)
     {
