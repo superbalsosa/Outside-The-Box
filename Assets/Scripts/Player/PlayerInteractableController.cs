@@ -36,12 +36,19 @@ public class PlayerInteractableController : MonoBehaviour, IListener
     {
         try
         {
-            if (currentInteractable.IsUnityNull() && 1 << other.gameObject.layer == interactableLayer)
+            if (currentInteractable != null && !currentInteractable.GetGameObject().activeInHierarchy)
+            {
+                currentInteractable = null;
+            }
+            if ((interactableLayer.value & (1 << other.gameObject.layer)) != 0)
             {
                 if (other.TryGetComponent<ICoreInteractable>(out var interactable))
                 {
+                    if (currentInteractable != null && currentInteractable != interactable)
+                        currentInteractable.HideInteraction();
+
                     currentInteractable = interactable;
-                    interactable.ShowInteraction();
+                    currentInteractable.ShowInteraction();
                 }
             }
         }

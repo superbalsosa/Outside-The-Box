@@ -48,6 +48,10 @@ public class BoxOpener : MonoBehaviour, IListener
     {
         if (isOn && eventManager.GetCurrentEvent().Equals(openBoxEvent))
         {
+            if (TryGetComponent<ICoreInteractable>(out var interactable))
+            {
+                interactable.HideInteraction();
+            }
             GiveReward();
             DisableAllChildren(this.transform);
             eventManager.SetEvent(openBoxEvent, false);
