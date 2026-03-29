@@ -17,6 +17,6 @@ public enum EventType
     #endregion
 
     #region SPACESHIP_EVENTS
-
+    LevelCompleted,
     #endregion
 }
