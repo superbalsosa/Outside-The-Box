@@ -43,19 +43,19 @@ public class DoorControler : MonoBehaviour, IListener
     {
         if (eventManager.GetCurrentEvent().Equals(eventToOpenClose))
         {
+            eventManager.ClearEvent();
+
             if (!wasDoorOpen && !isMooving)
             {
                 isMooving = true;
                 StartCoroutine(MoveDoor(OpenDoorPosition, 1f));
                 wasDoorOpen = true;
-                eventManager.ClearEvent();
             }
             else if (wasDoorOpen && !isMooving)
             {
                 isMooving = true;
                 StartCoroutine(MoveDoor(ClosedDoorPosition, 1f));
                 wasDoorOpen = false;
-                eventManager.ClearEvent();
             }
         }
     }
