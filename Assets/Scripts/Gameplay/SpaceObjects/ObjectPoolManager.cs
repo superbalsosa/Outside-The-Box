@@ -17,7 +17,8 @@ public class ObjectPoolManager : MonoBehaviour
         Debris,
         Satellite,
         Enemys,
-        BoxeOpener
+        BoxeOpener,
+        EnemyBullets,
     }
 
     public static PoolType PoolingType;

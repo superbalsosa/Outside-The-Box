@@ -31,7 +31,7 @@ public class SpaceObject : MonoBehaviour, IInteract
     {
         transform.localScale = startScale;
     }
-    public void Start()
+    protected virtual void Start()
     {
         InitializePhysics();
         ApplyInitialImpulse();
@@ -136,9 +136,15 @@ public class SpaceObject : MonoBehaviour, IInteract
                 transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, time / duration);
                 time += Time.deltaTime;
                 yield return null;
+                ObjectPoolManager.ReturnToPool(this.gameObject);
             }
 
             boxOpenerSpawner.SpawnBox();
         }
+    }
+
+    public DoorControler GetDoorControler()
+    {
+        return _doorControler;
     }
 }

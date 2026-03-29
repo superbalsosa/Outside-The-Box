@@ -9,6 +9,7 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
     [Header("Space Ship Status")]
     public int CurrentHealth { get; private set; } = 100;
     public int CurrentBatterysInUse { get; private set; } = 6;
+    public bool BattleModeActive { get; private set; } = false;
 
     [Header("Player Inventory Settings")]
     [SerializeField] private int starDust = 0;
@@ -55,6 +56,11 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
             // Trigger defeat condition
             Debug.Log("Defeat! Space ship is destroyed or out of batterys.");
         }
+    }
+
+    public void TriggerBattleMode()
+    {
+        BattleModeActive = BattleModeActive ? false : true;
     }
 
     private void UpdateTexts()

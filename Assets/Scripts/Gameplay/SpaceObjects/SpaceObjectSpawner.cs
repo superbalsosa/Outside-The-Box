@@ -16,6 +16,7 @@ public class SpaceObjectSpawner : MonoBehaviour
     [SerializeField] private float disableTime = 10f;
     [SerializeField] private int randomSpawnQuantity = 4;
     [SerializeField] private int maxObjects = 10;
+    [SerializeField] ObjectPoolManager.PoolType poolType;
 
     private Quaternion spawnRotation = Quaternion.identity;
     private float timer;
@@ -69,7 +70,7 @@ public class SpaceObjectSpawner : MonoBehaviour
             GameObject objectToSpawn = spaceObjectsToSpawn[Random.Range(0, spaceObjectsToSpawn.Count)];
 
             Vector3 spawnPos = SpawnPosition();
-            GameObject spawnedObject = ObjectPoolManager.SpawnSpaceObject(objectToSpawn, spawnPos, spawnRotation, ObjectPoolManager.PoolType.Boxes);
+            GameObject spawnedObject = ObjectPoolManager.SpawnSpaceObject(objectToSpawn, spawnPos, spawnRotation, poolType);
 
             recentSpaceObjects.Enqueue(spawnedObject);
             StartCoroutine(DisableAfterTime(spawnedObject));
