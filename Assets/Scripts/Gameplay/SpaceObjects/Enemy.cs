@@ -7,9 +7,10 @@ public class Enemy : SpaceObject
     [Header("Enemy settings")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform spaceShip;
-    [SerializeField] private int maxBulletsCount = 5;
+    [SerializeField] private int maxBulletsCount = 6;
     [SerializeField] private float shootingInterval = 2f;
-    [SerializeField] private float bulletSpeed = 5f;
+    [SerializeField] private float bulletSpeed = 10f;
+    [SerializeField] private float enemyLifetime = 90f;
 
     private int bulletCount;
     private float shootingTimer;
@@ -40,7 +41,7 @@ public class Enemy : SpaceObject
         }
         else
         {
-            StartCoroutine(Retretenemy(2f));
+            StartCoroutine(Retretenemy(enemyLifetime));
         }
     }
 
@@ -60,7 +61,7 @@ public class Enemy : SpaceObject
     {
         if (SpaceShipManager.Instance.BattleModeActive)
         {
-            StartCoroutine(Retretenemy(2f));
+            StartCoroutine(Retretenemy(enemyLifetime));
         }
     }
 

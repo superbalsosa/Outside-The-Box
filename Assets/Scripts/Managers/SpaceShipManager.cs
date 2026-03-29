@@ -47,7 +47,7 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
     public void GrabBatterys(int amount)
     {
         batterysAmount += amount;
-        batterysText.text = $"Batterys: {batterysAmount}";
+        batterysText.text = $"Batteries: {batterysAmount}";
     }
     public void CheckDefeatSettings()
     {
@@ -67,6 +67,6 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
     {
         starShipText.text = $"Starship Health: {CurrentHealth}";
         starDustText.text= $"Star Dust: {starDust}";
-        batterysText.text = $"Batterys: {batterysAmount}";
+        batterysText.text = $"Batteries: {batterysAmount}";
     }
 }
