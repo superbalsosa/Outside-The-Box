@@ -162,6 +162,7 @@ MonoBehaviour:
   maxSpeed: 1
   maxDistance: 5
   startScale: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
   _doorControler: {fileID: 0}
   onInteract:
     m_PersistentCalls:
@@ -186,6 +187,10 @@ MonoBehaviour:
   shootingInterval: 15
   bulletSpeed: 12
   enemyLife: 100
+  knockbackForce: 10
+  knockbackDuration: 2
+  moveSpeed: 5
+  stopDistance: 50
 --- !u!1 &8994156587433862507
 GameObject:
   m_ObjectHideFlags: 0
