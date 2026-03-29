@@ -13,7 +13,7 @@ namespace CoreInteractables
         [SerializeField] private CoreInteractableSO interactableData;
         private Canvas canvasButtonInteractive;
         private List<Renderer> renderers = new List<Renderer>();
-        private IErrorManager errorManager;
+        //private IErrorManager errorManager;
         private IEventSystem eventManager;
         #endregion
 
@@ -21,7 +21,7 @@ namespace CoreInteractables
         private void Start()
         {
             canvasButtonInteractive = GetComponentInChildren<Canvas>(true);
-            errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
+            //errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
             eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
             InitOutlines();
         }
@@ -73,7 +73,10 @@ namespace CoreInteractables
             {
                 Interact();
             }
-            catch (Exception ex) { errorManager.WriteError(ErrorType.CoreInteractable_Interact, ex.Message, ex.StackTrace); }
+            catch (Exception ex) {
+                //errorManager.WriteError(ErrorType.CoreInteractable_Interact, ex.Message, ex.StackTrace);
+                Debug.LogException(ex);
+            }
         }
         void ICoreInteractable.ShowInteraction()
         {
@@ -81,7 +84,10 @@ namespace CoreInteractables
             {
                 ShowInteraction();
             }
-            catch (Exception ex) { errorManager.WriteError(ErrorType.CoreInteractable_ShowInteraction, ex.Message, ex.StackTrace); }
+            catch (Exception ex) { 
+                //errorManager.WriteError(ErrorType.CoreInteractable_ShowInteraction, ex.Message, ex.StackTrace);
+                Debug.LogException(ex);
+            }
         }
         void ICoreInteractable.HideInteraction()
         {
@@ -89,7 +95,10 @@ namespace CoreInteractables
             {
                 HideInteraction();
             }
-            catch (Exception ex) { errorManager.WriteError(ErrorType.CoreInteractable_HideInteraction, ex.Message, ex.StackTrace); }
+            catch (Exception ex) { 
+                //errorManager.WriteError(ErrorType.CoreInteractable_HideInteraction, ex.Message, ex.StackTrace);
+                Debug.LogException(ex);
+            }
         }
         GameObject ICoreInteractable.GetGameObject() => this.gameObject;
         string ICoreInteractable.GetButtonActionName() => interactableData.ButtonActionName;

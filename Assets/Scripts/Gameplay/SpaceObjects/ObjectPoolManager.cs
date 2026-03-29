@@ -7,13 +7,17 @@ public class ObjectPoolManager : MonoBehaviour
 
     private GameObject objectPoolEmptyHolder;
     private static GameObject spaceObjectEmpty;
+    private static GameObject enemyEmpty;
+    private static GameObject boxOpenerEmpty;
 
     public enum PoolType
     {
         None,
         Boxes,
         Debris,
-        Satellite
+        Satellite,
+        Enemys,
+        BoxeOpener
     }
 
     public static PoolType PoolingType;
@@ -30,7 +34,11 @@ public class ObjectPoolManager : MonoBehaviour
         spaceObjectEmpty = new GameObject("SpaceObjectEmpty");
         spaceObjectEmpty.transform.SetParent(objectPoolEmptyHolder.transform);
 
+        enemyEmpty = new GameObject("EnemyEmpty");
+        enemyEmpty.transform.SetParent(objectPoolEmptyHolder.transform);
 
+        boxOpenerEmpty = new GameObject("BoxOpenerEmpty");
+        boxOpenerEmpty.transform.SetParent(objectPoolEmptyHolder.transform);
     }
 
     public static GameObject SpawnSpaceObject(GameObject spaceObjectToSpawn, Vector3 spawnPosition, Quaternion spawnRotation, PoolType poolType = PoolType.None)
@@ -107,6 +115,12 @@ public class ObjectPoolManager : MonoBehaviour
 
             case PoolType.Satellite:
                 return spaceObjectEmpty;
+
+            case PoolType.Enemys:
+                return enemyEmpty;
+
+            case PoolType.BoxeOpener:
+                return boxOpenerEmpty;
 
             default:
                 return null;
