@@ -18,7 +18,7 @@ public class SpaceObject : MonoBehaviour, IInteract
 
     [SerializeField] private Vector3 startScale;
     private Vector3 startPosition;
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     [Header("Interact Settings")]
     [SerializeField] private DoorControler _doorControler;

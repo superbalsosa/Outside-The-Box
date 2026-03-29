@@ -12,13 +12,21 @@ public class Enemy : SpaceObject
     [SerializeField] private float bulletSpeed = 10f;
     [SerializeField] private int enemyLife = 100;
 
-    private int bulletCount;
+    [Header("Knockback settings")]
+    [SerializeField] private float knockbackForce = 10f;
+    [SerializeField] private float knockbackDuration = 0.3f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float stopDistance = 8f;
+
     private float shootingTimer;
+    private bool isKnockback = false;
+    private bool isDead = false;
+
+    private Vector3 localScaleSave;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
         base.Start();
-        bulletCount = Random.Range(1, maxBulletsCount);
     }
 
     private void OnEnable()
@@ -29,18 +37,23 @@ public class Enemy : SpaceObject
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+        if (isDead) return;
 
-        shootingTimer += Time.deltaTime;
+        HandleMovement();
 
-        if (shootingTimer >= shootingInterval)
+        float distance = Vector3.Distance(transform.position, spaceShip.position);
+
+        if (distance <= stopDistance)
         {
-            ShootPlayer();
-            shootingTimer = 0f;
+            shootingTimer += Time.deltaTime;
+
+            if (shootingTimer >= shootingInterval)
+            {
+                ShootPlayer();
+                shootingTimer = 0f;
+            }
         }
-
-        DefetEnemy();
-
     }
 
     void ShootPlayer()
@@ -52,17 +65,20 @@ public class Enemy : SpaceObject
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
 
         rb.linearVelocity = direction * bulletSpeed;
-        bulletCount--;
 
     }
 
     public void DefetEnemy()
     {
-        if (enemyLife <= 0)
+        if (enemyLife <= 0 && !isDead)
         {
+            isDead = true;
+
             enemyLife = 0;
+
             int randomAmount = Random.Range(10, 35);
             SpaceShipManager.Instance.ChangeStarDust(randomAmount);
+
             StartCoroutine(Retretenemy(3f));
         }
     }
@@ -70,6 +86,7 @@ public class Enemy : SpaceObject
     public void TakeDamage(int damage)
     {
         enemyLife -= damage;
+        ApplyKnockback();
         DefetEnemy();
     }
 
@@ -85,6 +102,42 @@ public class Enemy : SpaceObject
         }
     }
 
+    private void HandleMovement()
+    {
+        if (enemyLife <= 0) return;
+
+        if (isKnockback) return;
+
+        float distance = Vector3.Distance(transform.position, spaceShip.position);
+
+        if (distance > stopDistance)
+        {
+            Vector3 direction = (spaceShip.position - transform.position).normalized;
+            rb.linearVelocity = direction * moveSpeed;
+        }
+        else
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
+    }
+
+    public void ApplyKnockback()
+    {
+        Vector3 direction = (transform.position - spaceShip.position).normalized;
+
+        rb.linearVelocity = Vector3.zero;
+        rb.AddForce(direction * knockbackForce, ForceMode.Impulse);
+
+        StartCoroutine(KnockbackRoutine());
+    }
+
+    private IEnumerator KnockbackRoutine()
+    {
+        isKnockback = true;
+        yield return new WaitForSeconds(knockbackDuration);
+        isKnockback = false;
+    }
+
     private IEnumerator Retretenemy(float duration)
     {
 
@@ -92,9 +145,10 @@ public class Enemy : SpaceObject
         while (time < duration)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, time / duration);
-            ObjectPoolManager.ReturnToPool(this.gameObject);
+            time += Time.deltaTime;
             yield return null;
         }
+        ObjectPoolManager.ReturnToPool(this.gameObject);
     }
 
 }
