@@ -9,6 +9,7 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
     [Header("Space Ship Status")]
     public int CurrentHealth { get; private set; } = 100;
     public int CurrentBatterysInUse { get; private set; } = 6;
+    public bool BattleModeActive { get; private set; } = false;
 
     [Header("Player Inventory Settings")]
     [SerializeField] private int starDust = 0;
@@ -46,7 +47,7 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
     public void GrabBatterys(int amount)
     {
         batterysAmount += amount;
-        batterysText.text = $"Batterys: {batterysAmount}";
+        batterysText.text = $"Batteries: {batterysAmount}";
     }
     public void CheckDefeatSettings()
     {
@@ -57,10 +58,15 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
         }
     }
 
+    public void TriggerBattleMode()
+    {
+        BattleModeActive = BattleModeActive ? false : true;
+    }
+
     private void UpdateTexts()
     {
         starShipText.text = $"Starship Health: {CurrentHealth}";
         starDustText.text= $"Star Dust: {starDust}";
-        batterysText.text = $"Batterys: {batterysAmount}";
+        batterysText.text = $"Batteries: {batterysAmount}";
     }
 }

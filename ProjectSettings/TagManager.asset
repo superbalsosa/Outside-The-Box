@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LeftDoor
   - RightDoor
+  - SpaceShip
   layers:
   - Default
   - TransparentFX
