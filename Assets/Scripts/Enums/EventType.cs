@@ -13,6 +13,7 @@ public enum EventType
     OpenBox_3,
     OpenBox_4,
     OpenBox_5,
+    BatteryContainer,
 
     #endregion
 

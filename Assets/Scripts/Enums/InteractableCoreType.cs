@@ -8,5 +8,6 @@
     BoxOpener_2,
     BoxOpener_3,
     BoxOpener_4,
-    BoxOpener_5
+    BoxOpener_5,
+    BatteryContainer,
 }

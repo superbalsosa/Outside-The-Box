@@ -22,16 +22,13 @@ public class ShipManager : MonoBehaviour, IShipManager
     #region UNITY_METHODS
     private void Awake()
     {
+        InitShip();
         InterfaceDependencyInjector.Instance.Register<IShipManager>(() => this);
     }
 
     private void Start()
     {
         _eventSystem = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
-        InitShip();
-        //To remove after logic is implemented
-        Accelerate(100f, true);
-
     }
     private void Update()
     {
@@ -73,6 +70,13 @@ public class ShipManager : MonoBehaviour, IShipManager
 
         StartCoroutine(AccelerateDecelerateInSeconds(_speedPercentage, targetSpeedPercentage, _secondsToReachTargetSpeed));
     }
+    private void AccelerateToTargetSpeed(float percentageTarget)
+    {
+        percentageTarget = Mathf.Abs(percentageTarget);
+        var targetSpeedPercentage = Mathf.Clamp(percentageTarget, 0f, 100f);
+
+        StartCoroutine(AccelerateDecelerateInSeconds(_speedPercentage, targetSpeedPercentage, _secondsToReachTargetSpeed));
+    }
     private IEnumerator AccelerateDecelerateInSeconds(float startSpeedPercentage, float targetSpeedPercentage, float secondsToReachTarget)
     {
         float elapsed = 0f;
@@ -103,6 +107,11 @@ public class ShipManager : MonoBehaviour, IShipManager
     float IShipManager.GetCurrentSpeed()
     {
         return _speedPercentage;
+    }
+
+    void IShipManager.SetSpeedPercentageTarget(float percentageTarget)
+    {
+        AccelerateToTargetSpeed(percentageTarget);
     }
     #endregion
 }
