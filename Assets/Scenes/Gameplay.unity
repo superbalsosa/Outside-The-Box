@@ -695,6 +695,11 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Starship Life: '
+--- !u!23 &192837516 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4511994109107592884, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+  m_PrefabInstance: {fileID: 110900020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &213919979 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4463816370444722768, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
@@ -983,6 +988,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 835484026}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &415604801 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4722668142949580050, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+  m_PrefabInstance: {fileID: 110900020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &422335911
 GameObject:
   m_ObjectHideFlags: 0
@@ -7884,6 +7894,11 @@ Transform:
   - {fileID: 1635455852}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 27, y: -148, z: 0}
+--- !u!23 &1437460592 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -887095748192548169, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+  m_PrefabInstance: {fileID: 110900020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1467411350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7993,6 +8008,11 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3012906071266790154, guid: 13a57f067fadca04e952551002c461ff, type: 3}
   m_PrefabInstance: {fileID: 1467411350}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1505450955 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1455200766877505617, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+  m_PrefabInstance: {fileID: 110900020}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1524728522
 GameObject:
@@ -8179,6 +8199,14 @@ MonoBehaviour:
   _maxBatteries: 5
   _currentBatteries: 1
   _secondsPerBattery: 5
+  _bulbOnMaterial: {fileID: 2100000, guid: 63785afab54b345428322937af701753, type: 2}
+  _bulbOffMaterial: {fileID: 2100000, guid: 097eb5dd5a4b0254f822034632ef24ea, type: 2}
+  _rendererBulbs:
+  - {fileID: 1505450955}
+  - {fileID: 1668231508}
+  - {fileID: 192837516}
+  - {fileID: 415604801}
+  - {fileID: 1437460592}
 --- !u!114 &1627998954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8537,6 +8565,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 40, y: 7.5869627, z: 6.999946}
   m_Center: {x: 0, y: 0.7065023, z: 3.000091}
+--- !u!23 &1668231508 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8182561589466922012, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
+  m_PrefabInstance: {fileID: 110900020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1694378561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4953848728879405565, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
