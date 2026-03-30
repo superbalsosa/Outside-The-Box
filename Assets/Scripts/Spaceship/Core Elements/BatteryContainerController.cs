@@ -44,6 +44,7 @@ public class BatteryContainerController : MonoBehaviour, IListener
     #region PRIVATE_METHODS
     private void SyncMaterials()
     {
+        var currentOutline = _rendererBulbs[0].material.GetFloat("_OutlineWidth");
         for (int i = 0; i < _rendererBulbs.Count; i++)
         {
             if (i < _currentBatteries)
@@ -54,6 +55,7 @@ public class BatteryContainerController : MonoBehaviour, IListener
             {
                 _rendererBulbs[i].material = _bulbOffMaterial;
             }
+            _rendererBulbs[i].material.SetFloat("_OutlineWidth", currentOutline);
         }
     }
     private IEnumerator ConsumeBatteryPerTime(float secondsPerBattery)
