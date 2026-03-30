@@ -4964,7 +4964,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &6642551661959732061
 BoxCollider:
@@ -4999,10 +4999,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33269edbae791449bfe809cf32d5223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  forceAmount: 2.25
-  torqueAmount: 0.5
+  forceAmount: 4
+  torqueAmount: 0
   returnForce: 0.8
-  forceDirection: {x: 0, y: 0, z: 0}
+  forceDirection: {x: 0, y: 6, z: 0}
   minSpeed: 0.25
   maxSpeed: 1
   maxDistance: 5
