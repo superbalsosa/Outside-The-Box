@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Break Window
+  m_Shader: {fileID: 4800000, guid: 2edc089d5ab670443aabe5315746afa6, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _ENABLEREFLECTIONS_ON
+  - _ENABLESPECULARHIGHLIGHTS_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CrackTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MicroNormalTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaCutNearEnd: 0.15
+    - _AmbientStrength: 3
+    - _BaseAlpha: 0.2
+    - _BodyWidth1: 0.018
+    - _BodyWidth2: 0.012
+    - _BodyWidth3: 0.006
+    - _BranchScale: 9.3
+    - _BreakAmount: 0
+    - _BreakVisibility: 5
+    - _CrackAlpha: 0.85
+    - _CrackAlphaBoost: 0
+    - _CrackBaseVisibility: 0.15
+    - _CrackContrast: 3
+    - _CrackDamageVisibility: 2
+    - _CrackNormalStrength: 0.2
+    - _CrackScale: 25
+    - _CrackSharpness: 3
+    - _CrackSpread: 1
+    - _CrackStrength: 0
+    - _CrackThickness: 0.025
+    - _CrackThreshold: 1
+    - _CrackVisibility: 1.5
+    - _Damage: 0
+    - _DebugCracks: 0
+    - _DebugMode: 0
+    - _DetailFractureStrength: 0.5
+    - _DetailThickness: 0.006
+    - _EdgeGlow: 1.5
+    - _EnableReflections: 1
+    - _EnableSpecularHighlights: 1
+    - _EnvironmentTintStrength: 0.9
+    - _FractureScale: 12
+    - _FragmentDisappear: 0.35
+    - _FresnelPower: 10
+    - _FresnelStrength: 2
+    - _GlassAlpha: 0.25
+    - _Glossiness: 0.5
+    - _HighlightStrength: 0
+    - _ImpactRadius: 0.001
+    - _ImpactSoftness: 0.001
+    - _MainCrackCount: 16
+    - _MainCrackStrength: 1.6
+    - _MainCrackThickness: 0.01
+    - _MainFractureStrength: 1
+    - _MainScale: 12.5
+    - _Metallic: 0
+    - _MicroFractureStrength: 0.8
+    - _MicroNormalStrength: 0
+    - _MicroScale: 14
+    - _NormalFakeStrength: 0.25
+    - _NormalStrength: 2
+    - _Opacity: 0.496
+    - _RadialCount: 7.2
+    - _RadialStrength: 0
+    - _RadialThickness: 0.03
+    - _RadialWarp: 2
+    - _ReflectionStrength: 2
+    - _Reveal1: 0
+    - _Reveal2: 0
+    - _Reveal3: 0
+    - _RingFrequency: 1
+    - _RingIrregularity: 0
+    - _RingStrength: 0
+    - _RingThickness: 0.0005
+    - _Scale1: 8
+    - _Scale2: 4.5
+    - _Scale3: 1.3
+    - _SecondaryCrackCount: 22
+    - _SecondaryScale: 61
+    - _SecondaryStrength: 3
+    - _SecondaryThickness: 0.05
+    - _ShadowStrength: 0.72
+    - _ShatterAmount: 0.35
+    - _ShatterStart: 0.8
+    - _ShatterStrength: 0.25
+    - _Smoothness: 0.5
+    - _SpecularStrength: 1
+    - _Strength1: 0
+    - _Strength2: 0.82
+    - _Strength3: 0
+    - _StressStrength: 0.35
+    - _Thickness: 0.0136
+    - _Thickness1: 0.0131
+    - _Thickness2: 0.009
+    - _Thickness3: 0.001
+    - _TintStrength: 1
+    - _UseShatter: 0
+    - _Warp: 1
+    - _Warp1: 0.496
+    - _Warp2: 0.351
+    - _Warp3: 0
+    - _WarpStrength: 0.08
+    m_Colors:
+    - _BreakColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CrackColor: {r: 1, g: 1, b: 1, a: 1}
+    - _CrackHighlightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _CrackShadowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GlassColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ImpactCenter: {r: 0.5, g: 0.5, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
