@@ -4,6 +4,8 @@
   <Project Path="Assembly-CSharp-Editor-firstpass.csproj" />
   <Project Path="Unity.Postprocessing.Editor.csproj" />
   <Project Path="Unity.Postprocessing.Runtime.csproj" />
+  <Project Path="EZhex1991.EZSoftBone.csproj" />
+  <Project Path="EZhex1991.EZSoftBone.Editor.csproj" />
   <Project Path="Unity.Postprocessing.Runtime.Tests.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Unity.Postprocessing.Editor.Tests.csproj" />
