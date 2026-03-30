@@ -1,3 +1,4 @@
+using DependencyInjection;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ public class SpaceObjectSpawner : MonoBehaviour
     [SerializeField] private float enemySpawnInterval = 2f;
     [SerializeField] private float enemyMaxSpawnInterval = 10f;
     [SerializeField] private int enemyRandomSpawnQuantity = 3;
+    [SerializeField] private int enemyMaxObjects = 10;
     [SerializeField] ObjectPoolManager.PoolType enemyPoolType;
     #endregion
 
@@ -37,7 +39,9 @@ public class SpaceObjectSpawner : MonoBehaviour
     private float enemyTimer;
 
     Queue<GameObject> recentSpaceObjects = new Queue<GameObject>();
+    Queue<GameObject> recentEnemys = new Queue<GameObject>();
 
+  
     private void Update()
     {
         timer += Time.deltaTime;
@@ -49,7 +53,7 @@ public class SpaceObjectSpawner : MonoBehaviour
             SpawnSpaceObject();
         }
 
-        if (enemyTimer >= enemySpawnInterval)
+        if (enemyTimer >= enemySpawnInterval && SpaceShipManager.Instance.EnemyCount < SpaceShipManager.Instance.MaxEnemyCount)
         {
             enemyTimer = 0f;
             enemySpawnInterval = Random.Range(enemyMaxSpawnInterval / 2, enemyMaxSpawnInterval);
@@ -117,7 +121,7 @@ public class SpaceObjectSpawner : MonoBehaviour
         {
         
             List<GameObject> availableObjects = new List<GameObject>(enemysToSpawn);
-            foreach (var recent in recentSpaceObjects)
+            foreach (var recent in recentEnemys)
             {
                 if (availableObjects.Contains(recent))
                 {
@@ -127,10 +131,10 @@ public class SpaceObjectSpawner : MonoBehaviour
 
             if (availableObjects.Count == 0)
             {
-                if (recentSpaceObjects.Count > 0) recentSpaceObjects.Dequeue();
+                if (recentEnemys.Count > 0) recentEnemys.Dequeue();
 
                 availableObjects = new List<GameObject>(enemysToSpawn);
-                foreach (var recent in recentSpaceObjects)
+                foreach (var recent in recentEnemys)
                 {
                     if (availableObjects.Contains(recent))
                     {
@@ -143,6 +147,9 @@ public class SpaceObjectSpawner : MonoBehaviour
 
             Vector3 spawnPos = EnemySpawnPosition();
             GameObject spawnedObject = ObjectPoolManager.SpawnSpaceObject(objectToSpawn, spawnPos, spawnRotation, enemyPoolType);
+
+            SpaceShipManager.Instance.EnemyCount++;
+            
 
         }
     }

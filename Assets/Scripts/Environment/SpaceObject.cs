@@ -38,7 +38,7 @@ public class SpaceObject : MonoBehaviour, IInteract
         SetDoorReference();
         boxOpenerSpawner = InterfaceDependencyInjector.Instance.Resolve<IBoxOpenerSpawner>();
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         HandleReturnToAnchor();
         //LimitVelocity();

@@ -780,6 +780,7 @@ MonoBehaviour:
   enemySpawnInterval: 5
   enemyMaxSpawnInterval: 10
   enemyRandomSpawnQuantity: 3
+  enemyMaxObjects: 5
   enemyPoolType: 4
 --- !u!4 &227960019
 Transform:
@@ -7670,6 +7671,7 @@ MonoBehaviour:
   enemySpawnInterval: 2
   enemyMaxSpawnInterval: 10
   enemyRandomSpawnQuantity: 3
+  enemyMaxObjects: 5
   enemyPoolType: 4
 --- !u!4 &1321817622
 Transform:
@@ -8833,6 +8835,8 @@ MonoBehaviour:
   starDustText: {fileID: 2009288455}
   starShipText: {fileID: 190412285}
   batterysText: {fileID: 402024500}
+  MaxEnemyCount: 10
+  EnemyCount: 0
 --- !u!4 &1776254102
 Transform:
   m_ObjectHideFlags: 0

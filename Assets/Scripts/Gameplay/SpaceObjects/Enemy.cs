@@ -56,6 +56,11 @@ public class Enemy : SpaceObject
         }
     }
 
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+    }
+
     void ShootPlayer()
     {
         Vector3 direction = (spaceShip.position - transform.position).normalized;
@@ -78,6 +83,7 @@ public class Enemy : SpaceObject
 
             int randomAmount = Random.Range(10, 35);
             SpaceShipManager.Instance.ChangeStarDust(randomAmount);
+            SpaceShipManager.Instance.EnemyCount--;
 
             StartCoroutine(Retretenemy(3f));
         }
@@ -149,6 +155,7 @@ public class Enemy : SpaceObject
             yield return null;
         }
         ObjectPoolManager.ReturnToPool(this.gameObject);
+       
     }
 
 }

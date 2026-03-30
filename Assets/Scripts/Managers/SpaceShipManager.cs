@@ -21,6 +21,10 @@ public class SpaceShipManager : Singleton<SpaceShipManager>, ISpaceShipManager
     [SerializeField] private Text starShipText;
     [SerializeField] private Text batterysText;
 
+    [Header("Enemy Settings")]
+    public int MaxEnemyCount = 10;
+    public int EnemyCount = 0;
+
     protected override void Awake()
     {
         base.Awake();
