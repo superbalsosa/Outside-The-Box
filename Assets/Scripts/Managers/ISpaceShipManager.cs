@@ -1,0 +1,4 @@
+﻿interface ISpaceShipManager
+{
+    bool GetBattery();
+}

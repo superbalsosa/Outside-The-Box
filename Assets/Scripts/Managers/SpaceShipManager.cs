@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using DependencyInjection;
 
-public class SpaceShipManager : Singleton<SpaceShipManager>
+public class SpaceShipManager : Singleton<SpaceShipManager>, ISpaceShipManager
 {
     [Header("Space Ship Status")]
     public int CurrentHealth { get; private set; } = 100;
@@ -20,6 +21,11 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
     [SerializeField] private Text starShipText;
     [SerializeField] private Text batterysText;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        InterfaceDependencyInjector.Instance.Register<ISpaceShipManager>(() => this);
+    }
     private void Start()
     {
         UpdateTexts();
@@ -69,4 +75,18 @@ public class SpaceShipManager : Singleton<SpaceShipManager>
         starDustText.text= $"Star Dust: {starDust}";
         batterysText.text = $"Batteries: {batterysAmount}";
     }
+    private bool GetBattery()
+    {
+        var hasBattery = batterysAmount > 0;
+        if (hasBattery) batterysAmount--;
+
+        return hasBattery;
+    }
+
+    #region INTERFACE_IMPLEMENTATION
+    bool ISpaceShipManager.GetBattery()
+    {
+        return GetBattery();
+    }
+    #endregion
 }
