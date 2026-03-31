@@ -710,6 +710,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorControler
   OpenDoorPosition: {x: -19, y: 6.26, z: 0}
   ClosedDoorPosition: {x: -19, y: 0, z: 0}
+  openDoorSound:
+    clip: {fileID: 8300000, guid: c75dcd50292faf14882b1a17acd1ae2a, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
+  closeDoorSound:
+    clip: {fileID: 8300000, guid: c75dcd50292faf14882b1a17acd1ae2a, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
+  cantUseDoorSound:
+    clip: {fileID: 8300000, guid: 3bd3aa1ad79ea774995353ca929c0451, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
   wasDoorOpen: 0
   eventToOpenClose: 3
 --- !u!114 &213919984
@@ -9629,6 +9653,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorControler
   OpenDoorPosition: {x: 19, y: 6.26, z: 0}
   ClosedDoorPosition: {x: 19, y: 0, z: 0}
+  openDoorSound:
+    clip: {fileID: 8300000, guid: c75dcd50292faf14882b1a17acd1ae2a, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
+  closeDoorSound:
+    clip: {fileID: 8300000, guid: c75dcd50292faf14882b1a17acd1ae2a, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
+  cantUseDoorSound:
+    clip: {fileID: 8300000, guid: 3bd3aa1ad79ea774995353ca929c0451, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
   wasDoorOpen: 0
   eventToOpenClose: 2
 --- !u!1 &1698961284

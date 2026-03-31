@@ -1,3 +1,6 @@
+using Audio;
+using Audio.Data;
+using Audio.Interfaces;
 using DependencyInjection;
 using System.Collections;
 using UnityEngine;
@@ -8,6 +11,10 @@ public class DoorControler : MonoBehaviour, IListener
     [Header("Door Settings")]
     [SerializeField] private Vector3 OpenDoorPosition;
     [SerializeField] private Vector3 ClosedDoorPosition;
+    [Header("Door Sounds")]
+    [SerializeField] private SoundData openDoorSound;
+    [SerializeField] private SoundData closeDoorSound;
+    [SerializeField] private SoundData cantUseDoorSound;
     private bool isMooving;
 
     public bool wasDoorOpen;
@@ -16,6 +23,7 @@ public class DoorControler : MonoBehaviour, IListener
     [SerializeField] private EventType eventToOpenClose;
     private IEventSystem eventManager;
     private IDragAndDrop dragAndDrop;
+    private ISoundManager soundManager;
 
     void Start()
     {
@@ -30,6 +38,7 @@ public class DoorControler : MonoBehaviour, IListener
 
     private void InitEvents()
     {
+        soundManager = InterfaceDependencyInjector.Instance.Resolve<ISoundManager>();
         eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
         dragAndDrop = InterfaceDependencyInjector.Instance.Resolve<IDragAndDrop>();
         eventManager.SuscribeToEvent(eventToOpenClose, this);
@@ -47,15 +56,21 @@ public class DoorControler : MonoBehaviour, IListener
 
             if (!wasDoorOpen && !isMooving)
             {
+                soundManager.CreateSound().WithSoundData(openDoorSound).Play();
                 isMooving = true;
                 StartCoroutine(MoveDoor(OpenDoorPosition, 1f));
                 wasDoorOpen = true;
             }
             else if (wasDoorOpen && !isMooving)
             {
+                soundManager.CreateSound().WithSoundData(closeDoorSound).Play();
                 isMooving = true;
                 StartCoroutine(MoveDoor(ClosedDoorPosition, 1f));
                 wasDoorOpen = false;
+            }
+            else
+            {
+                soundManager.CreateSound().WithSoundData(cantUseDoorSound).Play();
             }
         }
     }
