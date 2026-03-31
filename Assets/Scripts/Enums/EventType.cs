@@ -14,6 +14,7 @@ public enum EventType
     OpenBox_4,
     OpenBox_5,
     BatteryContainer,
+    StardustContainer,
 
     #endregion
 

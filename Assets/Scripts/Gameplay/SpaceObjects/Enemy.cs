@@ -82,7 +82,7 @@ public class Enemy : SpaceObject
             enemyLife = 0;
 
             int randomAmount = Random.Range(10, 35);
-            SpaceShipManager.Instance.ChangeStarDust(randomAmount);
+            SpaceShipManager.Instance.ChangeStardust(randomAmount);
             SpaceShipManager.Instance.EnemyCount--;
 
             StartCoroutine(Retretenemy(3f));
