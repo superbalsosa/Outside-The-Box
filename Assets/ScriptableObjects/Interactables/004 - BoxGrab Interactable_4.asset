@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoreInteractables.CoreInteractableSO
   InteractableCoreType: 8
   eventToTrigger: 7
-  InteractableName: Open Box
+  InteractableName: Box
   ButtonActionName: Open
   OutlineHover: 0.35
   OutlineBase: 0.1
+  IsAlertable: 0
