@@ -1,13 +1,28 @@
+using Audio;
+using Audio.Data;
+using Audio.Interfaces;
 using CoreInteractables;
+using DependencyInjection;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonInteractableController : MonoBehaviour
 {
+    [SerializeField] private SoundData _soundData;
     private ICoreInteractable _coreInteractableController;
-    private Button _button; 
+    ISoundManager _soundManager;
+    private Button _button;
+    private void OnEnable()
+    {
+        if (_soundManager.IsUnityNull())
+        {
+            _soundManager = InterfaceDependencyInjector.Instance.Resolve<ISoundManager>();
+        }
+        _soundManager.CreateSound().WithSoundData(_soundData).Play();
+    }
     void Start()
     {
         _coreInteractableController = GetComponentInParent<CoreInteractableController>();
@@ -23,8 +38,7 @@ public class ButtonInteractableController : MonoBehaviour
 
     IEnumerator DelayedActionRoutine()
     {
-        yield return new WaitForSeconds(1f);
-       
+        yield return new WaitForSeconds(1f); 
     }
 
 }
