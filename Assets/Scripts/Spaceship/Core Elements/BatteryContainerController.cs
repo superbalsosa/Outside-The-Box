@@ -1,3 +1,6 @@
+using Audio;
+using Audio.Data;
+using Audio.Interfaces;
 using DependencyInjection;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,10 +16,14 @@ public class BatteryContainerController : MonoBehaviour, IListener
     [SerializeField] private Material _bulbOnMaterial;
     [SerializeField] private Material _bulbOffMaterial;
     [SerializeField] private List<Renderer> _rendererBulbs;
+    [SerializeField] private SoundData _refillSound;
+    [SerializeField] private SoundData _cantRefillSound;
+    [SerializeField] private SoundData _batteryConsumedSound;
 
     private IEventSystem _eventManager;
     private ISpaceShipManager _spaceShipManager;
     private IShipManager _shipManager;
+    private ISoundManager _soundManager;
     private float _speedPercentagePerBattery;
     private bool _isUsingBattteries = false;
     #endregion
@@ -26,6 +33,7 @@ public class BatteryContainerController : MonoBehaviour, IListener
     {
         _shipManager = InterfaceDependencyInjector.Instance.Resolve<IShipManager>();
         _spaceShipManager = InterfaceDependencyInjector.Instance.Resolve<ISpaceShipManager>();
+        _soundManager = InterfaceDependencyInjector.Instance.Resolve<ISoundManager>();
         InitEvents();
         _speedPercentagePerBattery = 100f/ _maxBatteries;
         _shipManager.SetSpeedPercentageTarget(_speedPercentagePerBattery * _currentBatteries);
@@ -61,6 +69,7 @@ public class BatteryContainerController : MonoBehaviour, IListener
     private IEnumerator ConsumeBatteryPerTime(float secondsPerBattery)
     {
         yield return new WaitForSeconds(secondsPerBattery);
+        _soundManager.CreateSound().WithSoundData(_batteryConsumedSound).Play();
         _currentBatteries--;
         _shipManager.SetSpeedPercentageTarget(_speedPercentagePerBattery * _currentBatteries);
         _isUsingBattteries = false;
@@ -90,6 +99,11 @@ public class BatteryContainerController : MonoBehaviour, IListener
             )
         {
             AddBattery();
+            _soundManager.CreateSound().WithSoundData(_refillSound).Play();
+        }
+        else
+        {
+            _soundManager.CreateSound().WithSoundData(_cantRefillSound).Play();
         }
         _eventManager.ClearEvent();
     }

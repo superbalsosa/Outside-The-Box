@@ -1,3 +1,5 @@
+using Audio.Data;
+using Audio.Interfaces;
 using DependencyInjection;
 using NUnit.Framework;
 using System;
@@ -49,12 +51,16 @@ public class ScreenBoot : MonoBehaviour, IListener
     bool lastState;
     Coroutine lensRoutine;
 
+    [SerializeField] SoundData _screenSound;
+    private ISoundManager _soundManager;
+
     [Header("Events")]
     [SerializeField] private EventType eventToOpenClose;
     private IEventSystem eventManager;
 
     void Start()
     {
+        _soundManager = InterfaceDependencyInjector.Instance.Resolve<ISoundManager>();
         SetupPostProcessing();
         SetupMaterialInstance();
         ApplyOffState();
@@ -262,6 +268,7 @@ public class ScreenBoot : MonoBehaviour, IListener
         if (eventManager.GetCurrentEvent().Equals(eventToOpenClose))
         {
             screenOn = isOn;
+            _soundManager.CreateSound().WithSoundData(_screenSound).Play();
         }
     }
 }
