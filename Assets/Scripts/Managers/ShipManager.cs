@@ -1,7 +1,9 @@
 using DependencyInjection;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShipManager : MonoBehaviour, IShipManager
 {
@@ -17,6 +19,13 @@ public class ShipManager : MonoBehaviour, IShipManager
     private float _secondsToReachTargetSpeed;
     private bool _isStopped;
     private IEventSystem _eventSystem;
+    private IPauseMenuManager _pauseMenuManager;
+    private ISpaceShipManager _spaceShipManager;
+
+    [Header("UI End Level Settings")]
+    [SerializeField] private TextMeshProUGUI EndLevelText;
+    [SerializeField] private MenuPanel WinPanel;
+    [SerializeField] private MenuPanel LosePanel;
     #endregion
 
     #region UNITY_METHODS
@@ -29,6 +38,8 @@ public class ShipManager : MonoBehaviour, IShipManager
     private void Start()
     {
         _eventSystem = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
+        _pauseMenuManager = InterfaceDependencyInjector.Instance.Resolve<IPauseMenuManager>();
+        _spaceShipManager = InterfaceDependencyInjector.Instance.Resolve<ISpaceShipManager>();
     }
     private void Update()
     {
@@ -50,6 +61,9 @@ public class ShipManager : MonoBehaviour, IShipManager
         if (_isStopped && _speedPercentage > 0) { _isStopped = false; }
         if (!_isStopped && _speedPercentage <= 0) { _isStopped = true; }
         if (_isStopped && _currentMetersLeft <= 0) { _eventSystem.SetEvent(EventType.LevelCompleted, true);}
+        if (_eventSystem.GetCurrentEvent().Equals(EventType.LevelCompleted)) { SetUIEndGame(true); }
+        if (_spaceShipManager.GetDefeatStatus()) { SetUIEndGame(false); }
+
     }
     private void MoveShip()
     {
@@ -92,6 +106,56 @@ public class ShipManager : MonoBehaviour, IShipManager
         }
 
         _speedPercentage = Mathf.Clamp(targetSpeedPercentage, 0f, 100f);
+    }
+
+    private void SetUIEndGame(bool didWin)
+    {
+        if (didWin)
+        {
+            _pauseMenuManager.DissableAllUI();
+            WinPanel.gameObject.SetActive(true);
+            EndLevelText.gameObject.SetActive(true);
+            EndLevelText.text = WinPanel.panelTitle;
+        }
+        else
+        {
+            _pauseMenuManager.DissableAllUI();
+            LosePanel.gameObject.SetActive(true);
+            EndLevelText.gameObject.SetActive(true);
+            EndLevelText.text = LosePanel.panelTitle;
+        }
+    }
+
+    public void ContinueGame()
+    {
+        _eventSystem.SetEvent(EventType.LevelCompleted, false);
+        _eventSystem.ClearEvent();
+        _pauseMenuManager.EnableGameplayUI();
+        WinPanel.gameObject.SetActive(false);
+        EndLevelText.gameObject.SetActive(false);
+        SaveBestMeterDistance();
+        totalMetersLevel = totalMetersLevel + totalMetersLevel * 0.3f;
+        InitShip();
+    }
+
+    public void ExitToMainMenu()
+    {
+        _eventSystem.SetEvent(EventType.LevelCompleted, false);
+        _eventSystem.ClearEvent();
+        SaveBestMeterDistance();
+        LosePanel.gameObject.SetActive(false);
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void SaveBestMeterDistance()
+    {
+        float bestDistance = PlayerPrefs.GetFloat("BestDistance", 0f);
+        float distanceTraveled = totalMetersLevel - _currentMetersLeft;
+        if (distanceTraveled > bestDistance)
+        {
+            PlayerPrefs.SetFloat("BestDistance", distanceTraveled);
+            PlayerPrefs.Save();
+        }
     }
     #endregion
 

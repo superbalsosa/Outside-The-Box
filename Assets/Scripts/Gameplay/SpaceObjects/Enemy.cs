@@ -31,6 +31,7 @@ public class Enemy : SpaceObject
     [SerializeField] private float hitDuration = 0.2f;
 
     ISoundManager soundManager;
+    ISpaceShipManager spaceShipManager;
 
     private float shootingTimer;
     private bool isKnockback = false;
@@ -42,7 +43,7 @@ public class Enemy : SpaceObject
     {
         base.Start();
         soundManager = InterfaceDependencyInjector.Instance.Resolve<ISoundManager>();
-
+        spaceShipManager = InterfaceDependencyInjector.Instance.Resolve<ISpaceShipManager>();
     }
 
     private void OnEnable()
@@ -99,8 +100,8 @@ public class Enemy : SpaceObject
 
             int randomAmount = Random.Range(10, 35);
             soundManager.CreateSound().WithSoundData(_deathSound).Play();
-            SpaceShipManager.Instance.ChangeStardust(randomAmount);
-            SpaceShipManager.Instance.EnemyCount--;
+            spaceShipManager.ConsumeStardust(randomAmount);
+            spaceShipManager.AddEnemyCount(-1);
 
             StartCoroutine(Retretenemy(3f));
         }
