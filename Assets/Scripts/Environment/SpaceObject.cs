@@ -1,3 +1,6 @@
+using Audio;
+using Audio.Data;
+using Audio.Interfaces;
 using DependencyInjection;
 using System.Collections;
 using UnityEngine;
@@ -26,6 +29,9 @@ public class SpaceObject : MonoBehaviour, IInteract
     [SerializeField] private bool isLeftSide;
     [SerializeField] private int Value = 1;
 
+    private ISoundManager soundManager;
+    [SerializeField] private SoundData soundData;
+
     IBoxOpenerSpawner boxOpenerSpawner;
     private void OnEnable()
     {
@@ -37,6 +43,7 @@ public class SpaceObject : MonoBehaviour, IInteract
         ApplyInitialImpulse();
         SetDoorReference();
         boxOpenerSpawner = InterfaceDependencyInjector.Instance.Resolve<IBoxOpenerSpawner>();
+        soundManager = InterfaceDependencyInjector.Instance.Resolve<ISoundManager>();
     }
     protected virtual void FixedUpdate()
     {
@@ -114,6 +121,11 @@ public class SpaceObject : MonoBehaviour, IInteract
 
     public void Interact()
     {
+        bool canPlaySound = boxOpenerSpawner == null || boxOpenerSpawner.IsThereFreeSpawnPoints();
+
+        if (canPlaySound)
+            soundManager.CreateSound().WithSoundData(soundData).Play().WithRandomPitch(-0.5f, 0.5f);
+
         onInteract.Invoke();
     }
 
