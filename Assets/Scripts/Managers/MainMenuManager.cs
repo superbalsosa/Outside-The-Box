@@ -2,9 +2,12 @@ using Audio.Data;
 using Audio.Interfaces;
 using DependencyInjection;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -16,7 +19,14 @@ public class MainMenuManager : MonoBehaviour
     [Header("Sound")]
     [SerializeField] SoundData clickSoundData;
     [SerializeField] SoundData hoverSoundData;
-    [SerializeField] AudioSource bgmAudio;
+
+
+    [Header("Audio Settings")]
+    [SerializeField] private Slider masterVolumeSlider;
+    [SerializeField] private Slider sfxVolumeSlider;
+    [SerializeField] private Slider bgmVolumeSlider;
+    [SerializeField] private AudioMixer audioMixer;
+    private Dictionary<AudioSource, float> MasterAudio;
 
     //[Header("Cursor")]
     //[SerializeField] Texture2D cursorTexture;
@@ -55,20 +65,25 @@ public class MainMenuManager : MonoBehaviour
         isTransitioning = false;
         //bgmVolumeBase = bgmAudio.volume;
 
+        masterVolumeSlider.onValueChanged.AddListener(OnVolumeChangedMaster);
+        sfxVolumeSlider.onValueChanged.AddListener(OnVolumeChangedSFX);
+        bgmVolumeSlider.onValueChanged.AddListener(OnVolumeChangedBgm);
+        SetAllVolumensToSameValue();
+        InitAudios();
+
     }
-    private void Update()
+
+    private void InitAudios()
     {
-        if (bgmAudio != null)
+        MasterAudio = new Dictionary<AudioSource, float>();
+
+        var auxAudios = FindObjectsByType<AudioSource>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (var audio in auxAudios)
         {
-            if (isDecreasingVolume)
-            {
-                bgmAudio.volume -= (bgmVolumeBase) * Time.deltaTime * (1 / (timeToChangeSceneAfterCommand));
-            }
-
+            MasterAudio.Add(audio, audio.volume);
         }
-
     }
-
 
     public void ChangeToNextLevel()
     {
@@ -139,6 +154,44 @@ public class MainMenuManager : MonoBehaviour
             .WithSoundData(hoverSoundData)
             .WithRandomPitch()
             .Play();
+    }
+
+    private void OnVolumeChangedMaster(float value)
+    {
+        SetVolume("Master", value);
+    }
+    private void OnVolumeChangedSFX(float value)
+    {
+        SetVolume("SFX", value);
+    }
+    private void OnVolumeChangedBgm(float value)
+    {
+        SetVolume("BGM", value);
+        Debug.Log("BGM slider: " + value);
+    }
+
+    private void SetAllVolumensToSameValue()
+    {
+        SetVolume("Master", PlayerPrefs.GetFloat("Master"));
+        masterVolumeSlider.value = PlayerPrefs.GetFloat("Master");
+        SetVolume("SFX", PlayerPrefs.GetFloat("SFX"));
+        sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFX");
+        SetVolume("BGM", PlayerPrefs.GetFloat("BGM"));
+        bgmVolumeSlider.value = PlayerPrefs.GetFloat("BGM");
+    }
+    private void SetVolume(string parameterName, float value)
+    {
+        float dB = Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20f;
+        audioMixer.SetFloat(parameterName, dB);
+        PlayerPrefs.SetFloat(parameterName, value);
+    }
+
+    private void OnDestroy()
+    {
+        if (masterVolumeSlider != null)
+            masterVolumeSlider.onValueChanged.RemoveListener(OnVolumeChangedMaster);
+        if (sfxVolumeSlider != null)
+            sfxVolumeSlider.onValueChanged.RemoveListener(OnVolumeChangedSFX);
     }
 
     private IEnumerator AllowButtons(bool isAllowed, float seconds = 0f)
