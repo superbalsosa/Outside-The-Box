@@ -18,3 +18,4 @@ MonoBehaviour:
   ButtonActionName: Open/Close
   OutlineHover: 0.35
   OutlineBase: 0.1
+  IsAlertable: 1
