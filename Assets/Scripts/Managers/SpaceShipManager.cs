@@ -42,26 +42,27 @@ public class SpaceShipManager : Singleton<SpaceShipManager>, ISpaceShipManager
     {
         CurrentHealth += Amount;
         if (CurrentHealth > MaxHealth) CurrentHealth = MaxHealth;
-        starShipText.text = $"Starship Health: {CurrentHealth}";
+        UpdateTexts();
         CheckDefeatSettings();
     }
     public void ChangeBatterys(int amount)
     {
         batterysAmount -= amount;
         CurrentBatterysInUse += amount;
+        batterysText.text = $"Batteries: {batterysAmount}";
         CheckDefeatSettings();
     }
 
     public void ChangeStardust(int amount)
     {
         starDust += amount;
-        starDustText.text = $"Star Dust: {starDust}";
+        UpdateTexts();
     }
 
     public void GrabBatterys(int amount)
     {
         batterysAmount += amount;
-        batterysText.text = $"Batteries: {batterysAmount}";
+        UpdateTexts();
     }
     public void CheckDefeatSettings()
     {
@@ -83,10 +84,14 @@ public class SpaceShipManager : Singleton<SpaceShipManager>, ISpaceShipManager
         starDustText.text = $"Star Dust: {starDust}";
         batterysText.text = $"Batteries: {batterysAmount}";
     }
-    private bool HasBattery()
+    private bool GetBattery()
     {
         var hasBattery = batterysAmount > 0;
-        if (hasBattery) batterysAmount--;
+        if (hasBattery)
+        {
+            batterysAmount--;
+            UpdateTexts();
+        }
 
         return hasBattery;
     }
@@ -96,7 +101,7 @@ public class SpaceShipManager : Singleton<SpaceShipManager>, ISpaceShipManager
     float ISpaceShipManager.GetStardust() => starDust;
 
     float ISpaceShipManager.GetMaxHP() => MaxHealth;
-    bool ISpaceShipManager.GetBattery() => HasBattery();
+    bool ISpaceShipManager.GetBattery() => GetBattery();
 
     float ISpaceShipManager.GetCurrentHp() => CurrentHealth;
 
