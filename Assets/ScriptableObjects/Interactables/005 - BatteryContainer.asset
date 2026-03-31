@@ -18,3 +18,4 @@ MonoBehaviour:
   ButtonActionName: Refill
   OutlineHover: 0.35
   OutlineBase: 0.1
+  IsAlertable: 1
