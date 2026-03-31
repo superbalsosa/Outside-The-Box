@@ -5019,7 +5019,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 35
+          m_IntArgument: 100
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5036,3 +5036,22 @@ MonoBehaviour:
   knockbackDuration: 2
   moveSpeed: 5
   stopDistance: 50
+  _attackSound:
+    clip: {fileID: 8300000, guid: 2a0a63ba64482194fa49349cf562874b, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
+  _deathSound:
+    clip: {fileID: 8300000, guid: a099cf118ef90ad439834eba3fad0f59, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
+  enemyRenderer: {fileID: 8188434886087849703}
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
+  hitDuration: 0.2

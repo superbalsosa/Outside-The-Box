@@ -1,3 +1,6 @@
+using Audio.Data;
+using Audio.Interfaces;
+using DependencyInjection;
 using System.Collections;
 using UnityEngine;
 using static ObjectPoolManager;
@@ -18,6 +21,17 @@ public class Enemy : SpaceObject
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float stopDistance = 8f;
 
+    [Header("Sound settings")]
+    [SerializeField] private SoundData _attackSound;
+    [SerializeField] private SoundData _deathSound;
+
+    [Header("Damage Color settings")]
+    [SerializeField] private Renderer enemyRenderer;
+    [SerializeField] private Color hitColor = Color.red;
+    [SerializeField] private float hitDuration = 0.2f;
+
+    ISoundManager soundManager;
+
     private float shootingTimer;
     private bool isKnockback = false;
     private bool isDead = false;
@@ -27,6 +41,8 @@ public class Enemy : SpaceObject
     protected override void Start()
     {
         base.Start();
+        soundManager = InterfaceDependencyInjector.Instance.Resolve<ISoundManager>();
+
     }
 
     private void OnEnable()
@@ -82,6 +98,7 @@ public class Enemy : SpaceObject
             enemyLife = 0;
 
             int randomAmount = Random.Range(10, 35);
+            soundManager.CreateSound().WithSoundData(_deathSound).Play();
             SpaceShipManager.Instance.ChangeStarDust(randomAmount);
             SpaceShipManager.Instance.EnemyCount--;
 
@@ -91,10 +108,13 @@ public class Enemy : SpaceObject
 
     public void TakeDamage(int damage)
     {
+        soundManager.CreateSound().WithSoundData(_attackSound).Play();
         enemyLife -= damage;
         ApplyKnockback();
         DefetEnemy();
     }
+
+
 
     private void SetBulletDamage(EnemyBullet enemyBullet)
     {

@@ -53,7 +53,7 @@ public class BoxOpener : MonoBehaviour, IListener
                 interactable.HideInteraction();
             }
             GiveReward();
-            DisableAllChildren(this.transform);
+            BoxGameObject.SetActive(false);
             eventManager.SetEvent(openBoxEvent, false);
             eventManager.ClearEvent();
             spawner.FreeSpawnPoint(this);
