@@ -26,6 +26,8 @@ public class SpaceObject : MonoBehaviour, IInteract
     [SerializeField] private bool isLeftSide;
     [SerializeField] private int Value = 1;
 
+    [SerializeField] private AudioSource interactSound;
+
     IBoxOpenerSpawner boxOpenerSpawner;
     private void OnEnable()
     {
@@ -114,6 +116,9 @@ public class SpaceObject : MonoBehaviour, IInteract
 
     public void Interact()
     {
+        if (interactSound != null && (boxOpenerSpawner == null || boxOpenerSpawner.IsThereFreeSpawnPoints()))
+            interactSound.Play();
+
         onInteract.Invoke();
     }
 
