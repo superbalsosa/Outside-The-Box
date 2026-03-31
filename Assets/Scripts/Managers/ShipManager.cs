@@ -24,6 +24,7 @@ public class ShipManager : MonoBehaviour, IShipManager
 
     [Header("UI End Level Settings")]
     [SerializeField] private TextMeshProUGUI EndLevelText;
+    [SerializeField] private TextMeshProUGUI MetersText;
     [SerializeField] private MenuPanel WinPanel;
     [SerializeField] private MenuPanel LosePanel;
     #endregion
@@ -115,14 +116,18 @@ public class ShipManager : MonoBehaviour, IShipManager
             _pauseMenuManager.DissableAllUI();
             WinPanel.gameObject.SetActive(true);
             EndLevelText.gameObject.SetActive(true);
+            MetersText.gameObject.SetActive(true);
             EndLevelText.text = WinPanel.panelTitle;
+            MetersText.text = $"Best distance traveled: {PlayerPrefs.GetFloat("BestDistance")} meters";
         }
         else
         {
             _pauseMenuManager.DissableAllUI();
             LosePanel.gameObject.SetActive(true);
+            MetersText.gameObject.SetActive(true);
             EndLevelText.gameObject.SetActive(true);
             EndLevelText.text = LosePanel.panelTitle;
+            MetersText.text = $"Best distance traveled: {PlayerPrefs.GetFloat("BestDistance")} meters";
         }
     }
 
@@ -133,6 +138,7 @@ public class ShipManager : MonoBehaviour, IShipManager
         _pauseMenuManager.EnableGameplayUI();
         WinPanel.gameObject.SetActive(false);
         EndLevelText.gameObject.SetActive(false);
+        MetersText.gameObject.SetActive(false);
         SaveBestMeterDistance();
         totalMetersLevel = totalMetersLevel + totalMetersLevel * 0.3f;
         InitShip();
@@ -144,6 +150,8 @@ public class ShipManager : MonoBehaviour, IShipManager
         _eventSystem.ClearEvent();
         SaveBestMeterDistance();
         LosePanel.gameObject.SetActive(false);
+        EndLevelText.gameObject.SetActive(false);
+        MetersText.gameObject.SetActive(false);
         SceneManager.LoadScene("MainMenu");
     }
 
