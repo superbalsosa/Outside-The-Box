@@ -1,3 +1,5 @@
+using Audio.Data;
+using Audio.Interfaces;
 using DependencyInjection;
 using UnityEditor;
 using UnityEngine;
@@ -11,11 +13,15 @@ public class BoxOpener : MonoBehaviour, IListener
     [SerializeField] private EventType openBoxEvent;
     private IEventSystem eventManager;
 
+    private ISoundManager soundManager;
+    [SerializeField] private SoundData soundData;
+
     public GameObject BoxGameObject;
     private void Start()
     {
         InitEvents();
         spawner = InterfaceDependencyInjector.Instance.Resolve<IBoxOpenerSpawner>();
+        soundManager = InterfaceDependencyInjector.Instance.Resolve<ISoundManager>();
     }
 
     //private void OnEnable()
@@ -52,6 +58,9 @@ public class BoxOpener : MonoBehaviour, IListener
             {
                 interactable.HideInteraction();
             }
+
+            soundManager.CreateSound().WithSoundData(soundData).Play().WithRandomPitch(-0.5f, 0.5f);
+
             GiveReward();
             BoxGameObject.SetActive(false);
             eventManager.SetEvent(openBoxEvent, false);

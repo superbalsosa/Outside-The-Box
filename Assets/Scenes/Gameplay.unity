@@ -35895,6 +35895,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoxOpener
   openBoxEvent: 6
+  soundData:
+    clip: {fileID: 8300000, guid: 8d8e0033a1fad564cae99da078df8f7b, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
   BoxGameObject: {fileID: 649615366}
 --- !u!114 &1010615893972274994
 MonoBehaviour:
@@ -37826,6 +37834,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoxOpener
   openBoxEvent: 7
+  soundData:
+    clip: {fileID: 8300000, guid: 8d8e0033a1fad564cae99da078df8f7b, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
   BoxGameObject: {fileID: 386992611}
 --- !u!114 &6511355317786510261
 MonoBehaviour:
@@ -38183,6 +38199,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoxOpener
   openBoxEvent: 5
+  soundData:
+    clip: {fileID: 8300000, guid: 8d8e0033a1fad564cae99da078df8f7b, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
   BoxGameObject: {fileID: 770632377}
 --- !u!1 &7221247873405430111
 GameObject:
@@ -38610,6 +38634,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoxOpener
   openBoxEvent: 8
+  soundData:
+    clip: {fileID: 8300000, guid: 8d8e0033a1fad564cae99da078df8f7b, type: 3}
+    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
   BoxGameObject: {fileID: 948886032}
 --- !u!223 &9126539189355759959
 Canvas:
@@ -38678,6 +38710,18 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 594688227706136262, guid: c9648cdceee33db4bb4e517c7365be60, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 594688227706136262, guid: c9648cdceee33db4bb4e517c7365be60, type: 3}
+      propertyPath: soundData.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d8e0033a1fad564cae99da078df8f7b, type: 3}
+    - target: {fileID: 594688227706136262, guid: c9648cdceee33db4bb4e517c7365be60, type: 3}
+      propertyPath: soundData.mixerGroup
+      value: 
+      objectReference: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
     - target: {fileID: 4081854342229857702, guid: c9648cdceee33db4bb4e517c7365be60, type: 3}
       propertyPath: m_Type
       value: 0
