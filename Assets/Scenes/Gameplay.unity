@@ -8507,8 +8507,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Destination within reach: 1000  meters remaining'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 971af38bb15f2554b890fd8cf10ebdd4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 971af38bb15f2554b890fd8cf10ebdd4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
