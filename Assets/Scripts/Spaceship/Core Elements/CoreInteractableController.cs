@@ -15,12 +15,14 @@ namespace CoreInteractables
         private List<Renderer> renderers = new List<Renderer>();
         //private IErrorManager errorManager;
         private IEventSystem eventManager;
+        private GameObject alertUI;
         #endregion
 
         #region UNITY_METHODS
         private void Start()
         {
             canvasButtonInteractive = GetComponentInChildren<Canvas>(true);
+            if (interactableData.IsAlertable) alertUI = GetComponentInChildren<AlertUIController>(true).gameObject;
             //errorManager = InterfaceDependencyInjector.Instance.Resolve<IErrorManager>();
             eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
             InitOutlines();
@@ -48,6 +50,7 @@ namespace CoreInteractables
         }
         private void ShowInteraction()
         {
+            if (interactableData.IsAlertable) alertUI.gameObject.SetActive(false);
             canvasButtonInteractive.gameObject.SetActive(true);
 
             foreach (var render in renderers)
@@ -58,6 +61,7 @@ namespace CoreInteractables
         private void HideInteraction()
         {
             canvasButtonInteractive.gameObject.SetActive(false);
+            if (interactableData.IsAlertable) alertUI.gameObject.SetActive(true);
 
             foreach (var render in renderers)
             {

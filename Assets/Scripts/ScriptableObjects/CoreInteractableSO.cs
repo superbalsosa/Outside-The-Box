@@ -16,5 +16,6 @@ namespace CoreInteractables
         public string ButtonActionName;
         public float OutlineHover;
         public float OutlineBase;
+        public bool IsAlertable;
     }
 }
