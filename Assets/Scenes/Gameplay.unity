@@ -8089,6 +8089,8 @@ MonoBehaviour:
   maxX: 15
   minZ: -10
   maxZ: 18
+  rotationSpeed: 10
+  lookAtMovement: 1
   draggableLayer:
     serializedVersion: 2
     m_Bits: 128
