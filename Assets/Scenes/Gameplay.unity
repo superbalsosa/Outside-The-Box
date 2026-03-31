@@ -22515,6 +22515,10 @@ MonoBehaviour:
   metersPerSecondAtFullSpeed: 100
   startingSpeedPercentage: 0
   secondsToReachTargetSpeed: 3
+  EndLevelText: {fileID: 1922568544}
+  MetersText: {fileID: 1922568543}
+  WinPanel: {fileID: 1922568542}
+  LosePanel: {fileID: 1922568541}
 --- !u!4 &1175018061
 Transform:
   m_ObjectHideFlags: 0
@@ -34920,15 +34924,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902faf059bd7f184abd79cc618b2ef6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceShipManager
-  dontDestroyOnLoad: 1
   MaxHealth: 100
   starDust: 100
   batterysAmount: 7
   starDustText: {fileID: 2009288455}
   starShipText: {fileID: 190412285}
   batterysText: {fileID: 402024500}
-  MaxEnemyCount: 10
-  EnemyCount: 0
 --- !u!4 &1776254102
 Transform:
   m_ObjectHideFlags: 0
@@ -35323,6 +35324,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3776955221749877150, guid: 11d7fc4166d9b924a99c61fc0bf81a2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1175018060}
+    - target: {fileID: 3776955221749877150, guid: 11d7fc4166d9b924a99c61fc0bf81a2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ContinueGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840900319835160101, guid: 11d7fc4166d9b924a99c61fc0bf81a2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1175018060}
+    - target: {fileID: 4840900319835160101, guid: 11d7fc4166d9b924a99c61fc0bf81a2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076945299784922861, guid: 11d7fc4166d9b924a99c61fc0bf81a2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1175018060}
+    - target: {fileID: 5076945299784922861, guid: 11d7fc4166d9b924a99c61fc0bf81a2a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitToMainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 8537288903039148032, guid: 11d7fc4166d9b924a99c61fc0bf81a2a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -35439,6 +35464,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1922568541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5907574428537765928, guid: 11d7fc4166d9b924a99c61fc0bf81a2a, type: 3}
+  m_PrefabInstance: {fileID: 1922568538}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83a3a33d21417946b0bd0ec964c8843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuPanel
+--- !u!114 &1922568542 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5583677967938203287, guid: 11d7fc4166d9b924a99c61fc0bf81a2a, type: 3}
+  m_PrefabInstance: {fileID: 1922568538}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83a3a33d21417946b0bd0ec964c8843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuPanel
+--- !u!114 &1922568543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 242614710229876365, guid: 11d7fc4166d9b924a99c61fc0bf81a2a, type: 3}
+  m_PrefabInstance: {fileID: 1922568538}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &1922568544 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4945863799202854071, guid: 11d7fc4166d9b924a99c61fc0bf81a2a, type: 3}
+  m_PrefabInstance: {fileID: 1922568538}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1989121843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6430356021607384090, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
@@ -35896,8 +35965,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoxOpener
   openBoxEvent: 6
   soundData:
-    clip: {fileID: 8300000, guid: 8d8e0033a1fad564cae99da078df8f7b, type: 3}
-    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    clip: {fileID: 0}
+    mixerGroup: {fileID: 0}
     isALoop: 0
     isAPlayOnAwake: 0
     volume: 1
@@ -37835,8 +37904,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoxOpener
   openBoxEvent: 7
   soundData:
-    clip: {fileID: 8300000, guid: 8d8e0033a1fad564cae99da078df8f7b, type: 3}
-    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    clip: {fileID: 0}
+    mixerGroup: {fileID: 0}
     isALoop: 0
     isAPlayOnAwake: 0
     volume: 1
@@ -38200,8 +38269,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoxOpener
   openBoxEvent: 5
   soundData:
-    clip: {fileID: 8300000, guid: 8d8e0033a1fad564cae99da078df8f7b, type: 3}
-    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    clip: {fileID: 0}
+    mixerGroup: {fileID: 0}
     isALoop: 0
     isAPlayOnAwake: 0
     volume: 1
@@ -38635,8 +38704,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoxOpener
   openBoxEvent: 8
   soundData:
-    clip: {fileID: 8300000, guid: 8d8e0033a1fad564cae99da078df8f7b, type: 3}
-    mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
+    clip: {fileID: 0}
+    mixerGroup: {fileID: 0}
     isALoop: 0
     isAPlayOnAwake: 0
     volume: 1
