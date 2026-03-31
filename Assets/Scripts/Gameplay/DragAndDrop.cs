@@ -10,7 +10,8 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
     public float minZ = -10f;
     public float maxZ = 10f;
 
-
+    [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private bool lookAtMovement = true;
 
     private Rigidbody rb;
     private Camera mainCamera;
@@ -99,6 +100,18 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
         targetPos.z = Mathf.Clamp(targetPos.z, minZ, maxZ);
         targetPos.y = lockedY;
 
+        if (lookAtMovement)
+        {
+            Vector3 direction = (targetPos - transform.position);
+            direction.y = 0;
+
+            if (direction.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+                rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed));
+            }
+        }
         rb.MovePosition(targetPos);
     }
     /// <summary>
