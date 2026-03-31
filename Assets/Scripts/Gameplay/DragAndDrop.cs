@@ -24,6 +24,8 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
     private bool isDragging = false;
     private IEventSystem eventManager;
 
+    [SerializeField] private Animator animator;
+    [SerializeField] private string isDraggingParameter = "IsDragging";
     public bool IsDragging { get => isDragging; }
 
     private void Awake()
@@ -50,6 +52,7 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
         if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;
+            SetDraggingAnimation(false);
         }
     }
 
@@ -67,7 +70,15 @@ public class DragAndDrop : MonoBehaviour, IDragAndDrop
 
         isDragging = true;
         PrepareDrag();
+        SetDraggingAnimation(true);
     }
+
+    private void SetDraggingAnimation(bool value)
+    {
+        if (animator == null) return;
+        animator.SetBool(isDraggingParameter, value);
+    }
+
     private void SetupReferences()
     {
         rb = GetComponent<Rigidbody>();
