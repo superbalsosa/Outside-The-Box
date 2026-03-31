@@ -2171,13 +2171,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887076126}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.064346276, y: -0.934702, z: 0.22440208, w: 0.26802155}
-  m_LocalPosition: {x: 86, y: 94, z: 138}
+  m_LocalRotation: {x: 0.059931513, y: -0.93826467, z: 0.20900597, w: 0.26904312}
+  m_LocalPosition: {x: 86.436584, y: 92.34649, z: 138.69867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 27, y: -148, z: 0}
+  m_LocalEulerAnglesHint: {x: 25.116, y: -148, z: 0}
 --- !u!114 &887076130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8827,7 +8827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Postprocessing.Runtime::UnityEngine.Rendering.PostProcessing.PostProcessLayer
-  volumeTrigger: {fileID: 1415285300}
+  volumeTrigger: {fileID: 887076129}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 4096
@@ -8869,8 +8869,8 @@ MonoBehaviour:
       colorBlindnessType: 0
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 1
-  m_ShowCustomSorter: 1
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
@@ -8942,15 +8942,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415285296}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.064346276, y: -0.934702, z: 0.22440208, w: 0.26802155}
-  m_LocalPosition: {x: 86, y: 94, z: 138}
+  m_LocalRotation: {x: 0.059931513, y: -0.93826467, z: 0.20900597, w: 0.26904312}
+  m_LocalPosition: {x: 86.436584, y: 92.34649, z: 138.69867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 386633772}
   - {fileID: 1635455852}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 27, y: -148, z: 0}
+  m_LocalEulerAnglesHint: {x: 25.116, y: -148, z: 0}
 --- !u!23 &1437460592 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -887095748192548169, guid: 82fb37ce20bbf4d458c271a4189e2787, type: 3}
@@ -9751,8 +9751,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UITextController
   eventToRegistry: 9
-  preText: 'Destination within reach: '
-  postText: ' meters remaining'
+  preText: 'Arriving in:'
+  postText: m
 --- !u!114 &1640903771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9773,10 +9773,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Destination within reach: 1000  meters remaining'
+  m_text: 'Arriving in:
+
+    1000 m'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 971af38bb15f2554b890fd8cf10ebdd4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 971af38bb15f2554b890fd8cf10ebdd4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9806,8 +9808,8 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 1
@@ -9839,7 +9841,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 540.46094, y: 0, z: 521.6094, w: 983.5475}
+  m_margin: {x: 540.46094, y: 8.315552, z: 521.6094, w: 928.19885}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
