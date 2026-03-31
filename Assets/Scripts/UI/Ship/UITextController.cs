@@ -24,7 +24,7 @@ public class UITextController : MonoBehaviour, IListener
     {
         if (!isUpdating) return;
 
-        textMeshPro.text = preText + Mathf.RoundToInt(shipManager.GetCurrentMetersLeft()).ToString() + postText;
+        textMeshPro.text = preText + "\n" + Mathf.RoundToInt(shipManager.GetCurrentMetersLeft()).ToString() + postText;
     }
     private void OnDisable()
     {
