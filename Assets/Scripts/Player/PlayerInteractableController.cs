@@ -27,7 +27,7 @@ public class PlayerInteractableController : MonoBehaviour, IListener
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && eventManager.GetCurrentEvent().Equals(EventType.InteractableControlTable)) {
+        if (Input.GetMouseButtonDown(1) && eventManager.GetCurrentEvent().Equals(EventType.InteractableControlTable)) {
             eventManager.SetEvent(EventType.InteractableControlTable, false);
             eventManager.ClearEvent();
         }

@@ -1,12 +1,10 @@
 using Audio.Data;
 using Audio.Interfaces;
 using DependencyInjection;
-using NUnit.Framework;
-using System;
 using System.Collections;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using TMPro;
 
 public class ScreenBoot : MonoBehaviour, IListener
 {
@@ -35,6 +33,8 @@ public class ScreenBoot : MonoBehaviour, IListener
 
     [Header("State")]
     public bool screenOn;
+
+    [SerializeField] private TMP_Text screenStatusText;
 
     float power;
     float currentDOF;
@@ -104,6 +104,13 @@ public class ScreenBoot : MonoBehaviour, IListener
 
     // Initialization
 
+    private void UpdateScreenUI()
+    {
+        if (screenStatusText == null) return;
+
+        screenStatusText.gameObject.SetActive(screenOn);
+    }
+
     void SetupPostProcessing()
     {
         if (dofVolume != null)
@@ -136,6 +143,7 @@ public class ScreenBoot : MonoBehaviour, IListener
     {
         if (screenOn == lastState) return;
 
+        UpdateScreenUI();
         RestartLensRoutine();
 
         if (screenOn)
