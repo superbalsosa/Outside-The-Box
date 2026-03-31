@@ -2,8 +2,6 @@ using DependencyInjection;
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Searcher.Searcher.AnalyticsEvent;
-
 public class PlayerInteractableController : MonoBehaviour, IListener
 {
     #region VARIABLES

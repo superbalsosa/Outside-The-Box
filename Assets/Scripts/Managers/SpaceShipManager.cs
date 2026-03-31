@@ -40,7 +40,7 @@ public class SpaceShipManager : MonoBehaviour, ISpaceShipManager
     public void ChangeHealth(int Amount)
     {
         CurrentHealth += Amount;
-        if (CurrentHealth > MaxHealth) CurrentHealth = MaxHealth;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
         UpdateTexts();
         CheckDefeatSettings();
     }
