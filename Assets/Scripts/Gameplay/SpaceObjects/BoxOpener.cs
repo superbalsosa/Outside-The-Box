@@ -78,7 +78,7 @@ public class BoxOpener : MonoBehaviour, IListener
         {
             case 0:
                 int randomAmount = Random.Range(10, 75);
-                SpaceShipManager.Instance.ChangeStarDust(randomAmount);
+                SpaceShipManager.Instance.ChangeStardust(randomAmount);
                 break;
             case 1:
                 SpaceShipManager.Instance.GrabBatterys(1);

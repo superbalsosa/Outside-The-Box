@@ -100,6 +100,7 @@ public class Enemy : SpaceObject
             int randomAmount = Random.Range(10, 35);
             soundManager.CreateSound().WithSoundData(_deathSound).Play();
             SpaceShipManager.Instance.ChangeStarDust(randomAmount);
+            SpaceShipManager.Instance.ChangeStardust(randomAmount);
             SpaceShipManager.Instance.EnemyCount--;
 
             StartCoroutine(Retretenemy(3f));
