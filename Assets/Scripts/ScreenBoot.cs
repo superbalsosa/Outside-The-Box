@@ -95,11 +95,11 @@ public class ScreenBoot : MonoBehaviour, IListener
     private void InitEvents()
     {
         eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
-        eventManager.SuscribeToEvent(eventToOpenClose, this);
+        eventManager.SubscribeToEvent(eventToOpenClose, this);
     }
     private void UnsuscribeToEvents()
     {
-        eventManager.UnSuscribeToEvent(eventToOpenClose, this);
+        eventManager.UnSubscribeToEvent(eventToOpenClose, this);
     }
 
     // Initialization

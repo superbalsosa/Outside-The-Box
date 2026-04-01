@@ -41,11 +41,11 @@ public class DoorControler : MonoBehaviour, IListener
         soundManager = InterfaceDependencyInjector.Instance.Resolve<ISoundManager>();
         eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
         dragAndDrop = InterfaceDependencyInjector.Instance.Resolve<IDragAndDrop>();
-        eventManager.SuscribeToEvent(eventToOpenClose, this);
+        eventManager.SubscribeToEvent(eventToOpenClose, this);
     }
     private void UnsuscribeToEvents()
     {
-        eventManager.UnSuscribeToEvent(eventToOpenClose, this);
+        eventManager.UnSubscribeToEvent(eventToOpenClose, this);
     }
 
     public void ExecuteListenerAction(bool isOn)

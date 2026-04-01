@@ -17,7 +17,7 @@ public class UITextController : MonoBehaviour, IListener
     {
         textMeshPro = GetComponent<TextMeshProUGUI>();
         eventSystem = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
-        eventSystem.SuscribeToEvent(eventToRegistry, this);
+        eventSystem.SubscribeToEvent(eventToRegistry, this);
         shipManager = InterfaceDependencyInjector.Instance.Resolve<IShipManager>();
     }
     void Update()
@@ -28,7 +28,7 @@ public class UITextController : MonoBehaviour, IListener
     }
     private void OnDisable()
     {
-        eventSystem.UnSuscribeToEvent(eventToRegistry, this);
+        eventSystem.UnSubscribeToEvent(eventToRegistry, this);
     }
     void IListener.ExecuteListenerAction(bool isOn)
     {

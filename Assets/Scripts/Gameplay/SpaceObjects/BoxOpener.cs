@@ -39,12 +39,12 @@ public class BoxOpener : MonoBehaviour, IListener
     private void InitEvents()
     {
         eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
-        eventManager.SuscribeToEvent(openBoxEvent, this);
+        eventManager.SubscribeToEvent(openBoxEvent, this);
     }
 
     private void UnsuscribeToEvents()
     {
-        eventManager.UnSuscribeToEvent(openBoxEvent, this);
+        eventManager.UnSubscribeToEvent(openBoxEvent, this);
     }
 
     public void Init(IBoxOpenerSpawner spawner)
