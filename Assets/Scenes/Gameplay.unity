@@ -22334,11 +22334,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   soundsData:
-  - clip: {fileID: 8300000, guid: ab8f9496a8a701449b5e93a4dbcb9791, type: 3}
+  - clip: {fileID: 8300000, guid: 95065d587d804e5449f19f4479890d7e, type: 3}
     mixerGroup: {fileID: 3674533452606227304, guid: c591d31a4a41111499890d441f5f922f, type: 2}
     isALoop: 1
     isAPlayOnAwake: 1
-    volume: 0.3
+    volume: 0.8
     pitch: 1
     secondsDelay: 0
 --- !u!4 &1065342769

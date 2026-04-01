@@ -5026,6 +5026,14 @@ MonoBehaviour:
         m_CallState: 2
   isLeftSide: 1
   Value: 1
+  soundData:
+    clip: {fileID: 0}
+    mixerGroup: {fileID: 0}
+    isALoop: 0
+    isAPlayOnAwake: 0
+    volume: 1
+    pitch: 1
+    secondsDelay: 0
   bulletPrefab: {fileID: 1547665882150886122, guid: 48f75b3632c5d25448545885634d12b7, type: 3}
   spaceShip: {fileID: 0}
   maxBulletsCount: 5
@@ -5049,7 +5057,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 849347853823006467, guid: c591d31a4a41111499890d441f5f922f, type: 2}
     isALoop: 0
     isAPlayOnAwake: 0
-    volume: 1
+    volume: 0.45
     pitch: 1
     secondsDelay: 0
   enemyRenderer: {fileID: 8188434886087849703}

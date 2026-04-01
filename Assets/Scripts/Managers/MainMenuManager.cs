@@ -126,7 +126,7 @@ public class MainMenuManager : MonoBehaviour
         
         PanelTitleText.text = panel.panelTitle;
 
-        yield return new WaitForSeconds(1f); 
+        yield return new WaitForSeconds(0f); 
 
         activePanel = panel;
 
