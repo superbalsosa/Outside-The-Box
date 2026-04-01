@@ -129,6 +129,6 @@ public class SpaceShipManager : MonoBehaviour, ISpaceShipManager
 
     void ISpaceShipManager.Heal(int hpToHeal) => ChangeHealth(hpToHeal);
     void ISpaceShipManager.GrabBatterys(int amount) => GrabBatterys(amount);
-    void ISpaceShipManager.ConsumeStardust(int stardustToConsume) => ChangeStardust(-stardustToConsume);
+    void ISpaceShipManager.ConsumeStardust(int stardustToConsume) => ChangeStardust(stardustToConsume);
     #endregion
 }
