@@ -832,7 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8175ef292aee36147a717f32395041a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceObjectSpawner
-  areaCenter: {x: 50, y: 15, z: -48}
+  areaCenter: {x: 50, y: 15, z: -132.1}
   areaSize: {x: 33.8, y: 32.2, z: 26.28}
   enemyAreaCenter: {x: 50, y: 15, z: 0}
   enemyAreaSize: {x: 20, y: 30, z: 30}
@@ -840,7 +840,7 @@ MonoBehaviour:
   - {fileID: 1150321490312868918, guid: 652e6e0c654eebf4696832a27fcc1b07, type: 3}
   spawnInterval: 10
   maxSpawnInterval: 10
-  disableTime: 50
+  disableTime: 80
   randomSpawnQuantity: 6
   maxObjects: 15
   poolType: 1
@@ -860,7 +860,7 @@ Transform:
   m_GameObject: {fileID: 227960017}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 15, z: -48}
+  m_LocalPosition: {x: 50, y: 15, z: -132.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23211,7 +23211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8175ef292aee36147a717f32395041a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceObjectSpawner
-  areaCenter: {x: -50, y: 15, z: -48}
+  areaCenter: {x: -50, y: 15, z: -132.1}
   areaSize: {x: 33.8, y: 32.2, z: 26.28}
   enemyAreaCenter: {x: -50, y: 15, z: 0}
   enemyAreaSize: {x: 20, y: 30, z: 30}
@@ -23219,7 +23219,7 @@ MonoBehaviour:
   - {fileID: 4531104409143567867, guid: f2c2d8f5b68b39843aed0132aef960e0, type: 3}
   spawnInterval: 10
   maxSpawnInterval: 10
-  disableTime: 50
+  disableTime: 80
   randomSpawnQuantity: 6
   maxObjects: 15
   poolType: 1
@@ -23239,7 +23239,7 @@ Transform:
   m_GameObject: {fileID: 1321817620}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50, y: 15, z: -48}
+  m_LocalPosition: {x: -50, y: 15, z: -132.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
