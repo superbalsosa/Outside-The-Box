@@ -44,7 +44,7 @@ public class StarsContainerController : MonoBehaviour, IListener
     }
     private void RepairShip()
     {
-        _spaceShipManager.ConsumeStardust(_stardustToRepair);
+        _spaceShipManager.ConsumeStardust(-_stardustToRepair);
         _spaceShipManager.Heal(_spaceshipRepairHP);
     }
 

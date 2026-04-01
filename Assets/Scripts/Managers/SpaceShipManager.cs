@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using DependencyInjection;
 using System;
 
-public class SpaceShipManager : Singleton<SpaceShipManager>, ISpaceShipManager
+public class SpaceShipManager : MonoBehaviour, ISpaceShipManager
 {
     [Header("Space Ship Status")]
     [SerializeField] private int MaxHealth = 100;
@@ -24,12 +24,11 @@ public class SpaceShipManager : Singleton<SpaceShipManager>, ISpaceShipManager
     [SerializeField] private Text batterysText;
 
     [Header("Enemy Settings")]
-    public int MaxEnemyCount = 10;
-    public int EnemyCount = 0;
+    public int MaxEnemyCount { get; set; } = 10;
+    public int EnemyCount { get; set; } = 0;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         InterfaceDependencyInjector.Instance.Register<ISpaceShipManager>(() => this);
     }
     private void Start()
@@ -68,8 +67,20 @@ public class SpaceShipManager : Singleton<SpaceShipManager>, ISpaceShipManager
     {
         if (CurrentHealth <= 0 || CurrentBatterysInUse <= 0)
         {
-            // Trigger defeat condition
+            CurrentHealth = 0;
             Debug.Log("Defeat! Space ship is destroyed or out of batterys.");
+        }
+    }
+
+    public bool GetDefeatStatus() 
+    {
+        if (CurrentHealth <= 0 || CurrentBatterysInUse <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -96,17 +107,28 @@ public class SpaceShipManager : Singleton<SpaceShipManager>, ISpaceShipManager
         return hasBattery;
     }
 
+    public void AddEnemyCount(int amount)
+    {
+        EnemyCount += amount;
+    }
     #region INTERFACE_IMPLEMENTATION
 
     float ISpaceShipManager.GetStardust() => starDust;
 
     float ISpaceShipManager.GetMaxHP() => MaxHealth;
+
+    int ISpaceShipManager.GetEnemyCount() => EnemyCount;
+    int ISpaceShipManager.GetMaxEnemyCount() => MaxEnemyCount;
+    void ISpaceShipManager.AddEnemyCount(int amount) => AddEnemyCount(amount);
+
     bool ISpaceShipManager.GetBattery() => GetBattery();
+
+    bool ISpaceShipManager.GetDefeatStatus() => GetDefeatStatus();
 
     float ISpaceShipManager.GetCurrentHp() => CurrentHealth;
 
     void ISpaceShipManager.Heal(int hpToHeal) => ChangeHealth(hpToHeal);
-
-    void ISpaceShipManager.ConsumeStardust(int stardustToConsume) => ChangeStardust(-stardustToConsume);
+    void ISpaceShipManager.GrabBatterys(int amount) => GrabBatterys(amount);
+    void ISpaceShipManager.ConsumeStardust(int stardustToConsume) => ChangeStardust(stardustToConsume);
     #endregion
 }

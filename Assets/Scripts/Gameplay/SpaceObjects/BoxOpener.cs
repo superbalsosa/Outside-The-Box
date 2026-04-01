@@ -12,6 +12,7 @@ public class BoxOpener : MonoBehaviour, IListener
     [Header("Events")]
     [SerializeField] private EventType openBoxEvent;
     private IEventSystem eventManager;
+    private ISpaceShipManager spaceShipManager;
 
     private ISoundManager soundManager;
     [SerializeField] private SoundData soundData;
@@ -21,6 +22,7 @@ public class BoxOpener : MonoBehaviour, IListener
     {
         InitEvents();
         spawner = InterfaceDependencyInjector.Instance.Resolve<IBoxOpenerSpawner>();
+        spaceShipManager = InterfaceDependencyInjector.Instance.Resolve<ISpaceShipManager>();
         soundManager = InterfaceDependencyInjector.Instance.Resolve<ISoundManager>();
     }
 
@@ -87,10 +89,10 @@ public class BoxOpener : MonoBehaviour, IListener
         {
             case 0:
                 int randomAmount = Random.Range(10, 75);
-                SpaceShipManager.Instance.ChangeStardust(randomAmount);
+                spaceShipManager.ConsumeStardust(randomAmount);
                 break;
             case 1:
-                SpaceShipManager.Instance.GrabBatterys(1);
+                spaceShipManager.GrabBatterys(1);
                 break;
             case 2:
                 Debug.Log("Box was empty");

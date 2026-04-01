@@ -1,3 +1,4 @@
+using DependencyInjection;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,24 +39,35 @@ public class SpaceObjectSpawner : MonoBehaviour
     Queue<GameObject> recentSpaceObjects = new Queue<GameObject>();
     Queue<GameObject> recentEnemys = new Queue<GameObject>();
 
-  
+    IEventSystem eventSystem;
+    ISpaceShipManager spaceShipManager;
+
+    private void Start()
+    {
+        eventSystem = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
+        spaceShipManager = InterfaceDependencyInjector.Instance.Resolve<ISpaceShipManager>();
+    }
     private void Update()
     {
-        timer += Time.deltaTime;
-        enemyTimer += Time.deltaTime;
-        if (timer >= spawnInterval)
-        {            
-            timer = 0f;
-            spawnInterval = Random.Range(maxSpawnInterval/2, maxSpawnInterval);
-            SpawnSpaceObject();
-        }
-
-        if (enemyTimer >= enemySpawnInterval && SpaceShipManager.Instance.EnemyCount < SpaceShipManager.Instance.MaxEnemyCount)
+        if (!eventSystem.GetCurrentEvent().Equals(EventType.LevelCompleted) && !spaceShipManager.GetDefeatStatus())
         {
-            enemyTimer = 0f;
-            enemySpawnInterval = Random.Range(enemyMaxSpawnInterval / 2, enemyMaxSpawnInterval);
-            SpawnEnemy();
+            timer += Time.deltaTime;
+            enemyTimer += Time.deltaTime;
+            if (timer >= spawnInterval)
+            {            
+                timer = 0f;
+                spawnInterval = Random.Range(maxSpawnInterval/2, maxSpawnInterval);
+                SpawnSpaceObject();
+            }
+
+            if (enemyTimer >= enemySpawnInterval && spaceShipManager.GetEnemyCount() < spaceShipManager.GetMaxEnemyCount())
+            {
+                enemyTimer = 0f;
+                enemySpawnInterval = Random.Range(enemyMaxSpawnInterval / 2, enemyMaxSpawnInterval);
+                SpawnEnemy();
+            }
         }
+        
     }
 
     private void SpawnSpaceObject()
@@ -145,7 +157,7 @@ public class SpaceObjectSpawner : MonoBehaviour
             Vector3 spawnPos = EnemySpawnPosition();
             GameObject spawnedObject = ObjectPoolManager.SpawnSpaceObject(objectToSpawn, spawnPos, spawnRotation, enemyPoolType);
 
-            SpaceShipManager.Instance.EnemyCount++;
+            spaceShipManager.AddEnemyCount(1);
             
 
         }
