@@ -143,11 +143,11 @@ public class EventSystem : Singleton<EventSystem>, IEventSystem
         SetEvent(eventType, isOn);
         ClearEvent();
     }
-    void IEventSystem.SuscribeToEvent(EventType eventType, IListener listener)
+    void IEventSystem.SubscribeToEvent(EventType eventType, IListener listener)
     {
         interactEvents.Find(e => e.eventType == eventType).eventAction += listener.ExecuteListenerAction;
     }
-    void IEventSystem.UnSuscribeToEvent(EventType eventType, IListener listener)
+    void IEventSystem.UnSubscribeToEvent(EventType eventType, IListener listener)
     {
         interactEvents.Find(e => e.eventType == eventType).eventAction -= (listener.ExecuteListenerAction);
     }

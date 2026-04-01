@@ -31,7 +31,7 @@ public class StarsContainerController : MonoBehaviour, IListener
     private void InitEvents()
     {
         _eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
-        _eventManager.SuscribeToEvent(_eventToRepair, this);
+        _eventManager.SubscribeToEvent(_eventToRepair, this);
     }
     private bool CanRepairShip()
     {

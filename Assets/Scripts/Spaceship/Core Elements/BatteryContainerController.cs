@@ -47,6 +47,10 @@ public class BatteryContainerController : MonoBehaviour, IListener
             StartCoroutine(ConsumeBatteryPerTime(_secondsPerBattery));
         }
     }
+    private void OnDisable()
+    {
+        _eventManager.UnSubscribeToEvent(_eventToRefill, this);
+    }
     #endregion
 
     #region PRIVATE_METHODS
@@ -78,7 +82,7 @@ public class BatteryContainerController : MonoBehaviour, IListener
     private void InitEvents()
     {
         _eventManager = InterfaceDependencyInjector.Instance.Resolve<IEventSystem>();
-        _eventManager.SuscribeToEvent(_eventToRefill, this);
+        _eventManager.SubscribeToEvent(_eventToRefill, this);
     }
     private bool BatterySlotAvailable() => _currentBatteries < _maxBatteries;
     private void AddBattery()
